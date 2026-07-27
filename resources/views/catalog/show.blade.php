@@ -127,6 +127,7 @@
                         type="button"
                         data-open-inquiry
                         data-product-id="{{ $product->id }}"
+                        data-product-slug="{{ $product->slug }}"
                         data-product-name="{{ $product->name }}"
                         class="inline-flex min-h-12 items-center justify-center gap-2 rounded-control bg-primary px-5 text-base font-semibold text-white shadow-sm hover:bg-primary-strong focus:outline-none focus:ring-2 focus:ring-accent"
                     >

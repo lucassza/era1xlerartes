@@ -12,6 +12,7 @@ use App\Http\Controllers\PublicCatalogCategoryController;
 use App\Http\Controllers\PublicCommentController;
 use App\Http\Controllers\PublicPostController;
 use App\Http\Controllers\PublicProductController;
+use App\Http\Controllers\PublicProductInquiryController;
 use App\Http\Controllers\PublicSearchController;
 use App\Http\Controllers\PublicTaxonomyController;
 use App\Http\Controllers\PublicTestimonialController;
@@ -24,6 +25,8 @@ Route::get('/', CatalogController::class)->name('home');
 Route::get('/produtos', [PublicProductController::class, 'index'])->name('products.index');
 Route::get('/produtos/{slug}', [PublicProductController::class, 'show'])
     ->name('products.show');
+Route::post('/produtos/{slug}/consulta', [PublicProductInquiryController::class, 'store'])
+    ->name('products.inquiries.store');
 Route::get('/categorias/{slug}', [PublicCatalogCategoryController::class, 'show'])
     ->name('catalog-categories.show');
 Route::get('/blog', HomeController::class)->name('blog.index');

@@ -69,6 +69,7 @@
                     type="button"
                     data-open-inquiry
                     data-product-id="{{ $product->id }}"
+                    data-product-slug="{{ $product->slug }}"
                     data-product-name="{{ $product->name }}"
                     class="inline-flex min-h-9 items-center justify-center gap-2 rounded-control bg-primary px-3 text-sm font-semibold text-white transition hover:bg-primary-strong"
                 >

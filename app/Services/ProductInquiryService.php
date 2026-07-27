@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Enums\InquiryStatus;
+use App\Models\Product;
 use App\Models\ProductInquiry;
 use App\Models\ProductInquiryNote;
 use App\Models\ProductInquiryStatusHistory;
@@ -171,5 +172,69 @@ class ProductInquiryService
             'user_id' => $user?->getKey(),
             'note' => $note,
         ]);
+    }
+
+    /**
+     * @param  array<string, mixed>  $data
+     */
+    public function store(array $data): ProductInquiry
+    {
+        return \DB::transaction(function () use ($data): ProductInquiry {
+            $productId = $data['product_id'] ?? null;
+            $productName = 'Produto removido';
+
+            if ($productId !== null) {
+                $product = Product::query()->find($productId);
+                if ($product instanceof Product) {
+                    $productName = (string) $product->getAttribute('name');
+                }
+            }
+
+            $inquiry = ProductInquiry::query()->create([
+                'product_id' => $productId,
+                'product_name' => $productName,
+                'name' => (string) $data['name'],
+                'email' => (string) $data['email'],
+                'phone' => $data['phone'] ?? null,
+                'company' => $data['company'] ?? null,
+                'city' => $data['city'] ?? null,
+                'state' => $data['state'] ?? null,
+                'subject' => $data['subject'] ?? null,
+                'message' => (string) $data['message'],
+                'origin' => 'web',
+                'source_url' => $data['source_url'] ?? null,
+                'utm' => $this->extractUtm($data['utm'] ?? []),
+                'ip' => $data['ip'] ?? null,
+                'user_agent' => $data['user_agent'] ?? null,
+                'status' => InquiryStatus::New,
+            ]);
+
+            ProductInquiryStatusHistory::query()->create([
+                'product_inquiry_id' => $inquiry->id,
+                'from_status' => null,
+                'to_status' => InquiryStatus::New,
+                'user_id' => null,
+                'note' => 'Consulta registrada pelo formulário público.',
+            ]);
+
+            return $inquiry;
+        });
+    }
+
+    /**
+     * @param  array<string, mixed>  $raw
+     * @return array<string, mixed>
+     */
+    private function extractUtm(array $raw): array
+    {
+        $allowed = ['source', 'medium', 'campaign', 'term', 'content'];
+        $clean = [];
+        foreach ($allowed as $key) {
+            if (! empty($raw[$key]) && is_string($raw[$key])) {
+                $clean[$key] = mb_substr($raw[$key], 0, 120);
+            }
+        }
+
+        return $clean;
     }
 }

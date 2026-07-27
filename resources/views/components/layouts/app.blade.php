@@ -60,5 +60,17 @@
 
         <x-site.footer />
         <x-site.search-dialog />
+
+        @php
+            $route = request()->route();
+            $routeName = $route?->getName() ?? '';
+            $inCatalog = str_starts_with($routeName, 'products.') || str_starts_with($routeName, 'catalog-categories.') || $routeName === 'home';
+        @endphp
+        @if ($inCatalog)
+            @php $catalogSettings = app(\App\Services\CatalogCacheService::class)->settings(); @endphp
+            @include('catalog._inquiry-modal', ['product' => null, 'settings' => $catalogSettings])
+        @endif
     </body>
+
+    @stack('scripts')
 </html>
