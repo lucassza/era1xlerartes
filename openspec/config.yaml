@@ -1,0 +1,54 @@
+schema: spec-driven
+
+context: |
+  Projeto: TDB Mix Blog — monolito Laravel que está ganhando um catálogo de produtos
+  (sem carrinho, checkout ou pagamento; apenas exposição e consulta comercial).
+
+  Stack: Laravel 13, PHP 8.3+, Filament 5, Livewire 4 (somente no painel),
+  PostgreSQL 18 (busca full-text pt_unaccent via coluna search_tsv + GIN),
+  Redis 8 (filas e cache), MinIO/S3 (disco padrão, visibility private),
+  Vite 8, Tailwind CSS 4, Alpine.js 3, Blade no frontend público.
+
+  Pacotes-chave: spatie/laravel-permission (ACL artesanal, sem Shield),
+  spatie/laravel-medialibrary (mídia em S3/MinIO, path generator custom
+  App\Media\BlogMediaPathGenerator), spatie/laravel-activitylog (auditoria).
+
+  Convenções de código:
+  - Respostas, documentação e specs em Português do Brasil; código em Inglês.
+  - Models: UUID v4 como PK (HasUuids), fillable via atributo PHP 8 #[Fillable],
+    slug gerado no booted()::saving, LogsActivity para auditoria.
+  - Nenhum model usa SoftDeletes; exceção de PK incremental apenas em blog_settings
+    (modelo singleton de configurações — replicado em catalog_settings).
+  - Status e modos como enums string-backed com label()/color() em PT-BR.
+  - Camada de regras de negócio em app/Services; controllers finos;
+    Form Requests com honeypot (campo "website" => prohibited) e rate limit
+    via RateLimiter (padrão 5 tentativas / 10 min).
+  - Permissões no padrão "recurso.acao" semeadas em RolesAndPermissionsSeeder;
+    policies delegam a $user->can() e são registradas em AuthServiceProvider;
+    Gate::before libera Super Admin; acesso ao painel exige type=admin + admin.access.
+  - Filament: um painel em /admin, grupos de navegação Conteúdo/Comunidade/
+    Configurações, Resources com getEloquentQuery restrito quando aplicável.
+  - Frontend público: <x-layouts.app>, componentes em components/{site,article,ui,forms},
+    meta/OG/JSON-LD via SeoService; sitemap.xml e rss.xml artesanais (sem pacote).
+  - Testes: PHPUnit 12 (sem Pest), factories obrigatórias, guarda em
+    tests/TestCase.php que exige banco pgsql_testing/tdb_mix_blog_test.
+  - Qualidade: Pint (composer lint), PHPStan/Larastan (composer analyse),
+    testes com composer test ou ./scripts/test.sh.
+
+  Referências: AGENTS.md (fonte de verdade), docs/architecture.md,
+  docs/database.md, docs/api.md, docs/agents.md.
+
+rules:
+  proposal:
+    - Escrever em Português do Brasil
+    - Sempre incluir seção de Não-objetivos (Non-goals)
+    - Listar impactos em rotas, permissões e migrations existentes
+  specs:
+    - Escrever requisitos e cenários em Português do Brasil
+    - Cobrir cenários de autorização (permissões catalog.*) e de erro
+  design:
+    - Seguir os padrões listados no contexto (UUIDs, enums, Services, policies)
+    - Não introduzir novas dependências sem justificar custo e necessidade
+  tasks:
+    - Quebrar em etapas pequenas e verificáveis com testes
+    - Incluir execução de Pint, PHPStan e suíte de testes ao final de cada fase
