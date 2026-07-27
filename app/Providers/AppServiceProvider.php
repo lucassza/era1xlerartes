@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Models\Brand;
+use App\Models\CatalogCategory;
+use App\Models\CatalogSetting;
+use App\Observers\CatalogObserver;
 use App\Services\PublicNavigationService;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
@@ -29,5 +33,10 @@ class AppServiceProvider extends ServiceProvider
                 'navigationCategories' => $navigation->categories(),
             ]);
         });
+
+        $observer = app(CatalogObserver::class);
+        CatalogCategory::observe($observer);
+        Brand::observe($observer);
+        CatalogSetting::observe($observer);
     }
 }

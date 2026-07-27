@@ -178,6 +178,85 @@ class Product extends Model implements HasMedia
         return $query;
     }
 
+    /**
+     * @param  Collection<int, CatalogCategory>|array<int, CatalogCategory>  $categories
+     */
+    public function scopeInCategories(Builder $query, iterable $categories): Builder
+    {
+        $ids = collect($categories)->flatMap(function (CatalogCategory $category) {
+            $ids = [$category->getKey()];
+
+            foreach ($category->descendantIds() as $descendant) {
+                $ids[] = $descendant;
+            }
+
+            return $ids;
+        })->unique()->values();
+
+        if ($ids->isEmpty()) {
+            return $query;
+        }
+
+        return $query->whereIn('catalog_category_id', $ids->all());
+    }
+
+    public function scopeOfBrand(Builder $query, int|string|null $brandId): Builder
+    {
+        return $brandId ? $query->where('brand_id', $brandId) : $query;
+    }
+
+    public function scopeWithAvailability(Builder $query, ?string $availability): Builder
+    {
+        return $availability ? $query->where('availability', $availability) : $query;
+    }
+
+    public function scopePriceBetween(Builder $query, ?float $min = null, ?float $max = null): Builder
+    {
+        if ($min !== null) {
+            $query->where('price', '>=', $min);
+        }
+
+        if ($max !== null) {
+            $query->where('price', '<=', $max);
+        }
+
+        return $query;
+    }
+
+    public function scopeSearchTerm(Builder $query, string $term): Builder
+    {
+        $term = trim($term);
+        if ($term === '') {
+            return $query;
+        }
+
+        $needle = '%'.preg_replace('/\s+/', '%', $term).'%';
+
+        return $query->where(function (Builder $q) use ($needle, $term): void {
+            $q->whereRaw("search_tsv @@ plainto_tsquery('public.pt_unaccent', ?)", [$term])
+                ->orWhere('name', 'ILIKE', $needle)
+                ->orWhere('sku', 'ILIKE', $needle)
+                ->orWhere('internal_code', 'ILIKE', $needle)
+                ->orWhere('short_description', 'ILIKE', $needle)
+                ->orWhere('description', 'ILIKE', $needle)
+                ->orWhereHas('brand', fn (Builder $b) => $b->where('name', 'ILIKE', $needle))
+                ->orWhereHas('tags', fn (Builder $t) => $t->where('name', 'ILIKE', $needle));
+        });
+    }
+
+    public function scopeOrdered(Builder $query, string $sort): Builder
+    {
+        return match ($sort) {
+            'name_asc' => $query->orderBy('name'),
+            'name_desc' => $query->orderByDesc('name'),
+            'price_asc' => $query->orderByRaw('COALESCE(promotional_price, price) ASC NULLS LAST')->orderBy('name'),
+            'price_desc' => $query->orderByRaw('COALESCE(promotional_price, price) DESC NULLS LAST')->orderBy('name'),
+            'featured' => $query->orderByDesc('is_featured')->orderByDesc('published_at')->orderBy('name'),
+            'sort_order' => $query->orderBy('sort_order')->orderByDesc('published_at'),
+            default => $query->orderByDesc('published_at')->orderByDesc('id'),
+        };
+    }
+
     public function effectivePrice(): ?float
     {
         if ($this->promotional_price !== null && $this->promotional_price > 0) {

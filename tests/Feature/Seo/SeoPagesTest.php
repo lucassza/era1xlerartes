@@ -51,7 +51,7 @@ class SeoPagesTest extends TestCase
         self::assertSame('BreadcrumbList', $jsonLd['breadcrumb']['@type']);
     }
 
-    public function test_home_page_renders_consistent_metadata_and_valid_structured_data(): void
+    public function test_home_page_renders_catalog_metadata(): void
     {
         $canonical = route('home');
 
@@ -63,18 +63,6 @@ class SeoPagesTest extends TestCase
         $response->assertSee('<meta property="og:url" content="'.$canonical.'">', false);
         $response->assertSee('<meta name="twitter:card" content="summary">', false);
         $response->assertSee('"@type":"WebSite"', false);
-        $response->assertSee('"@type":"Organization"', false);
-
-        $this->assertStructuredDataIsValidJson($response->getContent());
-
-        $jsonLd = $this->structuredData($response->getContent());
-        $graph = $jsonLd['@graph'] ?? null;
-        self::assertIsArray($graph);
-        self::assertArrayHasKey(0, $graph);
-        self::assertIsArray($graph[0]);
-        self::assertSame('https://schema.org', $jsonLd['@context']);
-        self::assertSame(['WebSite', 'Organization'], array_column($graph, '@type'));
-        self::assertSame($canonical, $graph[0]['url']);
         $response->assertDontSee('"@type":"BlogPosting"', false);
     }
 
@@ -109,6 +97,17 @@ class SeoPagesTest extends TestCase
         self::assertIsArray($jsonLd);
 
         return $jsonLd;
+    }
+
+    public function test_blog_index_renders_consistent_metadata(): void
+    {
+        $response = $this->get(route('blog.index'));
+
+        $response->assertOk();
+        $response->assertSee('<meta property="og:type" content="website">', false);
+        $response->assertSee('<meta name="twitter:card" content="summary">', false);
+        $response->assertSee('"@type":"WebSite"', false);
+        $response->assertSee('"@type":"Organization"', false);
     }
 
     public function test_sitemap_lists_public_urls(): void

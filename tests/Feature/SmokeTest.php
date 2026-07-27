@@ -4,72 +4,44 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use App\Enums\PostStatus;
-use App\Models\BlogSetting;
-use App\Models\Post;
+use App\Enums\ProductStatus;
+use App\Models\CatalogCategory;
+use App\Models\CatalogSetting;
+use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 class SmokeTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_home_page_is_successful(): void
+    public function test_home_page_renders_catalog_with_published_products(): void
     {
-        $publishedPosts = Post::factory()->count(13)->published()->create();
-        Post::factory()->create(['title' => 'Rascunho não publicado']);
-        Post::factory()->scheduled()->create(['title' => 'Agendado não publicado']);
-        BlogSetting::query()->create([
-            'site_name' => 'TDB Mix Blog',
-            'newsletter_enabled' => false,
-        ]);
+        $published = Product::factory()->count(3)->published()->create();
+        Product::factory()->create(['status' => ProductStatus::Draft]);
+        CatalogSetting::current()->fill(['title' => 'Catálogo teste'])->save();
 
         $response = $this->get(route('home'));
 
         $response->assertOk();
-        $response->assertViewIs('welcome');
-        $response->assertViewHas('heroPost', fn (?Post $post): bool => $post instanceof Post
-            && $post->status === PostStatus::Published
-            && $this->hasEditorialRelationsLoaded($post),
-        );
-        $response->assertViewHas('featuredPosts', fn (Collection $posts): bool => $posts->count() === 2
-            && $posts->every(fn (Post $post): bool => $post->status === PostStatus::Published
-                && $this->hasEditorialRelationsLoaded($post)),
-        );
-        $response->assertViewHas('listingPosts', fn (Collection $posts): bool => $posts->count() === 9
-            && $posts->every(fn (Post $post): bool => $post->status === PostStatus::Published
-                && $this->hasEditorialRelationsLoaded($post)),
-        );
-        $response->assertViewHas('recentPosts', fn (Collection $posts): bool => $posts->count() === 12
-            && $posts->pluck('id')->diff($publishedPosts->pluck('id'))->isEmpty()
-            && $posts->every(fn (Post $post): bool => $this->hasEditorialRelationsLoaded($post)),
-        );
-        $response->assertViewHas('popularPosts', fn (Collection $posts): bool => $posts->count() <= 5
-            && $posts->every(
-                fn (Post $post): bool => $post->status === PostStatus::Published
-                    && $post->relationLoaded('author')
-                    && $post->relationLoaded('category'),
-            ));
-        $response->assertViewHas('newsletterEnabled', false);
-        $response->assertViewHas('categoryTopics');
-        $response->assertSee('id="destaques"', false);
-        $response->assertSee('id="posts-recentes"', false);
-        $response->assertSee('id="populares"', false);
+        $response->assertViewIs('catalog.home');
+        $response->assertViewHas('settings');
+        $response->assertViewHas('latest');
+        $response->assertSee('Catálogo teste', false);
+        foreach ($published as $product) {
+            $response->assertSee((string) $product->name);
+        }
     }
 
     public function test_home_page_provides_landmarks_skip_link_and_primary_navigation(): void
     {
-        BlogSetting::query()->create([
-            'site_name' => 'TDB Mix Blog',
-            'newsletter_enabled' => false,
-        ]);
+        CatalogSetting::current();
 
         $response = $this->get(route('home'));
 
         $response->assertOk();
         $response->assertSee('href="#main-content"', false);
-        $response->assertSee('Pular para o conteúdo principal');
+        $response->assertSee('Pular para o conteúdo principal', false);
         $response->assertSee('<header', false);
         $response->assertSee('<main id="main-content" tabindex="-1">', false);
         $response->assertSee('<footer', false);
@@ -81,27 +53,29 @@ class SmokeTest extends TestCase
         self::assertSame(1, substr_count($response->getContent(), 'id="main-content"'));
     }
 
-    public function test_home_page_renders_named_empty_states_without_unpublished_content(): void
+    public function test_home_page_does_not_show_unpublished_products(): void
     {
-        BlogSetting::query()->create([
-            'site_name' => 'TDB Mix Blog',
-            'newsletter_enabled' => false,
-        ]);
-        Post::factory()->create(['title' => 'Rascunho oculto']);
+        CatalogSetting::current();
+        $published = Product::factory()->published()->create(['name' => 'Produto público']);
+        Product::factory()->create(['name' => 'Produto Rascunho Oculto', 'status' => ProductStatus::Draft]);
 
         $response = $this->get(route('home'));
 
         $response->assertOk();
-        $response->assertSee('Sem destaques por enquanto');
-        $response->assertSee('Ainda não há posts recentes');
-        $response->assertSee('Sem ranking ainda');
-        $response->assertDontSee('Rascunho oculto');
+        $response->assertSee($published->name);
+        $response->assertDontSee('Produto Rascunho Oculto');
     }
 
-    private function hasEditorialRelationsLoaded(Post $post): bool
+    public function test_home_lists_active_catalog_categories(): void
     {
-        return $post->relationLoaded('author')
-            && $post->relationLoaded('category')
-            && $post->relationLoaded('tags');
+        CatalogSetting::current();
+        CatalogCategory::factory()->create(['name' => 'Móveis Boutique', 'is_active' => true]);
+        CatalogCategory::factory()->create(['name' => 'Escondida', 'is_active' => false]);
+
+        $response = $this->get(route('home'));
+
+        $response->assertOk();
+        $response->assertSee('Móveis Boutique');
+        $response->assertDontSee('Escondida');
     }
 }

@@ -5,10 +5,13 @@ declare(strict_types=1);
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\SiteAuthController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\PublicCatalogCategoryController;
 use App\Http\Controllers\PublicCommentController;
 use App\Http\Controllers\PublicPostController;
+use App\Http\Controllers\PublicProductController;
 use App\Http\Controllers\PublicSearchController;
 use App\Http\Controllers\PublicTaxonomyController;
 use App\Http\Controllers\PublicTestimonialController;
@@ -17,7 +20,13 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', HomeController::class)->name('home');
+Route::get('/', CatalogController::class)->name('home');
+Route::get('/produtos', [PublicProductController::class, 'index'])->name('products.index');
+Route::get('/produtos/{slug}', [PublicProductController::class, 'show'])
+    ->name('products.show');
+Route::get('/categorias/{slug}', [PublicCatalogCategoryController::class, 'show'])
+    ->name('catalog-categories.show');
+Route::get('/blog', HomeController::class)->name('blog.index');
 
 Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('seo.sitemap');
 Route::get('/rss.xml', [SeoController::class, 'rss'])->name('seo.rss');

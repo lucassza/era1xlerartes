@@ -21,7 +21,7 @@ class NewsletterFlowTest extends TestCase
     {
         Mail::fake();
 
-        $this->get('/');
+        $this->get(route('blog.index'));
 
         $response = $this->post(route('newsletter.subscribe'), [
             '_token' => csrf_token(),
@@ -66,14 +66,14 @@ class NewsletterFlowTest extends TestCase
         $this->assertNotNull($subscriber->fresh()->unsubscribed_at);
     }
 
-    public function test_home_renders_an_accessible_newsletter_form_when_enabled(): void
+    public function test_blog_renders_an_accessible_newsletter_form_when_enabled(): void
     {
         BlogSetting::query()->create([
             'site_name' => 'TDB Mix Blog',
             'newsletter_enabled' => true,
         ]);
 
-        $response = $this->get(route('home'));
+        $response = $this->get(route('blog.index'));
 
         $response->assertOk();
         $response->assertSee('id="newsletter-title"', false);

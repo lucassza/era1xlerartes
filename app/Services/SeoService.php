@@ -6,9 +6,14 @@ namespace App\Services;
 
 use App\Models\Author;
 use App\Models\BlogSetting;
+use App\Models\Brand;
+use App\Models\CatalogCategory;
+use App\Models\CatalogSetting;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Product;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 final class SeoService
@@ -191,6 +196,10 @@ final class SeoService
                 'loc' => url('/'),
                 'lastmod' => now()->toDateString(),
             ],
+            [
+                'loc' => route('products.index'),
+                'lastmod' => now()->toDateString(),
+            ],
         ];
 
         Post::query()->published()->latest('updated_at')->get()->each(function (Post $post) use (&$urls): void {
@@ -221,7 +230,178 @@ final class SeoService
             ];
         });
 
+        Product::query()->publiclyVisible()->get()->each(function (Product $product) use (&$urls): void {
+            $urls[] = [
+                'loc' => route('products.show', $product->slug),
+                'lastmod' => optional($product->updated_at)?->toDateString(),
+            ];
+        });
+
+        CatalogCategory::query()->where('is_active', true)->get()->each(function (CatalogCategory $category) use (&$urls): void {
+            $urls[] = [
+                'loc' => route('catalog-categories.show', $category->slug),
+                'lastmod' => optional($category->updated_at)?->toDateString(),
+            ];
+        });
+
         return $urls;
+    }
+
+    /**
+     * @return array{meta: array<string, mixed>, jsonLd: array<int|string, mixed>}
+     */
+    public function forCatalogHome(CatalogSetting $settings): array
+    {
+        $title = (string) $settings->getAttribute('seo_title') ?: (string) $settings->getAttribute('title');
+        $description = (string) $settings->getAttribute('seo_description') ?: (string) $settings->getAttribute('intro_text') ?: '';
+        $siteName = config('app.name', 'TDB Mix Blog');
+
+        $meta = [
+            'title' => $title ? "{$title} | {$siteName}" : $siteName,
+            'description' => $description,
+            'canonical' => url('/'),
+            'robots' => 'index,follow',
+            'og' => [
+                'title' => $title,
+                'description' => $description,
+                'type' => 'website',
+                'url' => url('/'),
+            ],
+            'twitter' => [
+                'card' => 'summary',
+                'title' => $title,
+                'description' => $description,
+            ],
+        ];
+
+        return [
+            'meta' => $meta,
+            'jsonLd' => [
+                '@context' => 'https://schema.org',
+                '@type' => 'WebSite',
+                'name' => $siteName,
+                'url' => url('/'),
+            ],
+        ];
+    }
+
+    /**
+     * @return array{meta: array<string, mixed>, jsonLd: array<int|string, mixed>}
+     */
+    public function forCatalogIndex(Request $request, CatalogSetting $settings): array
+    {
+        $title = (string) $settings->getAttribute('seo_title') ?: (string) $settings->getAttribute('title');
+        $siteName = config('app.name', 'TDB Mix Blog');
+        $term = trim((string) $request->query('buscar', ''));
+
+        $heading = $term !== '' ? "Resultados para \"{$term}\"" : 'Produtos';
+
+        return [
+            'meta' => [
+                'title' => "{$heading} | {$title} | {$siteName}",
+                'description' => 'Catálogo de produtos de '.$siteName,
+                'canonical' => url('/produtos'),
+                'robots' => $term !== '' ? 'noindex,follow' : 'index,follow',
+                'og' => [
+                    'title' => "{$heading} | {$title}",
+                    'description' => 'Catálogo de produtos',
+                    'type' => 'website',
+                    'url' => url('/produtos'),
+                ],
+                'twitter' => [
+                    'card' => 'summary',
+                    'title' => "{$heading} | {$title}",
+                    'description' => 'Catálogo de produtos',
+                ],
+            ],
+            'jsonLd' => [],
+        ];
+    }
+
+    /**
+     * @return array{meta: array<string, mixed>, jsonLd: array<int|string, mixed>}
+     */
+    public function forCatalogCategory(CatalogCategory $category, CatalogSetting $settings): array
+    {
+        $title = (string) $category->getAttribute('seo_title') ?: (string) $category->getAttribute('name');
+        $description = (string) $category->getAttribute('seo_description') ?: (string) $category->getAttribute('description');
+        $siteName = config('app.name', 'TDB Mix Blog');
+
+        return [
+            'meta' => [
+                'title' => "{$title} | {$siteName}",
+                'description' => $description ?: "Produtos da categoria {$title}",
+                'canonical' => route('catalog-categories.show', $category->slug),
+                'robots' => 'index,follow',
+                'og' => [
+                    'title' => $title,
+                    'description' => $description,
+                    'type' => 'website',
+                    'url' => route('catalog-categories.show', $category->slug),
+                ],
+                'twitter' => [
+                    'card' => 'summary',
+                    'title' => $title,
+                    'description' => $description,
+                ],
+            ],
+            'jsonLd' => [],
+        ];
+    }
+
+    /**
+     * @return array{meta: array<string, mixed>, jsonLd: array<int|string, mixed>}
+     */
+    public function forProduct(Product $product, CatalogSetting $settings): array
+    {
+        $name = (string) $product->getAttribute('name');
+        $siteName = config('app.name', 'TDB Mix Blog');
+        $title = (string) $product->getAttribute('seo_title') ?: $name;
+        $description = (string) $product->getAttribute('seo_description') ?: (string) $product->getAttribute('short_description') ?: '';
+        $image = $product->getFirstMediaUrl('cover');
+
+        $meta = [
+            'title' => "{$title} | {$siteName}",
+            'description' => $description,
+            'canonical' => route('products.show', $product->slug),
+            'robots' => 'index,follow',
+            'og' => [
+                'title' => $title,
+                'description' => $description,
+                'type' => 'product',
+                'url' => route('products.show', $product->slug),
+                'image' => $image ?: null,
+            ],
+            'twitter' => [
+                'card' => 'summary_large_image',
+                'title' => $title,
+                'description' => $description,
+                'image' => $image ?: null,
+            ],
+        ];
+
+        $jsonLd = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Product',
+            'name' => $name,
+            'sku' => $product->getAttribute('sku'),
+            'description' => $description,
+            'image' => $image ?: null,
+            'url' => route('products.show', $product->slug),
+        ];
+
+        $brand = $product->getRelation('brand');
+        if ($brand instanceof Brand) {
+            $jsonLd['brand'] = [
+                '@type' => 'Brand',
+                'name' => (string) $brand->getAttribute('name'),
+            ];
+        }
+
+        return [
+            'meta' => $meta,
+            'jsonLd' => $jsonLd,
+        ];
     }
 
     /**
