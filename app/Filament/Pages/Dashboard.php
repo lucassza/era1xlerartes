@@ -6,7 +6,12 @@ namespace App\Filament\Pages;
 
 use App\Filament\Widgets\ContentStatsOverview;
 use App\Filament\Widgets\EngagementOverviewWidget;
+use App\Filament\Widgets\ProductInquiriesByPeriodChart;
+use App\Filament\Widgets\ProductInquiriesOriginChart;
+use App\Filament\Widgets\ProductInquiriesOverview;
 use App\Filament\Widgets\RecentActivityWidget;
+use App\Filament\Widgets\TopConsultedCategoriesWidget;
+use App\Filament\Widgets\TopConsultedProductsWidget;
 use App\Filament\Widgets\TopRatedPostsWidget;
 use Filament\Pages\Dashboard as BaseDashboard;
 
@@ -25,6 +30,11 @@ class Dashboard extends BaseDashboard
         return [
             ContentStatsOverview::class,
             EngagementOverviewWidget::class,
+            ProductInquiriesOverview::class,
+            ProductInquiriesByPeriodChart::class,
+            TopConsultedProductsWidget::class,
+            TopConsultedCategoriesWidget::class,
+            ProductInquiriesOriginChart::class,
             TopRatedPostsWidget::class,
             RecentActivityWidget::class,
         ];
