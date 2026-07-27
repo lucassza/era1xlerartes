@@ -64,6 +64,19 @@ class RolesAndPermissionsSeeder extends Seeder
             'comments.approve',
             'comments.reject',
             'audit.read',
+            'catalog.products.view',
+            'catalog.products.create',
+            'catalog.products.update',
+            'catalog.products.delete',
+            'catalog.products.publish',
+            'catalog.categories.manage',
+            'catalog.brands.manage',
+            'catalog.attributes.manage',
+            'catalog.inquiries.view',
+            'catalog.inquiries.update',
+            'catalog.inquiries.assign',
+            'catalog.inquiries.export',
+            'catalog.settings.manage',
         ];
 
         foreach ($permissions as $permissionName) {
@@ -126,6 +139,18 @@ class RolesAndPermissionsSeeder extends Seeder
             'comments.reject',
             'audit.read',
             'newsletter.manage',
+            'catalog.products.view',
+            'catalog.products.create',
+            'catalog.products.update',
+            'catalog.products.delete',
+            'catalog.products.publish',
+            'catalog.categories.manage',
+            'catalog.brands.manage',
+            'catalog.attributes.manage',
+            'catalog.inquiries.view',
+            'catalog.inquiries.update',
+            'catalog.inquiries.assign',
+            'catalog.inquiries.export',
         ]);
         $author->syncPermissions([
             'admin.access',
