@@ -56,6 +56,8 @@ class AdminPanelProvider extends PanelProvider
             ->navigationGroups([
                 NavigationGroup::make('Conteúdo')
                     ->collapsible(),
+                NavigationGroup::make('Catálogo')
+                    ->collapsible(),
                 NavigationGroup::make('Comunidade')
                     ->collapsible(),
                 NavigationGroup::make('Configurações')

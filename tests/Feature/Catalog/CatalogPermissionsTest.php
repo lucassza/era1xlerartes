@@ -6,7 +6,6 @@ namespace Tests\Feature\Catalog;
 
 use App\Models\Brand;
 use App\Models\CatalogCategory;
-use App\Models\CatalogSetting;
 use App\Models\Product;
 use App\Models\ProductInquiry;
 use App\Models\User;
