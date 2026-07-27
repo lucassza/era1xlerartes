@@ -1,0 +1,137 @@
+@import '../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../app/Filament/**/*';
+@source '../../../resources/views/filament/**/*';
+
+:root {
+    /* Tokens TDB Mix — duplicados do app.css pois o Filament só carrega este arquivo */
+    --tdb-canvas: #fffafa;
+    --tdb-surface: #fdf2f3;
+    --tdb-surface-raised: #ffffff;
+    --tdb-text: #1f0c0c;
+    --tdb-text-muted: #7a5555;
+    --tdb-border: #f5d8d8;
+    --tdb-primary: #d42020;
+    --tdb-primary-strong: #b81818;
+    --tdb-secondary: #00bcd8;
+    --tdb-accent: #e6287e;
+    --tdb-success: #2fb344;
+    --tdb-warning: #b45309;
+    --tdb-danger: #d90429;
+
+    --color-primary-50: color-mix(in srgb, var(--tdb-primary) 8%, white);
+    --color-primary-100: color-mix(in srgb, var(--tdb-primary) 15%, white);
+    --color-primary-200: color-mix(in srgb, var(--tdb-primary) 25%, white);
+    --color-primary-300: color-mix(in srgb, var(--tdb-primary) 40%, white);
+    --color-primary-400: color-mix(in srgb, var(--tdb-primary) 65%, white);
+    --color-primary-500: var(--tdb-primary);
+    --color-primary-600: var(--tdb-primary);
+    --color-primary-700: var(--tdb-primary-strong);
+    --color-primary-800: var(--tdb-primary-strong);
+    --color-primary-900: color-mix(in srgb, var(--tdb-primary-strong) 80%, black);
+    --color-primary-950: color-mix(in srgb, var(--tdb-primary-strong) 60%, black);
+
+    --color-secondary-500: var(--tdb-secondary);
+
+    --color-accent-500: var(--tdb-accent);
+    --color-accent-600: color-mix(in srgb, var(--tdb-accent) 88%, black);
+
+    --color-success-500: var(--tdb-success);
+    --color-success-600: color-mix(in srgb, var(--tdb-success) 88%, black);
+
+    --color-warning-500: var(--tdb-warning);
+    --color-warning-600: color-mix(in srgb, var(--tdb-warning) 88%, black);
+
+    --color-danger-500: var(--tdb-danger);
+    --color-danger-600: color-mix(in srgb, var(--tdb-danger) 88%, black);
+
+    --color-gray-50: color-mix(in srgb, var(--tdb-text-muted) 5%, white);
+    --color-gray-100: color-mix(in srgb, var(--tdb-text-muted) 10%, white);
+    --color-gray-200: color-mix(in srgb, var(--tdb-text-muted) 15%, white);
+    --color-gray-300: color-mix(in srgb, var(--tdb-text-muted) 25%, white);
+    --color-gray-400: color-mix(in srgb, var(--tdb-text-muted) 40%, white);
+    --color-gray-500: color-mix(in srgb, var(--tdb-text-muted) 60%, white);
+    --color-gray-600: var(--tdb-text-muted);
+    --color-gray-700: color-mix(in srgb, var(--tdb-text-muted) 75%, var(--tdb-text));
+    --color-gray-800: var(--tdb-text);
+    --color-gray-900: color-mix(in srgb, var(--tdb-text) 88%, black);
+    --color-gray-950: color-mix(in srgb, var(--tdb-text) 70%, black);
+}
+
+.fi-body {
+    background: linear-gradient(180deg, var(--tdb-canvas) 0%, color-mix(in srgb, var(--tdb-canvas) 80%, var(--tdb-primary) 6%) 100%);
+    font-family: var(--font-sans);
+}
+
+.fi-sidebar {
+    background: var(--tdb-surface-raised);
+    border-right: 1px solid var(--tdb-border);
+}
+
+.fi-sidebar-nav-groups .fi-sidebar-group-label {
+    color: var(--tdb-primary);
+    font-weight: 700;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.7rem;
+}
+
+.fi-sidebar-item-active .fi-sidebar-item-button {
+    background: color-mix(in srgb, var(--tdb-primary) 8%, transparent);
+    color: var(--tdb-primary);
+    border-radius: 0.75rem;
+}
+
+.fi-sidebar-item-button:hover {
+    background: color-mix(in srgb, var(--tdb-primary) 4%, transparent);
+    border-radius: 0.75rem;
+}
+
+.fi-btn-color-primary {
+    background-color: var(--tdb-primary) !important;
+    color: white !important;
+}
+
+.fi-btn-color-primary:hover {
+    background-color: var(--tdb-primary-strong) !important;
+}
+
+.fi-section,
+.fi-wi-stats-overview-stat,
+.fi-ta-ctn,
+.fi-fo-tabs-tab,
+.fi-fo-tabs.fi-fo-tabs-vertical .fi-fo-tabs-tab.fi-active {
+    border-radius: 1.25rem !important;
+}
+
+.fi-input-wrp,
+.fi-select-input-wrp,
+.fi-textarea-input-wrp {
+    border-radius: 0.75rem !important;
+}
+
+.fi-topbar {
+    border-bottom: 1px solid var(--tdb-border);
+}
+
+.fi-header-heading {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--tdb-text);
+}
+
+.fi-simple-layout {
+    background: linear-gradient(135deg, var(--tdb-canvas) 0%, color-mix(in srgb, var(--tdb-primary) 10%, var(--tdb-canvas)) 50%, color-mix(in srgb, var(--tdb-accent) 12%, var(--tdb-canvas)) 100%);
+}
+
+.fi-simple-main-ctn {
+    background: transparent;
+}
+
+.fi-simple-card {
+    background: var(--tdb-surface-raised);
+    border: 1px solid var(--tdb-border);
+    box-shadow: var(--shadow-float);
+    border-radius: var(--radius-card);
+}

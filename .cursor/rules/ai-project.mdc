@@ -1,0 +1,9 @@
+---
+description: Regras compartilhadas do projeto para desenvolvimento assistido por IA
+globs: **/*
+alwaysApply: true
+---
+
+Leia e siga [AGENTS.md](mdc:AGENTS.md) antes de alterar arquivos. Ele define idioma, arquitetura, segurança de mudanças, stack, fluxo de validação e convenções de commit para todos os agentes.
+
+Documente mudanças relevantes em Português do Brasil, mantenha o código em Inglês e não altere regras de negócio ou arquitetura sem autorização explícita.

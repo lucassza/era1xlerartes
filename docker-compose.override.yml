@@ -1,0 +1,6 @@
+# Ajustes locais opcionais. O compose principal continua sendo a fonte de serviços.
+services:
+  app:
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"

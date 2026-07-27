@@ -1,0 +1,30 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+
+parameters:
+    paths:
+        - app
+        - routes
+
+    level: 5
+
+    checkModelProperties: true
+    checkModelAppends: true
+    noEnvCallsOutsideOfConfig: true
+    noModelMake: true
+    noUnnecessaryCollectionCall: true
+    parseModelCastsMethod: true
+    checkUnusedViews: false
+    checkMissingTranslations: false
+    checkAuthCallsWhenInRequestScope: false
+
+    databaseMigrationsPath:
+        - database/migrations
+
+    configDirectories:
+        - config
+
+    viewDirectories:
+        - resources/views
