@@ -31,3 +31,34 @@ Antes de adicionar uma API HTTP, defina contrato, autenticação, autorização,
 | `POST` | `/posts/{post}/comentarios` | `posts.comments.store` | `auth`, `verified`, `engagement:comments` | Envia comentário com nota (moderação) |
 
 O middleware `engagement` aborta com `404` quando a flag global correspondente em `blog_settings` está desabilitada. Já o override por post (`posts.comments_locked`) é tratado dentro de `EngagementService::submitComment`, que retorna `403`.
+
+## Catálogo público
+
+A home (`/`) deixou de listar artigos do blog e passou a exibir o catálogo público. As URLs existentes do blog foram preservadas e a listagem foi movida para `/blog`.
+
+| Método | URI | Nome | Middleware | Descrição |
+|---|---|---|---|---|
+| `GET` | `/` | `home` | — | Home do catálogo (banner, intro, categorias, busca, destaques, últimos) |
+| `GET` | `/produtos` | `products.index` | — | Listagem filtrada (categoria, marca, disponibilidade, faixa de preço, destaque) com ordenação |
+| `GET` | `/produtos/{slug}` | `products.show` | — | Detalhe do produto (galeria com lightbox Alpine, atributos, anexos, relacionados, JSON-LD, OG/Twitter, BreadcrumbList) |
+| `POST` | `/produtos/{slug}/consulta` | `products.inquiries.store` | — | Submete consulta pública (honeypot, consentimento LGPD, rate-limit por IP, snapshot do produto, fila de notificações). Retorna `302` para o back com `inquiry_status=ok` ou `201` com JSON para `Accept: application/json`. Bloqueia com `404` quando o produto não existe ou está em rascunho/indisponível. |
+| `GET` | `/categorias/{slug}` | `catalog-categories.show` | — | Listagem hierárquica por categoria (inclui subcategorias), com BreadcrumbList JSON-LD |
+| `GET` | `/blog` | `blog.index` | — | Listagem de artigos (mesma view `welcome` da home antiga) |
+| `GET` | `/contato` | `site.contact` | — | Página de contato com telefone/WhatsApp/e-mails vindos de `catalog_settings` |
+
+Pesquisa via `/search?q=` continua existindo para artigos do blog. Páginas com `?buscar=` na listagem do catálogo recebem `robots: noindex,follow`.
+
+## SEO
+
+| Método | URI | Nome | Middleware | Descrição |
+|---|---|---|---|---|
+| `GET` | `/sitemap.xml` | `seo.sitemap` | — | Sitemap XML (home, `/produtos`, `/produtos/{slug}` para publicados, `/categorias/{slug}` ativas, além de `/posts/{slug}`, `/categories/{slug}`, `/tags/{slug}`, `/authors/{slug}` do blog) |
+| `GET` | `/rss.xml` | `seo.rss` | — | Feed RSS do blog (somente artigos publicados — sem produtos) |
+| `GET` | `/robots.txt` | `seo.robots` | — | `User-agent: *`, `Allow: /`, `Disallow: /admin \| /perfil \| /dashboard \| /depoimentos` + `Sitemap: <url>` |
+
+Meta tags e JSON-LD:
+- Home: `WebSite` JSON-LD, OG/Twitter `website`.
+- Blog post: `BlogPosting` + `BreadcrumbList` JSON-LD, `og:type=article`, `twitter:summary_large_image`.
+- Produto: `Product` (+ `Brand` opcional) + `BreadcrumbList` JSON-LD, `og:type=product`, `twitter:summary_large_image` com imagem de capa.
+- Categoria de catálogo: `BreadcrumbList` JSON-LD, `og:type=website`.
+- Consulta pública (`/produtos/{slug}/consulta`): resposta `201` em JSON com `status`, `message`, `inquiry_id`. Resposta HTML retorna `302` com flash `inquiry_status=ok`.
