@@ -22,70 +22,82 @@ class CatalogCacheService
     public function activeCategories(): Collection
     {
         if ($this->shouldBypassCache()) {
-            return CatalogCategory::query()
-                ->where('is_active', true)
-                ->with('children')
-                ->orderBy('sort_order')
-                ->orderBy('name')
-                ->get()
-                ->whereNull('parent_id')
-                ->values();
+            return $this->fetchActiveCategories();
         }
 
-        return cache()->remember(
-            self::KEY_TREE,
-            self::TTL,
-            fn () => CatalogCategory::query()
-                ->where('is_active', true)
-                ->with('children')
-                ->orderBy('sort_order')
-                ->orderBy('name')
-                ->get()
-                ->whereNull('parent_id')
-                ->values(),
-        );
+        $cached = $this->safeCacheGet(self::KEY_TREE);
+        if ($cached instanceof Collection) {
+            return $cached;
+        }
+
+        $fresh = $this->fetchActiveCategories();
+        $this->safeCachePut(self::KEY_TREE, $fresh);
+
+        return $fresh;
+    }
+
+    private function fetchActiveCategories(): Collection
+    {
+        return CatalogCategory::query()
+            ->where('is_active', true)
+            ->with('children')
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get()
+            ->whereNull('parent_id')
+            ->values();
     }
 
     public function allActiveCategories(): Collection
     {
         if ($this->shouldBypassCache()) {
-            return CatalogCategory::query()
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->orderBy('name')
-                ->get();
+            return $this->fetchAllActiveCategories();
         }
 
-        return cache()->remember(
-            'catalog:categories:flat',
-            self::TTL,
-            fn () => CatalogCategory::query()
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->orderBy('name')
-                ->get(),
-        );
+        $cached = $this->safeCacheGet('catalog:categories:flat');
+        if ($cached instanceof Collection) {
+            return $cached;
+        }
+
+        $fresh = $this->fetchAllActiveCategories();
+        $this->safeCachePut('catalog:categories:flat', $fresh);
+
+        return $fresh;
+    }
+
+    private function fetchAllActiveCategories(): Collection
+    {
+        return CatalogCategory::query()
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
     }
 
     public function activeBrands(): Collection
     {
         if ($this->shouldBypassCache()) {
-            return Brand::query()
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->orderBy('name')
-                ->get();
+            return $this->fetchActiveBrands();
         }
 
-        return cache()->remember(
-            self::KEY_BRANDS,
-            self::TTL,
-            fn () => Brand::query()
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->orderBy('name')
-                ->get(),
-        );
+        $cached = $this->safeCacheGet(self::KEY_BRANDS);
+        if ($cached instanceof Collection) {
+            return $cached;
+        }
+
+        $fresh = $this->fetchActiveBrands();
+        $this->safeCachePut(self::KEY_BRANDS, $fresh);
+
+        return $fresh;
+    }
+
+    private function fetchActiveBrands(): Collection
+    {
+        return Brand::query()
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
     }
 
     public function settings(): CatalogSetting
@@ -94,13 +106,13 @@ class CatalogCacheService
             return CatalogSetting::current();
         }
 
-        $key = self::KEY_SETTINGS;
-        $cached = cache()->get($key);
+        $cached = $this->safeCacheGet(self::KEY_SETTINGS);
         if ($cached instanceof CatalogSetting) {
             return $cached;
         }
+
         $settings = CatalogSetting::current();
-        cache()->put($key, $settings, self::TTL);
+        $this->safeCachePut(self::KEY_SETTINGS, $settings);
 
         return $settings;
     }
@@ -139,5 +151,39 @@ class CatalogCacheService
         }
 
         return config('database.default') === 'pgsql_testing';
+    }
+
+    /**
+     * @template T
+     *
+     * @param  class-string<T>|null  $expected
+     * @return T|null
+     */
+    private function safeCacheGet(string $key, ?string $expected = null)
+    {
+        try {
+            $value = cache()->get($key);
+        } catch (\Throwable) {
+            return null;
+        }
+
+        if ($value === null) {
+            return null;
+        }
+
+        if ($expected !== null && ! ($value instanceof $expected)) {
+            return null;
+        }
+
+        return $value;
+    }
+
+    private function safeCachePut(string $key, mixed $value): void
+    {
+        try {
+            cache()->put($key, $value, self::TTL);
+        } catch (\Throwable $e) {
+            report($e);
+        }
     }
 }
