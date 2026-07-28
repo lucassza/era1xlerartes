@@ -34,6 +34,7 @@ Route::view('/contato', 'site.contact')->name('site.contact');
 
 Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('seo.sitemap');
 Route::get('/rss.xml', [SeoController::class, 'rss'])->name('seo.rss');
+Route::get('/robots.txt', [SeoController::class, 'robots'])->name('seo.robots');
 Route::get('/search', [PublicSearchController::class, 'index'])->name('search.index');
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('/newsletter/confirm/{subscriber}', [NewsletterController::class, 'confirm'])->name('newsletter.confirm');

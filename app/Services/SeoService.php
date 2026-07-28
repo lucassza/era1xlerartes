@@ -327,6 +327,12 @@ final class SeoService
         $description = (string) $category->getAttribute('seo_description') ?: (string) $category->getAttribute('description');
         $siteName = config('app.name', 'TDB Mix Blog');
 
+        $breadcrumbItems = [
+            ['name' => 'Início', 'url' => url('/')],
+            ['name' => 'Produtos', 'url' => route('products.index')],
+            ['name' => $title, 'url' => route('catalog-categories.show', $category->slug)],
+        ];
+
         return [
             'meta' => [
                 'title' => "{$title} | {$siteName}",
@@ -345,7 +351,7 @@ final class SeoService
                     'description' => $description,
                 ],
             ],
-            'jsonLd' => [],
+            'jsonLd' => $this->breadcrumbList($breadcrumbItems),
         ];
     }
 
@@ -398,9 +404,48 @@ final class SeoService
             ];
         }
 
+        $category = $product->getRelation('category');
+        $breadcrumbItems = [
+            ['name' => 'Início', 'url' => url('/')],
+            ['name' => 'Produtos', 'url' => route('products.index')],
+        ];
+        if ($category instanceof CatalogCategory) {
+            $categoryTitle = (string) $category->getAttribute('name');
+            $breadcrumbItems[] = [
+                'name' => $categoryTitle,
+                'url' => route('catalog-categories.show', $category->slug),
+            ];
+        }
+        $breadcrumbItems[] = ['name' => $name, 'url' => route('products.show', $product->slug)];
+
+        $jsonLd['breadcrumb'] = $this->breadcrumbList($breadcrumbItems);
+
         return [
             'meta' => $meta,
             'jsonLd' => $jsonLd,
+        ];
+    }
+
+    /**
+     * @param  array<int, array{name: string, url: string}>  $items
+     * @return array<string, mixed>
+     */
+    public function breadcrumbList(array $items): array
+    {
+        $list = [];
+        foreach (array_values($items) as $position => $item) {
+            $list[] = [
+                '@type' => 'ListItem',
+                'position' => $position + 1,
+                'name' => (string) $item['name'],
+                'item' => (string) $item['url'],
+            ];
+        }
+
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => $list,
         ];
     }
 

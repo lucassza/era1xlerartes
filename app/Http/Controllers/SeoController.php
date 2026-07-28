@@ -27,4 +27,14 @@ class SeoController extends Controller
             'Content-Type' => 'application/rss+xml; charset=UTF-8',
         ]);
     }
+
+    public function robots(): Response
+    {
+        $sitemap = route('seo.sitemap');
+        $body = "User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /depoimentos\nDisallow: /perfil\nDisallow: /dashboard\n\nSitemap: {$sitemap}\n";
+
+        return response($body, 200, [
+            'Content-Type' => 'text/plain; charset=UTF-8',
+        ]);
+    }
 }
