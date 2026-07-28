@@ -1,6 +1,9 @@
 @php
-    $currentSlug = request()->route('slug');
-    // $navigationCategories is injected by the view composer in AppServiceProvider
+    $routeName = request()->route()?->getName() ?? '';
+    $routeSlug = request()->route('slug');
+    $catalogActive = $routeName === 'home' || str_starts_with($routeName, 'products.') || str_starts_with($routeName, 'catalog-categories.');
+    $blogActive = $routeName === 'blog.index' || ($routeName && (str_starts_with($routeName, 'posts.') || str_starts_with($routeName, 'categories.') || str_starts_with($routeName, 'tags.') || str_starts_with($routeName, 'authors.')));
+    $contactActive = $routeName === 'site.contact';
 @endphp
 
 <header
@@ -18,34 +21,111 @@
     <div class="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8">
 
         {{-- Logo --}}
-        <a href="{{ route('home') }}" class="shrink-0 rounded-control" aria-label="TDB Mix Blog — página inicial">
-            <img src="{{ asset('images/brand/logo-peq.png') }}" alt="TDB Mix Blog" width="160" height="80"
+        <a href="{{ route('home') }}" class="shrink-0 rounded-control" aria-label="{{ config('app.name', 'TDB Mix Blog') }} — página inicial">
+            <img src="{{ asset('images/brand/logo-peq.png') }}" alt="{{ config('app.name', 'TDB Mix Blog') }}" width="160" height="80"
                 class="h-10 w-20 object-contain mix-blend-multiply sm:h-12 sm:w-24">
         </a>
 
-        {{-- Category nav (desktop): scrollable, min-w-0 flex-1 so it doesn't push logo/search --}}
+        {{-- Primary nav (desktop): Início, Produtos, Categorias, Blog, Contato --}}
         <nav aria-label="Navegação principal" class="hidden min-w-0 flex-1 md:block">
             <div class="flex items-center gap-0.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 <a
                     href="{{ route('home') }}"
-                    class="shrink-0 rounded-control px-3 py-2 text-sm font-semibold text-muted transition duration-200 ease-standard hover:bg-surface hover:text-foreground"
+                    @class([
+                        'shrink-0 rounded-control px-3 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
+                        'text-primary bg-primary/5' => $catalogActive && $routeName === 'home',
+                        'text-muted hover:text-foreground' => ! ($catalogActive && $routeName === 'home'),
+                    ])
+                    @if ($catalogActive && $routeName === 'home') aria-current="page" @endif
                 >
                     Início
                 </a>
 
-                @foreach ($navigationCategories ?? [] as $category)
-                    <a
-                        href="{{ route('categories.show', $category->slug) }}"
-                        @class([
-                            'shrink-0 rounded-control px-3 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
-                            'text-primary bg-primary/5' => $currentSlug === $category->slug,
-                            'text-muted hover:text-foreground' => $currentSlug !== $category->slug,
-                        ])
-                        @if ($currentSlug === $category->slug) aria-current="page" @endif
+                <a
+                    href="{{ route('products.index') }}"
+                    @class([
+                        'shrink-0 rounded-control px-3 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
+                        'text-primary bg-primary/5' => $catalogActive && str_starts_with($routeName, 'products.'),
+                        'text-muted hover:text-foreground' => ! ($catalogActive && str_starts_with($routeName, 'products.')),
+                    ])
+                    @if ($catalogActive && str_starts_with($routeName, 'products.')) aria-current="page" @endif
+                >
+                    Produtos
+                </a>
+
+                @if (($navigationCatalogCategories ?? collect())->count() > 0)
+                    <div
+                        x-data="{ open: false }"
+                        @mouseenter="open = true"
+                        @mouseleave="open = false"
+                        @focusin="open = true"
+                        @focusout="open = false"
+                        class="relative shrink-0"
                     >
-                        {{ $category->name }}
-                    </a>
-                @endforeach
+                        <button
+                            type="button"
+                            @class([
+                                'inline-flex items-center gap-1 rounded-control px-3 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
+                                'text-primary bg-primary/5' => str_starts_with($routeName, 'catalog-categories.'),
+                                'text-muted hover:text-foreground' => ! str_starts_with($routeName, 'catalog-categories.'),
+                            ])
+                            :aria-expanded="open"
+                            aria-haspopup="true"
+                            aria-label="Abrir lista de categorias"
+                        >
+                            Categorias
+                            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" class="size-3.5" :class="{ 'rotate-180': open }"><path d="m5 7 5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <div
+                            x-show="open"
+                            x-cloak
+                            x-transition:enter="transition duration-150 ease-standard"
+                            x-transition:enter-start="opacity-0 -translate-y-1"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            @class([
+                                'absolute left-0 top-full z-50 mt-1 w-64 rounded-card border bg-surface-raised p-2 shadow-card',
+                                'border-line' => true,
+                            ])
+                        >
+                            <ul class="max-h-80 overflow-auto">
+                                @foreach ($navigationCatalogCategories as $cat)
+                                    <li>
+                                        <a
+                                            href="{{ route('catalog-categories.show', $cat->slug) }}"
+                                            class="block rounded-control px-3 py-2 text-sm text-foreground hover:bg-surface hover:text-primary"
+                                        >
+                                            {{ $cat->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+
+                <a
+                    href="{{ route('blog.index') }}"
+                    @class([
+                        'shrink-0 rounded-control px-3 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
+                        'text-primary bg-primary/5' => $blogActive,
+                        'text-muted hover:text-foreground' => ! $blogActive,
+                    ])
+                    @if ($blogActive) aria-current="page" @endif
+                >
+                    Blog
+                </a>
+
+                <a
+                    href="{{ route('site.contact') }}"
+                    @class([
+                        'shrink-0 rounded-control px-3 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
+                        'text-primary bg-primary/5' => $contactActive,
+                        'text-muted hover:text-foreground' => ! $contactActive,
+                    ])
+                    @if ($contactActive) aria-current="page" @endif
+                >
+                    Contato
+                </a>
             </div>
         </nav>
 
@@ -115,41 +195,71 @@
                 </div>
             </form>
 
-            {{-- Links --}}
+            {{-- Primary links --}}
             <div class="grid grid-cols-2 gap-1">
-                <a href="{{ route('home') }}" @click="closeMobile()" class="col-span-2 rounded-control px-3 py-2.5 text-sm font-semibold text-foreground hover:bg-surface">
-                    Início
-                </a>
-                <a href="{{ route('testimonials.index') }}" @click="closeMobile()" class="col-span-2 rounded-control px-3 py-2.5 text-sm font-semibold text-foreground hover:bg-surface">
-                    Depoimentos
-                </a>
-                @foreach ($navigationCategories ?? [] as $category)
-                    <a
-                        href="{{ route('categories.show', $category->slug) }}"
-                        @click="closeMobile()"
-                        @class([
-                            'rounded-control px-3 py-2.5 text-sm font-semibold transition hover:bg-surface',
-                            'text-primary' => $currentSlug === $category->slug,
-                            'text-foreground' => $currentSlug !== $category->slug,
-                        ])
-                    >
-                        {{ $category->name }}
-                    </a>
-                @endforeach
-                @auth
-                    <a href="{{ route('site.profile.edit') }}" @click="closeMobile()" class="col-span-2 rounded-control px-3 py-2.5 text-sm font-semibold text-foreground hover:bg-surface">Meu perfil</a>
+                <a href="{{ route('home') }}" @click="closeMobile()" class="rounded-control px-3 py-2.5 text-sm font-semibold text-foreground hover:bg-surface">Início</a>
+                <a href="{{ route('products.index') }}" @click="closeMobile()" class="rounded-control px-3 py-2.5 text-sm font-semibold text-foreground hover:bg-surface">Produtos</a>
+                <a href="{{ route('blog.index') }}" @click="closeMobile()" class="rounded-control px-3 py-2.5 text-sm font-semibold text-foreground hover:bg-surface">Blog</a>
+                <a href="{{ route('site.contact') }}" @click="closeMobile()" class="rounded-control px-3 py-2.5 text-sm font-semibold text-foreground hover:bg-surface">Contato</a>
+            </div>
+
+            {{-- Categorias do catálogo --}}
+            @if (($navigationCatalogCategories ?? collect())->count() > 0)
+                <div class="mt-3 border-t border-line pt-3">
+                    <p class="px-3 pb-2 text-xs uppercase tracking-wider text-muted">Categorias</p>
+                    <ul class="grid grid-cols-2 gap-1">
+                        @foreach ($navigationCatalogCategories as $cat)
+                            <li>
+                                <a
+                                    href="{{ route('catalog-categories.show', $cat->slug) }}"
+                                    @click="closeMobile()"
+                                    class="block rounded-control px-3 py-2 text-sm text-foreground hover:bg-surface"
+                                >
+                                    {{ $cat->name }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            {{-- Categorias do blog --}}
+            @if (($navigationCategories ?? collect())->count() > 0)
+                <div class="mt-3 border-t border-line pt-3">
+                    <p class="px-3 pb-2 text-xs uppercase tracking-wider text-muted">Categorias do blog</p>
+                    <ul class="grid grid-cols-2 gap-1">
+                        @foreach ($navigationCategories as $category)
+                            <li>
+                                <a
+                                    href="{{ route('categories.show', $category->slug) }}"
+                                    @click="closeMobile()"
+                                    class="block rounded-control px-3 py-2 text-sm text-foreground hover:bg-surface"
+                                >
+                                    {{ $category->name }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @auth
+                <div class="mt-3 border-t border-line pt-3">
+                    <a href="{{ route('site.profile.edit') }}" @click="closeMobile()" class="block rounded-control px-3 py-2.5 text-sm font-semibold text-foreground hover:bg-surface">Meu perfil</a>
                     @if (auth()->user()?->isAdmin())
-                        <a href="{{ url('/admin') }}" @click="closeMobile()" class="col-span-2 rounded-control px-3 py-2.5 text-sm font-semibold text-primary hover:bg-surface">Painel admin</a>
+                        <a href="{{ url('/admin') }}" @click="closeMobile()" class="block rounded-control px-3 py-2.5 text-sm font-semibold text-primary hover:bg-surface">Painel admin</a>
                     @endif
-                    <form method="POST" action="{{ route('site.logout') }}" class="col-span-2">
+                    <form method="POST" action="{{ route('site.logout') }}">
                         @csrf
                         <button type="submit" class="w-full rounded-control px-3 py-2.5 text-left text-sm font-semibold text-foreground hover:bg-surface">Sair</button>
                     </form>
-                @else
+                </div>
+            @else
+                <div class="mt-3 grid grid-cols-2 gap-1 border-t border-line pt-3">
                     <a href="{{ route('site.login') }}" @click="closeMobile()" class="rounded-control px-3 py-2.5 text-sm font-semibold text-foreground hover:bg-surface">Entrar</a>
                     <a href="{{ route('site.register') }}" @click="closeMobile()" class="rounded-control px-3 py-2.5 text-sm font-semibold text-primary hover:bg-surface">Cadastre-se</a>
-                @endauth
-            </div>
+                </div>
+            @endauth
         </div>
     </nav>
 </header>

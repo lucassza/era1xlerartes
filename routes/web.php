@@ -30,6 +30,7 @@ Route::post('/produtos/{slug}/consulta', [PublicProductInquiryController::class,
 Route::get('/categorias/{slug}', [PublicCatalogCategoryController::class, 'show'])
     ->name('catalog-categories.show');
 Route::get('/blog', HomeController::class)->name('blog.index');
+Route::view('/contato', 'site.contact')->name('site.contact');
 
 Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('seo.sitemap');
 Route::get('/rss.xml', [SeoController::class, 'rss'])->name('seo.rss');

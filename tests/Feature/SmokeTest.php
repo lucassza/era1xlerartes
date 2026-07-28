@@ -49,7 +49,11 @@ class SmokeTest extends TestCase
         $response->assertSee('aria-label="Navegação móvel"', false);
         $response->assertSee('aria-label="Links do rodapé"', false);
         $response->assertSee('href="'.route('home').'"', false);
-        $response->assertSee('href="'.route('search.index').'"', false);
+        $response->assertSee('"'.route('search.index').'"', false);
+        $response->assertSee('href="'.route('products.index').'"', false);
+        $response->assertSee('href="'.route('site.contact').'"', false);
+        $response->assertSee('>Blog<', false);
+        $response->assertSee('>Produtos<', false);
         self::assertSame(1, substr_count($response->getContent(), 'id="main-content"'));
     }
 
