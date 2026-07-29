@@ -15,4 +15,10 @@
     @if ($description)
         <p class="mx-auto mt-2 max-w-prose text-sm leading-6 text-muted">{{ $description }}</p>
     @endif
+
+    @isset($actions)
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
+            {{ $actions }}
+        </div>
+    @endisset
 </section>

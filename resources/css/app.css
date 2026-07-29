@@ -8,27 +8,29 @@
 :root {
     color-scheme: light;
 
-    /* Canvas levemente quente para combinar com a logo vibrante */
-    --tdb-canvas: #fffafa;
-    --tdb-surface: #fdf2f3;
+    /* Fundo e superfícies da identidade Era1x Ler Artes */
+    --tdb-canvas: #fcfafa;
+    --tdb-surface: #f3f3f4;
     --tdb-surface-raised: #ffffff;
-    --tdb-text: #1f0c0c;
-    --tdb-text-muted: #7a5555;
-    --tdb-border: #f5d8d8;
+    --tdb-text: #2f2f35;
+    --tdb-text-muted: #666666;
+    --tdb-border: #ececec;
 
-    /* Vermelho da logo "tdb" */
-    --tdb-primary: #d42020;
-    --tdb-primary-strong: #b81818;
+    /* Vinho principal da marca */
+    --tdb-primary: #650010;
+    --tdb-primary-strong: #820018;
 
-    /* Ciano da logo "MIX" */
-    --tdb-secondary: #00bcd8;
+    /* Rosa secundário */
+    --tdb-secondary: #e95d78;
+    --tdb-secondary-strong: #d94865;
 
-    /* Rosa/magenta dos arabescos decorativos */
-    --tdb-accent: #e6287e;
+    /* Rosa claro de apoio */
+    --tdb-accent: #f7b8c6;
 
-    --tdb-success: #2fb344;
-    --tdb-warning: #b45309;
-    --tdb-danger: #d90429;
+    --tdb-success: #4caf50;
+    --tdb-warning: #f4b400;
+    --tdb-danger: #d32f2f;
+    --tdb-info: #4a90e2;
 }
 
 @theme inline {
@@ -45,19 +47,21 @@
     --color-primary: var(--tdb-primary);
     --color-primary-strong: var(--tdb-primary-strong);
     --color-secondary: var(--tdb-secondary);
+    --color-secondary-strong: var(--tdb-secondary-strong);
     --color-accent: var(--tdb-accent);
     --color-success: var(--tdb-success);
     --color-warning: var(--tdb-warning);
     --color-danger: var(--tdb-danger);
+    --color-info: var(--tdb-info);
 
     --radius-control: 0.75rem;
-    --radius-card: 1.25rem;
+    --radius-card: 1rem;
     --radius-feature: 1.75rem;
     --radius-pill: 9999px;
 
-    --shadow-card: 0 1px 2px rgb(212 32 32 / 0.04), 0 4px 14px rgb(212 32 32 / 0.05);
-    --shadow-float: 0 8px 24px rgb(212 32 32 / 0.08), 0 20px 48px rgb(212 32 32 / 0.10);
-    --shadow-editorial: 0 2px 8px rgb(212 32 32 / 0.04), 0 12px 36px rgb(212 32 32 / 0.08);
+    --shadow-card: 0 1px 2px rgb(101 0 16 / 0.04), 0 4px 14px rgb(101 0 16 / 0.05);
+    --shadow-float: 0 8px 24px rgb(101 0 16 / 0.08), 0 20px 48px rgb(101 0 16 / 0.10);
+    --shadow-editorial: 0 2px 8px rgb(101 0 16 / 0.04), 0 12px 36px rgb(101 0 16 / 0.08);
 
     --ease-standard: cubic-bezier(0.2, 0, 0, 1);
     --duration-fast: 200ms;
@@ -82,7 +86,7 @@
     }
 
     :focus-visible {
-        outline: 3px solid var(--tdb-accent);
+        outline: 3px solid var(--tdb-secondary);
         outline-offset: 3px;
     }
 

@@ -62,7 +62,7 @@
                         minlength="5"
                         maxlength="800"
                         @error('content') aria-invalid="true" aria-describedby="post-comment-content-error" @enderror
-                        class="block w-full rounded-control border border-line bg-surface-raised px-3 py-2 text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent"
+                        class="block w-full rounded-control border border-line bg-surface-raised px-3 py-2 text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-secondary"
                         placeholder="Compartilhe sua opinião sobre este post..."
                     >{{ old('content') }}</textarea>
                     @error('content')

@@ -11,8 +11,8 @@
 <footer class="border-t border-line bg-surface-raised">
     <div class="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-[1fr_auto_auto] lg:px-8">
         <div>
-            <a href="{{ route('home') }}" class="inline-block rounded-control" aria-label="{{ config('app.name', 'TDB Mix Blog') }} — página inicial">
-                <img src="{{ asset('images/brand/logo-peq.png') }}" alt="{{ config('app.name', 'TDB Mix Blog') }}" width="160" height="80" class="h-14 w-28 object-contain mix-blend-multiply">
+            <a href="{{ route('home') }}" class="inline-block rounded-control" aria-label="{{ config('app.name', 'Era1x Ler Artes') }} — página inicial">
+                <img src="{{ asset('images/brand/logo.jpeg') }}" alt="{{ config('app.name', 'Era1x Ler Artes') }}" width="500" height="500" class="h-16 w-16 object-contain">
             </a>
             <p class="mt-3 max-w-md text-sm leading-6 text-muted">{{ $catalogSettings->getAttribute('intro_text') ?: 'Catálogo de produtos com histórias, novidades e conteúdo editorial.' }}</p>
         </div>

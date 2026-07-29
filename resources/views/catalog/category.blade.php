@@ -5,35 +5,43 @@
         <nav aria-label="Breadcrumb" class="mb-4 text-sm text-muted">
             <ol class="flex flex-wrap items-center gap-1">
                 <li><a href="{{ route('home') }}" class="hover:text-primary">Início</a></li>
-                <li aria-hidden="true">›</li>
+                <li aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="currentColor" class="size-3.5"><path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
+                </li>
                 <li><a href="{{ route('products.index') }}" class="hover:text-primary">Produtos</a></li>
-                <li aria-hidden="true">›</li>
+                <li aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="currentColor" class="size-3.5"><path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
+                </li>
                 <li class="font-semibold text-foreground">{{ $category->name }}</li>
             </ol>
         </nav>
 
-        <header class="mb-6">
-            <h1 class="text-2xl font-bold text-foreground sm:text-3xl">{{ $category->name }}</h1>
+        <header class="mb-6 border-b border-line pb-5">
+            <h1 class="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{{ $category->name }}</h1>
             @if ($category->description)
-                <p class="mt-1 text-sm text-muted">{{ $category->description }}</p>
+                <p class="mt-2 max-w-3xl text-base leading-7 text-muted">{{ $category->description }}</p>
             @endif
+            <p class="mt-3 inline-flex items-center rounded-pill bg-surface-raised px-3 py-1 text-xs font-semibold text-muted ring-1 ring-inset ring-line">
+                {{ $products->total() }} {{ $products->total() === 1 ? 'produto' : 'produtos' }}
+            </p>
         </header>
 
         @if ($subcategories->count() > 0)
-            <nav aria-label="Subcategorias" class="mb-6">
+            <nav aria-label="Subcategorias" class="mb-8">
                 <ul class="flex flex-wrap gap-2">
                     @foreach ($subcategories as $sub)
                         <li>
-                            <a href="{{ route('catalog-categories.show', $sub->slug) }}" class="inline-flex items-center rounded-full border border-line bg-surface-raised px-4 py-1.5 text-sm text-foreground hover:border-primary/50 hover:text-primary">
+                            <a href="{{ route('catalog-categories.show', $sub->slug) }}" class="inline-flex items-center gap-2 rounded-full border border-line bg-surface-raised px-4 py-1.5 text-sm font-semibold text-foreground transition duration-200 ease-standard hover:border-primary/50 hover:bg-primary/5 hover:text-primary">
                                 {{ $sub->name }}
+                                <svg aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" class="size-3.5">
+                                    <path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+                                </svg>
                             </a>
                         </li>
                     @endforeach
                 </ul>
             </nav>
         @endif
-
-        <p class="mb-4 text-sm text-muted">{{ $products->total() }} {{ $products->total() === 1 ? 'produto' : 'produtos' }} encontrados</p>
 
         @if ($products->count() > 0)
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -49,9 +57,11 @@
                 title="Nenhum produto encontrado nesta categoria."
                 description="Volte para o catálogo ou explore outras categorias."
             >
-                <a href="{{ route('products.index') }}" class="mt-4 inline-flex h-10 items-center justify-center rounded-control bg-primary px-4 text-sm font-semibold text-white hover:bg-primary-strong">
-                    Ver catálogo
-                </a>
+                <x-slot:actions>
+                    <a href="{{ route('products.index') }}" class="inline-flex h-10 items-center justify-center rounded-control bg-primary px-4 text-sm font-semibold text-white hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
+                        Ver catálogo
+                    </a>
+                </x-slot:actions>
             </x-ui.empty-state>
         @endif
     </main>

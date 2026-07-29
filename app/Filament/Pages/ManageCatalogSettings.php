@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Filament\Pages;
 
 use App\Models\CatalogSetting;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -12,6 +14,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
@@ -59,6 +62,54 @@ class ManageCatalogSettings extends Page implements HasForms
         return $schema
             ->statePath('data')
             ->components([
+                Section::make('Hero da home do catálogo')
+                    ->description('Bloco de destaque exibido no topo da home. Quando desativado, a home mostra apenas o título e o texto introdutório no padrão atual.')
+                    ->schema([
+                        Toggle::make('hero_enabled')
+                            ->label('Exibir hero')
+                            ->inline(false)
+                            ->helperText('Ative para mostrar o hero configurado abaixo no topo da home.'),
+                        TextInput::make('hero_title')
+                            ->label('Título do hero')
+                            ->placeholder('Ex.: Linha completa de produtos')
+                            ->maxLength(255)
+                            ->required(fn (callable $get) => (bool) $get('hero_enabled')),
+                        Textarea::make('hero_subtitle')
+                            ->label('Subtítulo')
+                            ->placeholder('Frase curta de apoio ao título')
+                            ->rows(2)
+                            ->maxLength(500),
+                        Grid::make(2)->schema([
+                            TextInput::make('hero_cta_label')
+                                ->label('Texto do botão (CTA)')
+                                ->placeholder('Ex.: Ver produtos')
+                                ->maxLength(100),
+                            TextInput::make('hero_cta_url')
+                                ->label('URL do botão (CTA)')
+                                ->placeholder('https://...')
+                                ->url()
+                                ->maxLength(255),
+                        ]),
+                        FileUpload::make('hero_image_path')
+                            ->label('Imagem de fundo')
+                            ->image()
+                            ->disk('public')
+                            ->directory('catalog/hero')
+                            ->visibility('public')
+                            ->maxSize(4096)
+                            ->imageEditor()
+                            ->imageAspectRatio('1920:800')
+                            ->helperText('Recomendado 1920x800 px. O editor de imagem permite recortar antes de salvar.')
+                            ->columnSpanFull(),
+                        Select::make('hero_alignment')
+                            ->label('Alinhamento do conteúdo')
+                            ->options([
+                                CatalogSetting::HERO_ALIGNMENT_LEFT => 'Esquerda',
+                                CatalogSetting::HERO_ALIGNMENT_CENTER => 'Centro',
+                            ])
+                            ->default(CatalogSetting::HERO_ALIGNMENT_LEFT)
+                            ->required(),
+                    ]),
                 Section::make('Apresentação')
                     ->description('Texto e itens exibidos na home do catálogo.')
                     ->schema([
@@ -132,11 +183,26 @@ class ManageCatalogSettings extends Page implements HasForms
             $data['inquiry_recipients'] = $recipients ?: null;
         }
 
+        $data['hero_image_path'] = $this->normalizeHeroImagePath($data['hero_image_path'] ?? null);
+
         CatalogSetting::current()->fill($data)->save();
 
         Notification::make()
             ->title('Configurações do catálogo salvas.')
             ->success()
             ->send();
+    }
+
+    private function normalizeHeroImagePath(mixed $value): ?string
+    {
+        if (is_array($value)) {
+            $value = $value[0] ?? null;
+        }
+
+        if (is_string($value)) {
+            $value = trim($value);
+        }
+
+        return $value === '' ? null : $value;
     }
 }

@@ -41,7 +41,7 @@
                 <x-ui.input id="site-login-password" name="password" type="password" label="Senha" :error="$errors->first('password')" autocomplete="current-password" required />
 
                 <label class="flex items-center gap-2 text-sm text-muted">
-                    <input type="checkbox" name="remember" value="1" @checked(old('remember')) class="size-4 rounded border-line text-primary focus:ring-accent">
+                    <input type="checkbox" name="remember" value="1" @checked(old('remember')) class="size-4 rounded border-line text-primary focus:ring-secondary">
                     Manter conectado
                 </label>
 

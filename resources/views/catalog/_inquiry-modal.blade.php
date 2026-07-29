@@ -55,47 +55,47 @@
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <label class="block text-sm">
                             <span class="mb-1 block font-medium text-foreground">Nome completo *</span>
-                            <input type="text" name="name" required minlength="2" maxlength="120" value="{{ old('name') }}" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent" />
+                            <input type="text" name="name" required minlength="2" maxlength="120" value="{{ old('name') }}" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary" />
                             @error('name')<span class="mt-1 block text-xs text-danger">{{ $message }}</span>@enderror
                         </label>
                         <label class="block text-sm">
                             <span class="mb-1 block font-medium text-foreground">E-mail *</span>
-                            <input type="email" name="email" required maxlength="255" value="{{ old('email') }}" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent" />
+                            <input type="email" name="email" required maxlength="255" value="{{ old('email') }}" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary" />
                             @error('email')<span class="mt-1 block text-xs text-danger">{{ $message }}</span>@enderror
                         </label>
                         <label class="block text-sm">
                             <span class="mb-1 block font-medium text-foreground">Telefone/WhatsApp</span>
-                            <input type="tel" name="phone" maxlength="30" value="{{ old('phone') }}" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent" />
+                            <input type="tel" name="phone" maxlength="30" value="{{ old('phone') }}" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary" />
                             @error('phone')<span class="mt-1 block text-xs text-danger">{{ $message }}</span>@enderror
                         </label>
                         <label class="block text-sm">
                             <span class="mb-1 block font-medium text-foreground">Empresa</span>
-                            <input type="text" name="company" maxlength="160" value="{{ old('company') }}" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent" />
+                            <input type="text" name="company" maxlength="160" value="{{ old('company') }}" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary" />
                             @error('company')<span class="mt-1 block text-xs text-danger">{{ $message }}</span>@enderror
                         </label>
                         <label class="block text-sm">
                             <span class="mb-1 block font-medium text-foreground">Cidade</span>
-                            <input type="text" name="city" maxlength="120" value="{{ old('city') }}" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent" />
+                            <input type="text" name="city" maxlength="120" value="{{ old('city') }}" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary" />
                         </label>
                         <label class="block text-sm">
                             <span class="mb-1 block font-medium text-foreground">UF</span>
-                            <input type="text" name="state" maxlength="2" minlength="2" value="{{ old('state') }}" placeholder="SP" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm uppercase focus:outline-none focus:ring-2 focus:ring-accent" />
+                            <input type="text" name="state" maxlength="2" minlength="2" value="{{ old('state') }}" placeholder="SP" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm uppercase focus:outline-none focus:ring-2 focus:ring-secondary" />
                         </label>
                     </div>
 
                     <label class="block text-sm">
                         <span class="mb-1 block font-medium text-foreground">Assunto</span>
-                        <input type="text" name="subject" maxlength="160" value="{{ old('subject') ?? ($productName ? 'Interesse em '.$productName : null) }}" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent" />
+                        <input type="text" name="subject" maxlength="160" value="{{ old('subject') ?? ($productName ? 'Interesse em '.$productName : null) }}" class="h-10 w-full rounded-control border border-line bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary" />
                     </label>
 
                     <label class="block text-sm">
                         <span class="mb-1 block font-medium text-foreground">Mensagem *</span>
-                        <textarea name="message" required minlength="10" maxlength="2000" rows="4" class="w-full rounded-control border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent">{{ old('message') }}</textarea>
+                        <textarea name="message" required minlength="10" maxlength="2000" rows="4" class="w-full rounded-control border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary">{{ old('message') }}</textarea>
                         @error('message')<span class="mt-1 block text-xs text-danger">{{ $message }}</span>@enderror
                     </label>
 
                     <label class="flex items-start gap-2 text-xs text-muted">
-                        <input type="checkbox" name="consent" required value="1" @checked(old('consent')) class="mt-0.5 size-4 rounded border-line text-primary focus:ring-accent" />
+                        <input type="checkbox" name="consent" required value="1" @checked(old('consent')) class="mt-0.5 size-4 rounded border-line text-primary focus:ring-secondary" />
                         <span>Li e aceito receber contato comercial referente a esta consulta. Os dados serão tratados conforme a <a href="#" class="text-primary underline">política de privacidade</a> (LGPD).</span>
                     </label>
 

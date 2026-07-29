@@ -23,7 +23,7 @@ final class SeoService
      */
     public function forHome(BlogSetting $settings): array
     {
-        $siteName = $settings->site_name ?: config('app.name', 'TDB Mix Blog');
+        $siteName = $settings->site_name ?: config('app.name', 'Era1x Ler Artes');
         $description = $settings->default_meta_description ?: $settings->site_description ?: 'Blog moderno em Laravel.';
         $siteUrl = url('/');
         $meta = [
@@ -252,9 +252,11 @@ final class SeoService
      */
     public function forCatalogHome(CatalogSetting $settings): array
     {
-        $title = (string) $settings->getAttribute('seo_title') ?: (string) $settings->getAttribute('title');
+        $title = (string) $settings->getAttribute('seo_title')
+            ?: (string) $settings->getAttribute('hero_title')
+            ?: (string) $settings->getAttribute('title');
         $description = (string) $settings->getAttribute('seo_description') ?: (string) $settings->getAttribute('intro_text') ?: '';
-        $siteName = config('app.name', 'TDB Mix Blog');
+        $siteName = config('app.name', 'Era1x Ler Artes');
 
         $meta = [
             'title' => $title ? "{$title} | {$siteName}" : $siteName,
@@ -291,7 +293,7 @@ final class SeoService
     public function forCatalogIndex(Request $request, CatalogSetting $settings): array
     {
         $title = (string) $settings->getAttribute('seo_title') ?: (string) $settings->getAttribute('title');
-        $siteName = config('app.name', 'TDB Mix Blog');
+        $siteName = config('app.name', 'Era1x Ler Artes');
         $term = trim((string) $request->query('buscar', ''));
 
         $heading = $term !== '' ? "Resultados para \"{$term}\"" : 'Produtos';
@@ -325,7 +327,7 @@ final class SeoService
     {
         $title = (string) $category->getAttribute('seo_title') ?: (string) $category->getAttribute('name');
         $description = (string) $category->getAttribute('seo_description') ?: (string) $category->getAttribute('description');
-        $siteName = config('app.name', 'TDB Mix Blog');
+        $siteName = config('app.name', 'Era1x Ler Artes');
 
         $breadcrumbItems = [
             ['name' => 'Início', 'url' => url('/')],
@@ -361,7 +363,7 @@ final class SeoService
     public function forProduct(Product $product, CatalogSetting $settings): array
     {
         $name = (string) $product->getAttribute('name');
-        $siteName = config('app.name', 'TDB Mix Blog');
+        $siteName = config('app.name', 'Era1x Ler Artes');
         $title = (string) $product->getAttribute('seo_title') ?: $name;
         $description = (string) $product->getAttribute('seo_description') ?: (string) $product->getAttribute('short_description') ?: '';
         $image = $product->getFirstMediaUrl('cover');
@@ -455,7 +457,7 @@ final class SeoService
     public function rssChannel(): array
     {
         return [
-            'title' => config('app.name', 'TDB Mix Blog'),
+            'title' => config('app.name', 'Era1x Ler Artes'),
             'link' => url('/'),
             'description' => 'Feed oficial do blog.',
             'language' => 'pt-BR',

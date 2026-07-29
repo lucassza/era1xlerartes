@@ -27,7 +27,7 @@ class PublicTestimonialController extends Controller
 
         return view('testimonials.index', [
             'meta' => [
-                'title' => 'Depoimentos — TDB Mix Blog',
+                'title' => 'Depoimentos — Era1x Ler Artes',
                 'description' => 'Veja o que a nossa comunidade está dizendo sobre o blog.',
             ],
             'testimonials' => $testimonials,

@@ -23,8 +23,8 @@ class ProfileController extends Controller
             'user' => $user,
             'avatarUrl' => $user->getFirstMediaUrl('avatar', 'thumb-300') ?: $user->getFirstMediaUrl('avatar'),
             'meta' => [
-                'title' => 'Meu perfil — TDB Mix Blog',
-                'description' => 'Gerencie seus dados, avatar e senha no TDB Mix Blog.',
+                'title' => 'Meu perfil — Era1x Ler Artes',
+                'description' => 'Gerencie seus dados, avatar e senha no Era1x Ler Artes.',
                 'robots' => 'noindex,nofollow',
             ],
         ]);

@@ -4,20 +4,22 @@
 @source '../../../resources/views/filament/**/*';
 
 :root {
-    /* Tokens TDB Mix — duplicados do app.css pois o Filament só carrega este arquivo */
-    --tdb-canvas: #fffafa;
-    --tdb-surface: #fdf2f3;
+    /* Tokens Era1x Ler Artes — duplicados do app.css pois o Filament só carrega este arquivo */
+    --tdb-canvas: #fcfafa;
+    --tdb-surface: #f3f3f4;
     --tdb-surface-raised: #ffffff;
-    --tdb-text: #1f0c0c;
-    --tdb-text-muted: #7a5555;
-    --tdb-border: #f5d8d8;
-    --tdb-primary: #d42020;
-    --tdb-primary-strong: #b81818;
-    --tdb-secondary: #00bcd8;
-    --tdb-accent: #e6287e;
-    --tdb-success: #2fb344;
-    --tdb-warning: #b45309;
-    --tdb-danger: #d90429;
+    --tdb-text: #2f2f35;
+    --tdb-text-muted: #666666;
+    --tdb-border: #ececec;
+    --tdb-primary: #650010;
+    --tdb-primary-strong: #820018;
+    --tdb-secondary: #e95d78;
+    --tdb-secondary-strong: #d94865;
+    --tdb-accent: #f7b8c6;
+    --tdb-success: #4caf50;
+    --tdb-warning: #f4b400;
+    --tdb-danger: #d32f2f;
+    --tdb-info: #4a90e2;
 
     --color-primary-50: color-mix(in srgb, var(--tdb-primary) 8%, white);
     --color-primary-100: color-mix(in srgb, var(--tdb-primary) 15%, white);
@@ -58,8 +60,17 @@
     --color-gray-950: color-mix(in srgb, var(--tdb-text) 70%, black);
 }
 
+@theme inline {
+    --color-canvas: var(--tdb-canvas);
+    --color-surface: var(--tdb-surface);
+    --color-surface-raised: var(--tdb-surface-raised);
+    --color-foreground: var(--tdb-text);
+    --color-muted: var(--tdb-text-muted);
+    --color-line: var(--tdb-border);
+}
+
 .fi-body {
-    background: linear-gradient(180deg, var(--tdb-canvas) 0%, color-mix(in srgb, var(--tdb-canvas) 80%, var(--tdb-primary) 6%) 100%);
+    background: var(--tdb-canvas);
     font-family: var(--font-sans);
 }
 
@@ -102,7 +113,7 @@
 .fi-ta-ctn,
 .fi-fo-tabs-tab,
 .fi-fo-tabs.fi-fo-tabs-vertical .fi-fo-tabs-tab.fi-active {
-    border-radius: 1.25rem !important;
+    border-radius: 1rem !important;
 }
 
 .fi-input-wrp,
@@ -122,7 +133,7 @@
 }
 
 .fi-simple-layout {
-    background: linear-gradient(135deg, var(--tdb-canvas) 0%, color-mix(in srgb, var(--tdb-primary) 10%, var(--tdb-canvas)) 50%, color-mix(in srgb, var(--tdb-accent) 12%, var(--tdb-canvas)) 100%);
+    background: var(--tdb-canvas);
 }
 
 .fi-simple-main-ctn {

@@ -7,7 +7,8 @@
 @php
     $variantClasses = [
         'primary' => 'bg-primary text-white hover:bg-primary-strong',
-        'secondary' => 'bg-surface-raised text-foreground ring-1 ring-inset ring-line hover:bg-surface',
+        'secondary' => 'bg-secondary text-white hover:bg-secondary-strong',
+        'outline' => 'bg-transparent text-primary ring-1 ring-inset ring-primary hover:bg-primary hover:text-white',
         'danger' => 'bg-danger text-white hover:opacity-90',
         'ghost' => 'bg-transparent text-foreground hover:bg-surface',
     ];

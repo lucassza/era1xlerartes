@@ -1,9 +1,9 @@
 @php
     /** @var array<int, array{name: string, total: int, url: ?string}> $rows */
 @endphp
-<div class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
+<div class="rounded-xl border border-line bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
     @if (empty($rows))
-        <p class="text-sm text-gray-500 dark:text-gray-400">
+        <p class="text-sm text-muted dark:text-gray-400">
             Sem consultas registradas ainda.
         </p>
     @else
@@ -16,7 +16,7 @@
                                 {{ $row['name'] }}
                             </a>
                         @else
-                            <span class="font-medium text-gray-700 dark:text-gray-200">{{ $row['name'] }}</span>
+                            <span class="font-medium text-foreground dark:text-gray-200">{{ $row['name'] }}</span>
                         @endif
                     </span>
                     <span class="rounded-full bg-primary-100 px-2 py-0.5 text-xs font-semibold text-primary-700 dark:bg-primary-900/40 dark:text-primary-200">

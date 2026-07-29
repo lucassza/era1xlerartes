@@ -23,7 +23,7 @@
     <input
         {{ $attributes->except(['aria-describedby', 'aria-invalid'])->class([
             'block min-h-11 w-full rounded-control border bg-surface-raised px-3 py-2 text-foreground placeholder:text-muted transition duration-200 ease-standard',
-            'border-line focus:border-accent' => ! $error,
+            'border-line focus:border-secondary' => ! $error,
             'border-danger focus:border-danger' => $error,
         ])->merge([
             'id' => $id,

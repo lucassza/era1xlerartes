@@ -21,14 +21,14 @@
     <div class="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8">
 
         {{-- Logo --}}
-        <a href="{{ route('home') }}" class="shrink-0 rounded-control" aria-label="{{ config('app.name', 'TDB Mix Blog') }} — página inicial">
-            <img src="{{ asset('images/brand/logo-peq.png') }}" alt="{{ config('app.name', 'TDB Mix Blog') }}" width="160" height="80"
-                class="h-10 w-20 object-contain mix-blend-multiply sm:h-12 sm:w-24">
+        <a href="{{ route('home') }}" class="shrink-0 rounded-control" aria-label="{{ config('app.name', 'Era1x Ler Artes') }} — página inicial">
+            <img src="{{ asset('images/brand/logo-era1x.png') }}" alt="{{ config('app.name', 'Era1x Ler Artes') }}" width="500" height="500"
+                class="h-12 w-12 object-contain sm:h-14 sm:w-14">
         </a>
 
         {{-- Primary nav (desktop): Início, Produtos, Categorias, Blog, Contato --}}
         <nav aria-label="Navegação principal" class="hidden min-w-0 flex-1 md:block">
-            <div class="flex items-center gap-0.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div class="flex items-center gap-0.5 overflow-x-clip">
                 <a
                     href="{{ route('home') }}"
                     @class([
@@ -60,10 +60,12 @@
                         @mouseleave="open = false"
                         @focusin="open = true"
                         @focusout="open = false"
+                        @click.outside="open = false"
                         class="relative shrink-0"
                     >
                         <button
                             type="button"
+                            @click.stop="open = true"
                             @class([
                                 'inline-flex items-center gap-1 rounded-control px-3 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
                                 'text-primary bg-primary/5' => str_starts_with($routeName, 'catalog-categories.'),
@@ -139,7 +141,7 @@
                 </svg>
                 <input
                     id="site-search-query" name="q" type="search" placeholder="Buscar..."
-                    class="h-10 w-48 rounded-control border border-line bg-surface pl-9 pr-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent xl:w-56"
+                    class="h-10 w-48 rounded-control border border-line bg-surface pl-9 pr-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-secondary xl:w-56"
                 >
             </div>
         </form>

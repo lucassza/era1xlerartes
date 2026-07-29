@@ -6,7 +6,7 @@
     <div class="meta">
         <p><strong>Nota:</strong> {{ str_repeat('★', $comment->score) }}{{ str_repeat('☆', 5 - $comment->score) }} ({{ $comment->score }}/5)</p>
         <p><strong>Conteúdo:</strong></p>
-        <blockquote style="margin: 0; padding-left: 12px; border-left: 3px solid #e6287e; color: #7a5555;">
+        <blockquote style="margin: 0; padding-left: 12px; border-left: 3px solid #e95d78; color: #666666;">
             {{ $comment->content }}
         </blockquote>
     </div>
@@ -15,7 +15,7 @@
         <a class="button" href="{{ $approveUrl }}">Revisar comentário</a>
     </p>
 
-    <p style="font-size: 12px; color: #7a5555;">
+    <p style="font-size: 12px; color: #666666;">
         IP de origem: {{ $comment->ip ?? 'não registrado' }} ·
         Enviado em {{ $comment->created_at?->format('d/m/Y H:i') ?? 'agora' }}
     </p>

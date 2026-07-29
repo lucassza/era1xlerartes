@@ -4,7 +4,7 @@
             <p class="text-sm font-semibold uppercase tracking-wider text-primary">Comunidade</p>
             <h1 class="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Depoimentos</h1>
             <p class="mx-auto max-w-2xl text-base leading-7 text-muted">
-                Veja o que nossa comunidade está dizendo e compartilhe sua própria experiência com o TDB Mix Blog.
+                Veja o que nossa comunidade está dizendo e compartilhe sua própria experiência com o Era1x Ler Artes.
             </p>
         </header>
 

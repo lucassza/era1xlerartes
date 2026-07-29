@@ -77,7 +77,7 @@
                             @endif
                         </div>
                     @else
-                        <span class="inline-flex items-center rounded-pill bg-primary px-3 py-1 text-xs font-bold text-white">TDB Mix Blog</span>
+                        <span class="inline-flex items-center rounded-pill bg-primary px-3 py-1 text-xs font-bold text-white">Era1x Ler Artes</span>
                         <h2 class="mt-4 font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
                             Conteúdo que acompanha o seu ritmo.
                         </h2>
@@ -114,7 +114,7 @@
 
     {{-- Featured: medium card with solid category badge ————————————————————— --}}
     <article class="group overflow-hidden rounded-card border border-line bg-surface-raised shadow-card transition duration-200 ease-standard hover:-translate-y-0.5 hover:shadow-float">
-        <a href="{{ $postUrl }}" class="block focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
+        <a href="{{ $postUrl }}" class="block focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2">
             <div class="relative aspect-[16/9] overflow-hidden bg-surface">
                 @if ($coverUrl)
                     <img
@@ -155,7 +155,7 @@
 
     {{-- Grid: standard post card ——————————————————————————————————————————— --}}
     <article class="group overflow-hidden rounded-card border border-line bg-surface-raised shadow-card transition duration-200 ease-standard hover:-translate-y-0.5 hover:shadow-float">
-        <a href="{{ $postUrl }}" class="block focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
+        <a href="{{ $postUrl }}" class="block focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2">
             <div class="relative aspect-[16/10] overflow-hidden bg-surface">
                 @if ($coverUrl)
                     <img
@@ -198,7 +198,7 @@
 
     {{-- List: taxonomy/search card ————————————————————————————————————————— --}}
     <article class="group overflow-hidden rounded-card border border-line bg-surface-raised transition duration-200 ease-standard hover:border-primary/40 hover:shadow-card">
-        <a href="{{ $postUrl }}" class="block focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
+        <a href="{{ $postUrl }}" class="block focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2">
             <div class="relative aspect-[3/2] overflow-hidden bg-surface">
                 @if ($coverUrl)
                     <img

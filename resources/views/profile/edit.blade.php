@@ -8,7 +8,7 @@
         <header class="mb-8 max-w-2xl">
             <p class="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Conta</p>
             <h1 class="mt-2 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Meu perfil</h1>
-            <p class="mt-3 text-base leading-7 text-muted">Gerencie seus dados, sua foto e a senha de acesso ao TDB Mix Blog.</p>
+            <p class="mt-3 text-base leading-7 text-muted">Gerencie seus dados, sua foto e a senha de acesso ao Era1x Ler Artes.</p>
         </header>
 
         @if ($status)

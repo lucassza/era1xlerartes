@@ -3,16 +3,16 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ $meta['title'] ?? $title ?? config('app.name', 'TDB Mix Blog') }}</title>
+        <title>{{ $meta['title'] ?? $title ?? config('app.name', 'Era1x Ler Artes') }}</title>
         <meta name="description" content="{{ $meta['description'] ?? 'Blog moderno em Laravel.' }}">
         <meta name="robots" content="{{ $meta['robots'] ?? 'index,follow' }}">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="theme-color" content="#fcfafa">
         <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
         <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
         <link rel="icon" href="{{ asset('favicon-96x96.png') }}" sizes="96x96" type="image/png">
         <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
         <link rel="manifest" href="{{ asset('site.webmanifest') }}">
-        <link rel="alternate" type="application/rss+xml" title="{{ config('app.name', 'TDB Mix Blog') }} RSS" href="{{ route('seo.rss') }}">
+        <link rel="alternate" type="application/rss+xml" title="{{ config('app.name', 'Era1x Ler Artes') }} RSS" href="{{ route('seo.rss') }}">
 
         @if (! empty($meta['canonical']))
             <link rel="canonical" href="{{ $meta['canonical'] }}">

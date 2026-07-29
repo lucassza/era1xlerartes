@@ -7,19 +7,30 @@
         $images = collect([$cover])->filter()->merge($gallery);
         $primary = $images->first();
         $attributeGroups = $product->attributeValues->groupBy(fn ($v) => $v->attribute->group->name ?? 'Outros');
+        $mode = $product->price_display_mode;
+        $effectivePrice = $product->effectivePrice();
+        $showPrice = $mode === \App\Enums\PriceDisplayMode::Show && $effectivePrice !== null;
+        $onRequest = $mode === \App\Enums\PriceDisplayMode::OnRequest;
+        $inquiryLabel = $product->inquiry_button_text ?: ($settings->inquiry_button_text ?: 'Consulte');
     @endphp
 
-    <main id="main" class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <main id="main" class="mx-auto max-w-7xl px-4 pb-32 pt-8 sm:px-6 lg:px-8 lg:pb-12">
         <nav aria-label="Breadcrumb" class="mb-4 text-sm text-muted">
             <ol class="flex flex-wrap items-center gap-1">
                 <li><a href="{{ route('home') }}" class="hover:text-primary">Início</a></li>
-                <li aria-hidden="true">›</li>
+                <li aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="currentColor" class="size-3.5"><path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
+                </li>
                 <li><a href="{{ route('products.index') }}" class="hover:text-primary">Produtos</a></li>
                 @if ($product->category)
-                    <li aria-hidden="true">›</li>
+                    <li aria-hidden="true">
+                        <svg viewBox="0 0 16 16" fill="currentColor" class="size-3.5"><path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
+                    </li>
                     <li><a href="{{ route('catalog-categories.show', $product->category->slug) }}" class="hover:text-primary">{{ $product->category->name }}</a></li>
                 @endif
-                <li aria-hidden="true">›</li>
+                <li aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="currentColor" class="size-3.5"><path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
+                </li>
                 <li class="font-semibold text-foreground">{{ $product->name }}</li>
             </ol>
         </nav>
@@ -90,14 +101,14 @@
                 </div>
             </section>
 
-            <section class="space-y-6">
+            <section class="space-y-6 lg:sticky lg:top-24 lg:self-start">
                 <header>
-                    <p class="text-xs uppercase tracking-wider text-muted">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-muted">
                         {{ $product->brand?->name ?? '' }}
                         {{ $product->brand?->name && $product->category?->name ? ' • ' : '' }}
                         {{ $product->category?->name ?? '' }}
                     </p>
-                    <h1 class="mt-1 text-2xl font-bold text-foreground sm:text-3xl">{{ $product->name }}</h1>
+                    <h1 class="mt-1 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{{ $product->name }}</h1>
                     @if ($product->sku || $product->internal_code)
                         <p class="mt-1 text-sm text-muted">
                             @if ($product->sku) SKU: <span class="font-semibold">{{ $product->sku }}</span> @endif
@@ -106,36 +117,35 @@
                     @endif
                 </header>
 
-                @php $mode = $product->price_display_mode; @endphp
-                <div>
-                    @if ($mode === \App\Enums\PriceDisplayMode::Show && $product->effectivePrice() !== null)
-                        <p class="text-3xl font-bold text-foreground">R$ {{ number_format((float) $product->effectivePrice(), 2, ',', '.') }}</p>
-                    @elseif ($mode === \App\Enums\PriceDisplayMode::OnRequest)
+                <div class="rounded-card border border-line bg-surface-raised p-4">
+                    @if ($showPrice)
+                        <p class="text-3xl font-bold leading-none text-foreground">R$ {{ number_format((float) $effectivePrice, 2, ',', '.') }}</p>
+                    @elseif ($onRequest)
                         <p class="text-xl font-semibold text-primary">Sob consulta</p>
                     @else
                         <p class="text-sm text-muted">Preço sob consulta comercial.</p>
                     @endif
-                    <p class="mt-1 text-xs text-muted">{{ $product->availability->label() }}</p>
+                    <p class="mt-2 text-xs font-semibold uppercase tracking-wider text-muted">{{ $product->availability->label() }}</p>
                 </div>
 
                 @if ($product->short_description)
-                    <p class="text-base text-foreground">{{ $product->short_description }}</p>
+                    <p class="text-base leading-7 text-foreground">{{ $product->short_description }}</p>
                 @endif
 
-                <div class="flex flex-wrap gap-2">
+                <div class="hidden flex-wrap gap-2 lg:flex">
                     <button
                         type="button"
                         data-open-inquiry
                         data-product-id="{{ $product->id }}"
                         data-product-slug="{{ $product->slug }}"
                         data-product-name="{{ $product->name }}"
-                        class="inline-flex min-h-12 items-center justify-center gap-2 rounded-control bg-primary px-5 text-base font-semibold text-white shadow-sm hover:bg-primary-strong focus:outline-none focus:ring-2 focus:ring-accent"
+                        class="inline-flex min-h-12 items-center justify-center gap-2 rounded-control bg-primary px-6 text-base font-semibold text-white shadow-sm hover:bg-primary-strong focus:outline-none focus:ring-2 focus:ring-secondary"
                     >
-                        {{ $product->inquiry_button_text ?: ($settings->inquiry_button_text ?: 'Consulte') }}
+                        {{ $inquiryLabel }}
                     </button>
                 </div>
 
-                <details class="rounded-card border border-line bg-surface-raised p-4">
+                <details class="rounded-card border border-line bg-surface-raised p-4" open>
                     <summary class="cursor-pointer text-sm font-semibold text-foreground">Descrição completa</summary>
                     <div class="prose prose-sm mt-3 max-w-none text-foreground">
                         {!! $product->description !!}
@@ -181,7 +191,7 @@
                         <h2 class="mb-2 text-sm font-semibold text-foreground">Tags</h2>
                         <ul class="flex flex-wrap gap-1.5">
                             @foreach ($product->tags as $tag)
-                                <li><span class="inline-flex items-center rounded-full bg-surface-raised px-3 py-1 text-xs font-semibold text-foreground ring-1 ring-line">{{ $tag->name }}</span></li>
+                                <li><span class="inline-flex items-center rounded-full bg-surface-raised px-3 py-1 text-xs font-semibold text-foreground ring-1 ring-inset ring-line">{{ $tag->name }}</span></li>
                             @endforeach
                         </ul>
                     </section>
@@ -196,7 +206,7 @@
                         <ul class="space-y-1.5">
                             @foreach ($attachments as $file)
                                 <li>
-                                    <a href="{{ $file->getUrl() }}" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm text-primary hover:underline">
+                                    <a href="{{ $file->getUrl() }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm text-primary hover:underline">
                                         <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" class="size-4"><path d="M10 3v10m0 0-3-3m3 3 3-3M4 17h12"/></svg>
                                         {{ $file->name }}{{ $file->extension ? '.'.$file->extension : '' }}
                                     </a>
@@ -210,7 +220,10 @@
 
         @if ($related->count() > 0)
             <section aria-labelledby="related-heading" class="mt-16">
-                <h2 id="related-heading" class="mb-4 text-xl font-semibold text-foreground">Produtos relacionados</h2>
+                <x-ui.section-heading
+                    id="related-heading"
+                    title="Produtos relacionados"
+                />
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     @foreach ($related as $relatedProduct)
                         @include('catalog._product-card', ['product' => $relatedProduct, 'settings' => $settings])
@@ -218,5 +231,19 @@
                 </div>
             </section>
         @endif
+
+        {{-- CTA sticky (somente mobile) --}}
+        <div class="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-surface-raised/95 p-3 backdrop-blur lg:hidden">
+            <button
+                type="button"
+                data-open-inquiry
+                data-product-id="{{ $product->id }}"
+                data-product-slug="{{ $product->slug }}"
+                data-product-name="{{ $product->name }}"
+                class="inline-flex w-full min-h-12 items-center justify-center gap-2 rounded-control bg-primary px-5 text-base font-semibold text-white shadow-card hover:bg-primary-strong focus:outline-none focus:ring-2 focus:ring-secondary"
+            >
+                {{ $inquiryLabel }}
+            </button>
+        </div>
     </main>
 </x-layouts.app>

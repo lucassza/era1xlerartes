@@ -67,7 +67,7 @@
                         minlength="20"
                         maxlength="1000"
                         @error('content') aria-invalid="true" aria-describedby="testimonial-content-error" @enderror
-                        class="block w-full rounded-control border border-line bg-surface-raised px-3 py-2 text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent"
+                        class="block w-full rounded-control border border-line bg-surface-raised px-3 py-2 text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-secondary"
                         placeholder="Conte como foi sua experiência com o blog..."
                     >{{ old('content') }}</textarea>
                     @error('content')

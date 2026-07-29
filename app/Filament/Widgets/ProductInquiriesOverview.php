@@ -20,11 +20,11 @@ class ProductInquiriesOverview extends BaseWidget
     {
         $stats = app(ProductInquiryService::class)->dashboardStats();
 
-        $primary = Color::hex('#d42020');
-        $accent = Color::hex('#e6287e');
-        $warning = Color::hex('#b45309');
-        $info = Color::hex('#0ea5e9');
-        $success = Color::hex('#2fb344');
+        $primary = Color::hex('#650010');
+        $accent = Color::hex('#E95D78');
+        $warning = Color::hex('#F4B400');
+        $info = Color::hex('#4A90E2');
+        $success = Color::hex('#4CAF50');
 
         $avgResponse = $stats['avg_first_response_minutes'] === null
             ? '—'

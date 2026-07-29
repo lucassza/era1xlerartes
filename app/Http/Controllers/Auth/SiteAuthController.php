@@ -24,7 +24,7 @@ class SiteAuthController extends Controller
     {
         return view('auth.site.login', [
             'meta' => [
-                'title' => 'Entrar — TDB Mix Blog',
+                'title' => 'Entrar — Era1x Ler Artes',
                 'description' => 'Acesse sua conta para comentar e enviar depoimentos.',
                 'robots' => 'noindex,nofollow',
             ],
@@ -75,7 +75,7 @@ class SiteAuthController extends Controller
     {
         return view('auth.site.register', [
             'meta' => [
-                'title' => 'Criar conta — TDB Mix Blog',
+                'title' => 'Criar conta — Era1x Ler Artes',
                 'description' => 'Cadastre-se para comentar nos posts e enviar depoimentos.',
                 'robots' => 'noindex,nofollow',
             ],

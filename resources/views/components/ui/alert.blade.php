@@ -5,7 +5,7 @@
 
 @php
     $variantClasses = [
-        'info' => 'border-accent/30 bg-accent/10 text-foreground',
+        'info' => 'border-info/30 bg-info/10 text-foreground',
         'success' => 'border-success/30 bg-success/10 text-foreground',
         'warning' => 'border-warning/30 bg-warning/10 text-foreground',
         'danger' => 'border-danger/30 bg-danger/10 text-foreground',

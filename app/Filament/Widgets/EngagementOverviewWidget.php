@@ -43,10 +43,10 @@ class EngagementOverviewWidget extends BaseWidget
             ->latest('created_at')
             ->first();
 
-        $primary = Color::hex('#d42020');
-        $accent = Color::hex('#e6287e');
-        $warning = Color::hex('#b45309');
-        $info = Color::hex('#0ea5e9');
+        $primary = Color::hex('#650010');
+        $accent = Color::hex('#E95D78');
+        $warning = Color::hex('#F4B400');
+        $info = Color::hex('#4A90E2');
 
         return [
             Stat::make('Depoimentos pendentes', (string) $pendingTestimonials)

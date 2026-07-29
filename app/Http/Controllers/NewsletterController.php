@@ -16,9 +16,9 @@ class NewsletterController extends Controller
     public function subscribe(Request $request, NewsletterService $newsletterService): RedirectResponse
     {
         $settings = BlogSetting::query()->firstOrCreate([], [
-            'site_name' => config('app.name', 'TDB Mix Blog'),
+            'site_name' => config('app.name', 'Era1x Ler Artes'),
             'site_description' => 'Blog moderno em Laravel.',
-            'default_meta_title' => config('app.name', 'TDB Mix Blog'),
+            'default_meta_title' => config('app.name', 'Era1x Ler Artes'),
             'default_meta_description' => 'Blog moderno em Laravel.',
             'newsletter_enabled' => true,
         ]);

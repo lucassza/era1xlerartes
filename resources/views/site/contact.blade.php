@@ -1,6 +1,6 @@
 @php
     $meta = [
-        'title' => 'Contato | '.config('app.name', 'TDB Mix Blog'),
+        'title' => 'Contato | '.config('app.name', 'Era1x Ler Artes'),
         'description' => 'Entre em contato com a equipe comercial do catálogo de produtos.',
         'canonical' => route('site.contact'),
         'robots' => 'index,follow',

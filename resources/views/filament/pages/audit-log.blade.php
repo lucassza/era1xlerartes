@@ -1,9 +1,9 @@
 <x-filament-panels::page>
     @php
         $eventLabels = [
-            'created' => ['label' => 'Criado',      'color' => '#2fb344'],
-            'updated' => ['label' => 'Atualizado',  'color' => '#0ea5e9'],
-            'deleted' => ['label' => 'Deletado',    'color' => '#d90429'],
+            'created' => ['label' => 'Criado',      'color' => '#4CAF50'],
+            'updated' => ['label' => 'Atualizado',  'color' => '#4A90E2'],
+            'deleted' => ['label' => 'Deletado',    'color' => '#D32F2F'],
         ];
 
         $modelLabels = [
@@ -19,23 +19,23 @@
         ];
     @endphp
 
-    <div class="overflow-hidden rounded-xl border border-zinc-200 bg-white">
-        <table class="min-w-full divide-y divide-zinc-200 text-sm">
-            <thead class="bg-zinc-50">
+    <div class="overflow-hidden rounded-xl border border-line bg-white">
+        <table class="min-w-full divide-y divide-line text-sm">
+            <thead class="bg-surface">
                 <tr>
-                    <th class="px-4 py-3 text-left font-medium text-zinc-600 w-40">Data</th>
-                    <th class="px-4 py-3 text-left font-medium text-zinc-600 w-28">Ação</th>
-                    <th class="px-4 py-3 text-left font-medium text-zinc-600">Quem fez</th>
-                    <th class="px-4 py-3 text-left font-medium text-zinc-600">Modelo</th>
-                    <th class="px-4 py-3 text-left font-medium text-zinc-600">Registro</th>
-                    <th class="px-4 py-3 text-left font-medium text-zinc-600">Detalhes</th>
+                    <th class="px-4 py-3 text-left font-medium text-muted w-40">Data</th>
+                    <th class="px-4 py-3 text-left font-medium text-muted w-28">Ação</th>
+                    <th class="px-4 py-3 text-left font-medium text-muted">Quem fez</th>
+                    <th class="px-4 py-3 text-left font-medium text-muted">Modelo</th>
+                    <th class="px-4 py-3 text-left font-medium text-muted">Registro</th>
+                    <th class="px-4 py-3 text-left font-medium text-muted">Detalhes</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-zinc-200">
+            <tbody class="divide-y divide-line">
                 @forelse ($this->activities as $activity)
                     @php
                         $event     = $activity->event ?? $activity->description ?? '';
-                        $eventInfo = $eventLabels[$event] ?? ['label' => ucfirst($event), 'color' => '#7a5555'];
+                        $eventInfo = $eventLabels[$event] ?? ['label' => ucfirst($event), 'color' => '#666666'];
 
                         // Quem fez a ação
                         $causer = $activity->causer;
@@ -79,8 +79,8 @@
                             );
                         }
                     @endphp
-                    <tr class="hover:bg-zinc-50 transition-colors">
-                        <td class="px-4 py-3 text-zinc-500 tabular-nums whitespace-nowrap">
+                    <tr class="hover:bg-surface transition-colors">
+                        <td class="px-4 py-3 text-muted tabular-nums whitespace-nowrap">
                             {{ optional($activity->created_at)->format('d/m/Y H:i') }}
                         </td>
                         <td class="px-4 py-3">
@@ -99,24 +99,24 @@
                         </td>
                         <td class="px-4 py-3">
                             @if ($causerName)
-                                <span class="font-medium text-zinc-800">{{ $causerName }}</span>
+                                <span class="font-medium text-foreground">{{ $causerName }}</span>
                             @else
-                                <span class="text-zinc-400">Sistema</span>
+                                <span class="text-muted">Sistema</span>
                             @endif
                         </td>
-                        <td class="px-4 py-3 text-zinc-600">{{ $subjectLabel }}</td>
+                        <td class="px-4 py-3 text-muted">{{ $subjectLabel }}</td>
                         <td class="px-4 py-3">
                             @if ($subjectName)
-                                <span class="font-medium text-zinc-800">{{ $subjectName }}</span>
+                                <span class="font-medium text-foreground">{{ $subjectName }}</span>
                             @elseif ($activity->subject_id)
-                                <span class="font-mono text-xs text-zinc-400">{{ substr($activity->subject_id, 0, 8) }}…</span>
+                                <span class="font-mono text-xs text-muted">{{ substr($activity->subject_id, 0, 8) }}…</span>
                             @else
-                                <span class="text-zinc-400">—</span>
+                                <span class="text-muted">—</span>
                             @endif
                         </td>
                         <td class="px-4 py-3">
                             @if (count($changed) > 0)
-                                <span class="text-xs text-zinc-500">
+                                <span class="text-xs text-muted">
                                     {{ implode(', ', array_map(fn($k) => match($k) {
                                         'name'       => 'nome',
                                         'email'      => 'e-mail',
@@ -132,15 +132,15 @@
                                     }, $changed)) }}
                                 </span>
                             @elseif ($event === 'created')
-                                <span class="text-xs text-zinc-400">Registro criado</span>
+                                <span class="text-xs text-muted">Registro criado</span>
                             @else
-                                <span class="text-zinc-400">—</span>
+                                <span class="text-muted">—</span>
                             @endif
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="px-4 py-8 text-center text-zinc-400">
+                        <td colspan="6" class="px-4 py-8 text-center text-muted">
                             Nenhum registro de auditoria encontrado.
                         </td>
                     </tr>

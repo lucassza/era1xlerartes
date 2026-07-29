@@ -35,19 +35,19 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->favicon(asset('favicon.svg'))
-            ->brandName('TDB Mix Blog')
-            ->brandLogo(asset('images/brand/logo-peq.png'))
-            ->brandLogoHeight('2.25rem')
+            ->brandName('Era1x Ler Artes')
+            ->brandLogo(asset('images/brand/logo.jpeg'))
+            ->brandLogoHeight('3rem')
             ->darkMode(false)
             ->colors([
-                'primary' => Color::hex('#d42020'),
-                'secondary' => Color::hex('#00bcd8'),
-                'accent' => Color::hex('#e6287e'),
-                'success' => Color::hex('#2fb344'),
-                'warning' => Color::hex('#b45309'),
-                'danger' => Color::hex('#d90429'),
-                'info' => Color::hex('#0ea5e9'),
-                'gray' => Color::hex('#7a5555'),
+                'primary' => Color::hex('#650010'),
+                'secondary' => Color::hex('#E95D78'),
+                'accent' => Color::hex('#F7B8C6'),
+                'success' => Color::hex('#4CAF50'),
+                'warning' => Color::hex('#F4B400'),
+                'danger' => Color::hex('#D32F2F'),
+                'info' => Color::hex('#4A90E2'),
+                'gray' => Color::hex('#666666'),
             ])
             ->viteTheme('resources/css/filament/theme.css')
             ->login()

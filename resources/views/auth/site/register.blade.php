@@ -34,7 +34,7 @@
                 <x-ui.input id="site-register-password-confirmation" name="password_confirmation" type="password" label="Confirme a senha" :error="$errors->first('password_confirmation')" autocomplete="new-password" required />
 
                 <label class="flex items-start gap-2 text-sm text-muted">
-                    <input type="checkbox" name="terms" value="1" @checked(old('terms')) class="mt-1 size-4 rounded border-line text-primary focus:ring-accent">
+                    <input type="checkbox" name="terms" value="1" @checked(old('terms')) class="mt-1 size-4 rounded border-line text-primary focus:ring-secondary">
                     <span>Li e aceito os termos de uso e a política de privacidade.</span>
                 </label>
                 @error('terms')
