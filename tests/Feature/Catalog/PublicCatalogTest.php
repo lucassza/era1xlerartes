@@ -7,6 +7,7 @@ namespace Tests\Feature\Catalog;
 use App\Enums\ProductStatus;
 use App\Models\Brand;
 use App\Models\CatalogCategory;
+use App\Models\CatalogSetting;
 use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -143,5 +144,57 @@ class PublicCatalogTest extends TestCase
 
         $response->assertOk();
         $response->assertSee($post->title);
+    }
+
+    public function test_home_renders_hero_when_enabled(): void
+    {
+        CatalogSetting::current()->forceFill([
+            'hero_enabled' => true,
+            'hero_title' => 'Linha completa de produtos',
+            'hero_subtitle' => 'Atendimento comercial em todo o Brasil.',
+            'hero_cta_label' => 'Ver produtos',
+            'hero_cta_url' => 'https://example.com/produtos',
+            'hero_alignment' => 'left',
+        ])->save();
+
+        $response = $this->get(route('home'));
+
+        $response->assertOk();
+        $response->assertSee('aria-label="Destaque principal do catálogo"', false);
+        $response->assertSee('Linha completa de produtos');
+        $response->assertSee('Atendimento comercial em todo o Brasil.');
+        $response->assertSee('Ver produtos');
+        $response->assertSee('href="https://example.com/produtos"', false);
+    }
+
+    public function test_home_omits_hero_when_disabled(): void
+    {
+        CatalogSetting::current()->forceFill([
+            'hero_enabled' => false,
+            'hero_title' => 'Esse título não deve aparecer',
+        ])->save();
+
+        $response = $this->get(route('home'));
+
+        $response->assertOk();
+        $response->assertDontSee('aria-label="Destaque principal do catálogo"', false);
+        $response->assertDontSee('<h1 class="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Esse título não deve aparecer</h1>', false);
+    }
+
+    public function test_home_hero_omits_cta_when_label_or_url_missing(): void
+    {
+        CatalogSetting::current()->forceFill([
+            'hero_enabled' => true,
+            'hero_title' => 'Catálogo 2026',
+            'hero_cta_label' => 'Ver produtos',
+            'hero_cta_url' => null,
+        ])->save();
+
+        $response = $this->get(route('home'));
+
+        $response->assertOk();
+        $response->assertSee('aria-label="Destaque principal do catálogo"', false);
+        $response->assertSee('Catálogo 2026');
+        $response->assertDontSee('Ver produtos</a>', false);
     }
 }
