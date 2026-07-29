@@ -32,11 +32,11 @@ class BlogContentSeeder extends Seeder
     private function seedCategories(): Collection
     {
         $items = [
-            ['name' => 'Notícias', 'description' => 'Atualizações e novidades do universo TDBMix.'],
-            ['name' => 'Tutoriais', 'description' => 'Passo a passo para miniaturas, cenários e personalizações.'],
-            ['name' => 'Histórias', 'description' => 'Narrativas e universos das personagens do blog.'],
-            ['name' => 'Eventos', 'description' => 'Cobertura de encontros, lançamentos e comemorações.'],
-            ['name' => 'Colecionismo', 'description' => 'Curadoria, dicas e bastidores de coleção.'],
+            ['name' => 'Técnicas Artesanais', 'description' => 'Passo a passo de bordado, pintura, macramê, crochê e muito mais.'],
+            ['name' => 'Materiais e Ferramentas', 'description' => 'Guias completos sobre tintas, pincéis, papéis, fios e tudo que você precisa para criar.'],
+            ['name' => 'Inspiração e Criatividade', 'description' => 'Tendências, paletas de cor, organização do espaço criativo e ideias para seus projetos.'],
+            ['name' => 'Histórias de Arte', 'description' => 'Relatos de artesãs, tradições culturais e a arte que conecta gerações.'],
+            ['name' => 'Eventos e Workshops', 'description' => 'Cobertura de feiras, encontros, aulas ao vivo e novidades da Era1x.'],
         ];
 
         return collect($items)->map(function (array $item): Category {
@@ -57,18 +57,21 @@ class BlogContentSeeder extends Seeder
     private function seedTags(): Collection
     {
         $items = [
-            'TDBMix',
-            'Barbie',
-            'Diorama',
+            'Artesanato',
+            'Pintura',
+            'Bordado',
+            'Crochê',
+            'Macramê',
+            'Decoupage',
+            'Scrapbook',
+            'Aquarela',
+            'Costura',
+            'Feltro',
+            'Biscuit',
+            'Patchwork',
             'DIY',
-            'Tutorial',
-            'Wedding',
-            'Colecionismo',
-            'Fotografia',
-            'História de amor',
-            'Evento',
-            'Curitiba',
-            'Mini mundo',
+            'Sustentável',
+            'Workshop',
         ];
 
         return collect($items)->map(function (string $name): Tag {
@@ -90,9 +93,9 @@ class BlogContentSeeder extends Seeder
     {
         $profiles = [
             ['name' => 'Super Admin', 'email' => 'admin@example.com', 'role' => 'Super Admin', 'type' => UserType::Admin],
-            ['name' => 'Editor TDBMix', 'email' => 'editor@example.com', 'role' => 'Editor', 'type' => UserType::Admin],
-            ['name' => 'Angel TDBMix', 'email' => 'angelmic@gmail.com', 'role' => 'Super Admin', 'type' => UserType::Admin, 'password' => 'Senha123*'],
-            ['name' => 'Equipe TDBMix', 'email' => 'equipe@example.com', 'role' => 'Author', 'type' => UserType::Admin],
+            ['name' => 'Editora Era1x', 'email' => 'editor@example.com', 'role' => 'Editor', 'type' => UserType::Admin],
+            ['name' => 'Angel Era1x', 'email' => 'angelmic@gmail.com', 'role' => 'Super Admin', 'type' => UserType::Admin, 'password' => 'Senha123*'],
+            ['name' => 'Equipe Era1x', 'email' => 'equipe@example.com', 'role' => 'Author', 'type' => UserType::Admin],
         ];
 
         return collect($profiles)->map(function (array $profile): Author {
@@ -120,7 +123,7 @@ class BlogContentSeeder extends Seeder
                 [
                     'name' => $profile['name'],
                     'slug' => Str::slug($profile['name']),
-                    'bio' => 'Autor seedado automaticamente para demonstração do projeto.',
+                    'bio' => 'Autora e artesã apaixonada pela Era1x Ler Artes.',
                     'is_active' => true,
                 ],
             );
@@ -141,65 +144,65 @@ class BlogContentSeeder extends Seeder
         Post::query()->whereNull('source_platform')->delete();
 
         $postsByCategorySlug = [
-            'tutoriais' => [
-                ['title' => 'Como fazer um diorama de casamento passo a passo', 'excerpt' => 'Aprenda a criar um cenário romântico em miniatura com materiais simples e muito charme.'],
-                ['title' => 'Pintando miniaturas com tinta acrílica: guia para iniciantes', 'excerpt' => 'Técnicas básicas de pintura que vão transformar suas miniaturas em obras de arte.'],
-                ['title' => 'Como customizar roupas de Barbie com tricô e crochê', 'excerpt' => 'Tutorial completo para criar peças exclusivas de roupa para suas bonecas favoritas.'],
-                ['title' => 'Construindo móveis em escala 1:6 com papelão e cola', 'excerpt' => 'Transforme materiais do dia a dia em mobiliário detalhado para suas cenas em miniatura.'],
-                ['title' => 'Criando cenários de jardim em miniatura com musgo e pedrinhas', 'excerpt' => 'Dicas práticas para montar jardins realistas no universo das miniaturas.'],
-                ['title' => 'Fotografia de miniaturas: como capturar a magia dos detalhes', 'excerpt' => 'Configurações de câmera e iluminação para fotografar suas criações com qualidade profissional.'],
-                ['title' => 'Técnicas de decoupage para decorar acessórios de Barbie', 'excerpt' => 'Use papéis estampados e verniz para criar peças decorativas únicas para suas bonecas.'],
-                ['title' => 'Como fazer cabelos realistas para bonecas com lã e fios', 'excerpt' => 'Método detalhado para criar cabeleiras volumosas e naturais para suas miniaturas.'],
-                ['title' => 'Criando iluminação em miniatura com LEDs para dioramas noturnos', 'excerpt' => 'Técnica passo a passo para instalar micro LEDs e criar atmosfera noturna em suas cenas.'],
-                ['title' => 'Moldando árvores em miniatura com arame e espuma floral', 'excerpt' => 'Construa vegetação realista para seus cenários usando materiais acessíveis e técnicas simples.'],
+            'tecnicas-artesanais' => [
+                ['title' => 'Como pintar com aquarela: guia completo para iniciantes', 'excerpt' => 'Descubra os primeiros passos para criar peças encantadoras com aquarela, desde a escolha do papel até as técnicas básicas de molhado sobre molhado.'],
+                ['title' => 'Bordado básico: os pontos essenciais para começar hoje', 'excerpt' => 'Aprenda os pontos mais utilizados no bordado manual e transforme qualquer tecido em uma obra de arte com linha e agulha.'],
+                ['title' => 'Macramê moderno: nós e técnicas para peças contemporâneas', 'excerpt' => 'Do nó quadrado ao espiral, descubra as amarrações que criam pendentes, porta-vasos e painéis cheios de personalidade.'],
+                ['title' => 'Decoupage em vidro: transformando potes em objetos únicos', 'excerpt' => 'Com guardanapos estampados, cola e verniz, qualquer vidro pode virar uma peça decorativa digna de exposição.'],
+                ['title' => 'Crochê para iniciantes: como dar seus primeiros pontos com confiança', 'excerpt' => 'Nada de nós impossíveis — aprenda a pegar o fio e o gancho e dê seus primeiros pontos com tranquilidade e método.'],
+                ['title' => 'Feltro com agulha de feltrar: introdução ao needle felting', 'excerpt' => 'Transforme fibras de lã em esculturas tridimensionais delicadas usando apenas agulhas especiais e muita paciência criativa.'],
+                ['title' => 'Scrapbook analógico: como montar seu primeiro álbum de memórias', 'excerpt' => 'Papéis, carimbos, adesivos e muito afeto — aprenda a documentar histórias com camadas, texturas e identidade visual única.'],
+                ['title' => 'Patchwork: unindo retalhos com técnica, cor e muita arte', 'excerpt' => 'Do corte à costura, um guia prático para criar colchas, almofadas e bolsas com retalhos de tecido coloridos.'],
+                ['title' => 'Biscuit: modelando figurinhas delicadas passo a passo', 'excerpt' => 'Aprenda a preparar a massa, modelar formas simples e finalizar com tinta acrílica para criar lembranças e decorações únicas.'],
+                ['title' => 'Pintura em tela: como preparar o canvas e aplicar a primeira camada', 'excerpt' => 'Da tela crua ao primeiro traço — tudo sobre gestão, imprimação e as técnicas iniciais para pintar com acrílica em tela.'],
             ],
-            'colecionismo' => [
-                ['title' => 'As 10 Barbies vintage mais valiosas de todos os tempos', 'excerpt' => 'Conheça as edições raras que todo colecionador sonha em ter e quanto valem hoje.'],
-                ['title' => 'Guia completo para conservar bonecas de coleção', 'excerpt' => 'Aprenda a armazenar, limpar e preservar suas preciosidades para que durem gerações.'],
-                ['title' => 'Onde comprar miniaturas raras no Brasil: feiras e sebos', 'excerpt' => 'Um roteiro pelos melhores lugares para garimpar peças exclusivas para sua coleção.'],
-                ['title' => 'Como identificar uma Barbie original de uma réplica', 'excerpt' => 'Diferenças sutis entre peças originais e cópias que todo colecionador precisa conhecer.'],
-                ['title' => 'Organizando sua coleção de miniaturas: dicas de display', 'excerpt' => 'Ideias criativas para expor e organizar sua coleção de forma bonita e funcional.'],
-                ['title' => 'Edições comemorativas de Barbie: um panorama histórico', 'excerpt' => 'Da primeira Barbie em 1959 até as edições de aniversário mais recentes e cobiçadas.'],
-                ['title' => 'Mercado de miniaturas no Brasil: tendências e oportunidades', 'excerpt' => 'O colecionismo de miniaturas cresce no país — entenda o cenário atual do mercado.'],
-                ['title' => 'Restaurando bonecas antigas: devolvendo vida às peças da infância', 'excerpt' => 'Técnicas de restauro para recuperar bonecas desgastadas com carinho e dedicação.'],
-                ['title' => 'Barbies de edição limitada: como avaliar o investimento', 'excerpt' => 'Critérios para decidir quais edições limitadas valem a pena como peça de coleção.'],
-                ['title' => 'Vitrine de exposição para miniaturas: monta DIY completo', 'excerpt' => 'Construa sua própria vitrine de acrílico para proteger e exibir sua coleção com estilo.'],
+            'materiais-e-ferramentas' => [
+                ['title' => 'Guia completo de tintas acrílicas para artesanato', 'excerpt' => 'Diferenças entre marcas, viscosidades e acabamentos — tudo que você precisa saber antes de comprar sua próxima tinta.'],
+                ['title' => 'Pincéis de artesanato: como escolher, usar e conservar', 'excerpt' => 'Cerdas naturais ou sintéticas, redondos ou chatos — entenda qual pincel serve para cada técnica e como prolongar sua vida útil.'],
+                ['title' => 'As melhores colas para cada tipo de projeto artesanal', 'excerpt' => 'Cola branca, silicone, hot glue, decoupage — um comparativo honesto de qual cola usar em papel, tecido, madeira e EVA.'],
+                ['title' => 'Papéis especiais para scrapbook: gramatura, textura e acabamentos', 'excerpt' => 'Cardstock, kraft, aquarela, transparente — um panorama dos papéis que todo scrapbooker precisa conhecer e testar.'],
+                ['title' => 'Linhas de bordado: diferenças entre algodão, seda e poliéster', 'excerpt' => 'Escolher a linha certa faz toda a diferença no resultado final — descubra as características de cada fibra e quando usá-las.'],
+                ['title' => 'Tecidos para patchwork: tipos, tramas e como cortar com precisão', 'excerpt' => 'Tricoline, musseline, linho — aprenda as diferenças e descubra como a régua e o cortador rotativo transformam seu trabalho.'],
+                ['title' => 'Ferramentas essenciais para trabalhar com biscuit e cerâmica fria', 'excerpt' => 'Palitos, estecas, rolinhos e moldes — conheça os acessórios que fazem a diferença na modelagem de peças em biscuit.'],
+                ['title' => 'Fios para macramê: espessuras, fibras e como calcular a quantidade', 'excerpt' => 'Algodão encerado, corda de sisal, fio náutico — um guia prático para escolher o fio ideal para cada projeto de macramê.'],
+                ['title' => 'Paleta de tintas: como organizar, misturar e limpar corretamente', 'excerpt' => 'Evite o desperdício e potencialize suas misturas com boas práticas de organização de tinta acrílica e aquarela.'],
+                ['title' => 'Tesouras artesanais: tipos e usos para cada técnica criativa', 'excerpt' => 'Tesoura de ponta fina, recorte decorativo, zig-zag e fabric — descubra o par certo para cada material e finalidade.'],
             ],
-            'historias' => [
-                ['title' => 'A história de amor de Angel e Leo em miniatura', 'excerpt' => 'Um conto emocionante narrado através de dioramas detalhados que capturam cada momento do casal.'],
-                ['title' => 'O casamento dos sonhos de Lily: uma história em 12 cenas', 'excerpt' => 'Acompanhe do pedido ao buquê jogado em uma narrativa visual contada com muito talento.'],
-                ['title' => 'A coleção que atravessou gerações: memórias de avó para neta', 'excerpt' => 'Uma história real e emocionante sobre bonecas que conectam passado e presente em uma família.'],
-                ['title' => 'Mini mundo encantado: a aventura de Sofia no jardim das fadas', 'excerpt' => 'Uma história infantil ilustrada com dioramas mágicos criados especialmente para esta narrativa.'],
-                ['title' => 'Como uma Barbie de 1975 mudou minha vida', 'excerpt' => 'Relato pessoal sobre a boneca herdada da mãe que despertou uma paixão pelo colecionismo.'],
-                ['title' => 'O ateliê de moda em miniatura: a saga de uma estilista', 'excerpt' => 'Saga fictícia sobre uma pequena estilista no mundo das miniaturas que conquista passarelas imaginárias.'],
-                ['title' => 'A casa dos sonhos: reconstruindo a infância em miniatura', 'excerpt' => 'Relato de como a montagem de uma casa de bonecas virou um projeto terapêutico e criativo.'],
-                ['title' => 'Barbie cozinheira: a história da personagem que inspirou gerações', 'excerpt' => 'Da cozinha de 1960 às edições chef contemporâneas — uma narrativa sobre sonhos em plástico.'],
-                ['title' => 'O diorama que levou três meses: bastidores de uma criação épica', 'excerpt' => 'A artista Angel conta cada detalhe do processo de construção de seu maior diorama até hoje.'],
-                ['title' => 'Minha primeira Barbie e o início de tudo', 'excerpt' => 'Um depoimento sobre como uma boneca de presente de aniversário virou uma coleção de centenas de peças.'],
+            'inspiracao-e-criatividade' => [
+                ['title' => 'Tendências do artesanato para 2026: o que está em alta', 'excerpt' => 'Do macramê monocromático ao bordado maximalist, conheça as estéticas que dominam o universo criativo este ano.'],
+                ['title' => 'Como encontrar inspiração nos elementos da natureza', 'excerpt' => 'Flores, folhas, texturas de pedra e a paleta das estações — aprenda a traduzir o mundo natural em peças artesanais únicas.'],
+                ['title' => 'Arte sustentável: criando com materiais reciclados e conscientes', 'excerpt' => 'Revistas velhas, galhos secos, frascos descartados — ideias criativas para transformar o que seria lixo em arte.'],
+                ['title' => 'Cottagecore e artesanato: a tendência que chegou para ficar', 'excerpt' => 'Flores secas, bordados florais, rendas e tons terrosos — entenda como o cottagecore influenciou o artesanato contemporâneo.'],
+                ['title' => 'Paletas de cores para artesanato: criando harmonia nos projetos', 'excerpt' => 'Analogias, complementares, triádicas — aprenda a montar combinações de cores coesas que elevam qualquer trabalho manual.'],
+                ['title' => 'Como organizar seu espaço criativo em casa com pouco espaço', 'excerpt' => 'Prateleiras, caixas organizadoras, pegboards — soluções criativas e acessíveis para ter um ateliê funcional em qualquer cômodo.'],
+                ['title' => 'Bullet journal com elementos artesanais: junção perfeita', 'excerpt' => 'Combine planejamento e criatividade com carimbos, washi tape, aquarela e lettering no seu caderno de organização.'],
+                ['title' => 'Fotografando seu artesanato: dicas práticas para redes sociais', 'excerpt' => 'Luz natural, fundos limpos e enquadramento — aprenda a fotografar suas peças artesanais de forma que faça jus à beleza do trabalho.'],
+                ['title' => 'Vendendo artesanato online: onde e como começar com confiança', 'excerpt' => 'Elo7, Instagram, WhatsApp Business — um guia para quem quer transformar a paixão pelo artesanato em renda extra.'],
+                ['title' => 'Arte terapêutica: como o artesanato melhora a saúde mental', 'excerpt' => 'Bordado, crochê, pintura — entenda por que as atividades manuais são reconhecidas como aliadas do bem-estar emocional.'],
             ],
-            'eventos' => [
-                ['title' => 'Resumo do encontro TDBMix em Curitiba — edição 2026', 'excerpt' => 'Tudo que aconteceu no maior encontro de colecionadores de miniaturas do sul do Brasil.'],
-                ['title' => 'Feira de miniaturas de São Paulo: o que esperar em 2026', 'excerpt' => 'Antecipamos os expositores confirmados e os lançamentos mais aguardados do evento.'],
-                ['title' => 'Workshop de diorama em Belo Horizonte: inscrições abertas', 'excerpt' => 'Aprenda técnicas avançadas com artistas renomados neste workshop presencial de dois dias.'],
-                ['title' => 'TDBMix no Rio: cobertura completa do encontro de janeiro', 'excerpt' => 'Fotos, destaques e entrevistas com os participantes do encontro carioca.'],
-                ['title' => 'Lançamento da coleção especial Barbie Brasil 2026', 'excerpt' => 'Estivemos no evento de lançamento e trouxemos tudo sobre as novas edições exclusivas.'],
-                ['title' => 'Concurso de dioramas TDBMix 2026: conheça os finalistas', 'excerpt' => 'As criações mais impressionantes que concorrem ao prêmio máximo do ano.'],
-                ['title' => 'Festival de miniaturas de Florianópolis: guia completo', 'excerpt' => 'Programação, expositores e dicas de hospedagem para o festival anual da ilha.'],
-                ['title' => 'Swap TDBMix: troque peças da sua coleção com outros fãs', 'excerpt' => 'Saiba como participar do nosso evento de troca de peças e encontrar raridades.'],
-                ['title' => 'Encontro TDBMix em Porto Alegre: programação confirmada', 'excerpt' => 'Confirme presença e confira todas as atividades do encontro gaúcho de miniaturas.'],
-                ['title' => 'Exposição TDBMix em parceria com museu local — entrada gratuita', 'excerpt' => 'Uma exposição especial de dioramas históricos aberta ao público por duas semanas.'],
+            'historias-de-arte' => [
+                ['title' => 'A história do bordado no Brasil: tradição e modernidade', 'excerpt' => 'Do ponto de cruz dos conventos coloniais ao bordado contemporâneo — como essa arte resistiu e se reinventou ao longo dos séculos.'],
+                ['title' => 'Rendeiras do Nordeste: guardiãs de um patrimônio cultural', 'excerpt' => 'As artesãs do Ceará, da Paraíba e do Piauí que mantêm viva a arte da renda de bilro, reconhecida pela UNESCO.'],
+                ['title' => 'Artesãs brasileiras que estão conquistando o mundo com suas criações', 'excerpt' => 'Da roça ao Instagram internacional — conheça mulheres que usam técnicas tradicionais e alcançam mercados globais.'],
+                ['title' => 'Macramê: a volta de uma técnica que atravessou milênios', 'excerpt' => 'Dos marinheiros árabes às paredes dos lofts modernos — a incrível trajetória histórica do macramê ao redor do planeta.'],
+                ['title' => 'Da lã ao tapete: a arte ancestral da tecelagem manual no Brasil', 'excerpt' => 'Tear manual, tingimento natural, geometrias indígenas — a tecelagem como expressão cultural de povos e regiões.'],
+                ['title' => 'Como uma tesoura mudou minha vida: relato de uma artesã', 'excerpt' => 'Uma história pessoal sobre como começar a costurar em um momento difícil virou um ateliê, uma renda e uma identidade.'],
+                ['title' => 'A herança da minha avó em ponto de cruz: bordando memórias', 'excerpt' => 'Um relato emocionante sobre reaprender o ponto de cruz com a avó e o que essa arte têxtil carrega de história familiar.'],
+                ['title' => 'Bordado como linguagem: a arte têxtil contemporânea e seus manifestos', 'excerpt' => 'Artistas que usam o bordado como crítica social, expressão política e resistência cultural no século XXI.'],
+                ['title' => 'Minha jornada no scrapbook: do primeiro álbum até o ateliê', 'excerpt' => 'Dez anos depois da primeira folha colada, uma apaixonada conta como o scrapbook transformou sua forma de guardar histórias.'],
+                ['title' => 'Arte e artesanato: as fronteiras que o fazer manual sempre desafiou', 'excerpt' => 'O que separa arte de artesanato? Uma reflexão honesta sobre valor, técnica, autoria e o reconhecimento do trabalho manual.'],
             ],
-            'noticias' => [
-                ['title' => 'Novidades do universo TDBMix — Julho 2026', 'excerpt' => 'Atualizações sobre novos produtos, parcerias e o que está por vir no blog.'],
-                ['title' => 'Mattel anuncia novas edições colecionáveis para o segundo semestre', 'excerpt' => 'Confira os modelos confirmados e as datas de lançamento no mercado brasileiro.'],
-                ['title' => 'Entrevista: artista mineirinha faz sucesso com dioramas no Instagram', 'excerpt' => 'Conversamos com a criadora que acumula milhares de seguidores com suas cenas em miniatura.'],
-                ['title' => 'TDBMix completa 5 anos: uma jornada de amor pelas miniaturas', 'excerpt' => 'Celebramos cinco anos do blog com uma retrospectiva dos momentos mais marcantes.'],
-                ['title' => 'Tendências de colecionismo para 2026: o que está em alta', 'excerpt' => 'Do cottagecore ao maximalism, as estéticas que dominam o mundo das miniaturas agora.'],
-                ['title' => 'Parceria TDBMix com artesãs locais: apoie quem faz com amor', 'excerpt' => 'Apresentamos a iniciativa que conecta colecionadores com produtoras independentes de miniaturas.'],
-                ['title' => 'Nova seção do blog: tutoriais em vídeo chegam em agosto', 'excerpt' => 'Em breve o TDBMix terá conteúdo audiovisual para complementar nossos tutoriais escritos.'],
-                ['title' => 'Barbie Movie um ano depois: o impacto no mercado colecionável brasileiro', 'excerpt' => 'Como o filme transformou o interesse em Barbie vintage e o que mudou nas coleções.'],
-                ['title' => 'TDBMix agora tem newsletter semanal: inscreva-se!', 'excerpt' => 'Receba os melhores conteúdos do blog diretamente no seu e-mail toda semana.'],
-                ['title' => 'Comunidade TDBMix no Discord: venha fazer parte!', 'excerpt' => 'Junte-se a centenas de colecionadores que já compartilham fotos e dicas no nosso servidor.'],
+            'eventos-e-workshops' => [
+                ['title' => 'Resumo da Feira de Artesanato de Curitiba 2026', 'excerpt' => 'Cobertura completa do maior encontro de artesãs do sul do Brasil: expositores, tendências e os produtos mais admirados.'],
+                ['title' => 'Workshop de aquarela em São Paulo: o que esperar do evento', 'excerpt' => 'Antecipamos a programação, os instrutores confirmados e os materiais inclusos no workshop mais aguardado do ano.'],
+                ['title' => 'Encontro Era1x em Belo Horizonte: inscrições abertas', 'excerpt' => 'Venha para um dia inteiro de técnicas ao vivo, troca de materiais e muito artesanato coletivo em BH.'],
+                ['title' => 'Festival de Artesanato Sustentável do Rio de Janeiro 2026', 'excerpt' => 'Um festival que celebra o fazer consciente: do tingimento natural ao macramê com fibras reutilizadas.'],
+                ['title' => 'Lançamento da coleção Era1x Ler Artes — Primavera 2026', 'excerpt' => 'Estivemos no lançamento da nova coleção de materiais artesanais e trouxemos tudo sobre os kits exclusivos da temporada.'],
+                ['title' => 'Concurso de bordado Era1x 2026: conheça os finalistas', 'excerpt' => 'As criações mais impressionantes que concorrem ao prêmio máximo do nosso concurso anual de bordado criativo.'],
+                ['title' => 'Aula ao vivo de macramê: participe online de forma gratuita', 'excerpt' => 'Toda semana uma nova técnica ao vivo no Instagram da Era1x — confira o calendário e separe seus fios.'],
+                ['title' => 'Swap Era1x: troque materiais artesanais com outras criadoras', 'excerpt' => 'Saiba como participar do nosso evento virtual de troca de papéis, linhas e acessórios com artesãs de todo o Brasil.'],
+                ['title' => 'Encontro Era1x em Porto Alegre: programação completa confirmada', 'excerpt' => 'Oficinas, feira de materiais e tarde de networking — confira tudo que espera as participantes do encontro gaúcho.'],
+                ['title' => 'Exposição Ler Artes em parceria com museu: entrada gratuita', 'excerpt' => 'Uma exposição especial de peças artesanais contemporâneas abertas ao público por duas semanas em São Paulo.'],
             ],
         ];
 
