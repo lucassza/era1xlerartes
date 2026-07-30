@@ -15,7 +15,7 @@ class NewsletterToggleTest extends TestCase
     public function test_blog_hides_newsletter_form_when_disabled(): void
     {
         BlogSetting::query()->create([
-            'site_name' => 'TDB Mix Blog',
+            'site_name' => 'Era1x Ler Artes',
             'newsletter_enabled' => false,
         ]);
 
@@ -30,7 +30,7 @@ class NewsletterToggleTest extends TestCase
     public function test_subscribe_does_not_create_subscriber_when_newsletter_is_disabled(): void
     {
         BlogSetting::query()->create([
-            'site_name' => 'TDB Mix Blog',
+            'site_name' => 'Era1x Ler Artes',
             'newsletter_enabled' => false,
         ]);
 

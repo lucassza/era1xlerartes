@@ -1,8 +1,9 @@
 schema: spec-driven
 
 context: |
-  Projeto: TDB Mix Blog — monolito Laravel que está ganhando um catálogo de produtos
-  (sem carrinho, checkout ou pagamento; apenas exposição e consulta comercial).
+  Projeto: Era1x Ler Artes — fork do TDB Mix Blog (monolito Laravel de blog editorial)
+  estendido com um catálogo de produtos (sem carrinho, checkout ou pagamento;
+  apenas exposição e consulta comercial via formulário de interesse).
 
   Stack: Laravel 13, PHP 8.3+, Filament 5, Livewire 4 (somente no painel),
   PostgreSQL 18 (busca full-text pt_unaccent via coluna search_tsv + GIN),
@@ -30,10 +31,14 @@ context: |
     Configurações, Resources com getEloquentQuery restrito quando aplicável.
   - Frontend público: <x-layouts.app>, componentes em components/{site,article,ui,forms},
     meta/OG/JSON-LD via SeoService; sitemap.xml e rss.xml artesanais (sem pacote).
-  - Testes: PHPUnit 12 (sem Pest), factories obrigatórias, guarda em
-    tests/TestCase.php que exige banco pgsql_testing/tdb_mix_blog_test.
+  - Testes: PHPUnit 12 (sem Pest), factories obrigatórias, banco de teste
+    "era1x_ler_artes_test" (tests/TestCase.php + phpunit.xml + docker/postgres/initdb/).
   - Qualidade: Pint (composer lint), PHPStan/Larastan (composer analyse),
     testes com composer test ou ./scripts/test.sh.
+
+  Domínios do produto: blog (posts, autores, categorias, tags, comentários,
+  depoimentos, newsletter) + catálogo (marcas, categorias de catálogo,
+  atributos, produtos, consultas de interesse/inquiry).
 
   Referências: AGENTS.md (fonte de verdade), docs/architecture.md,
   docs/database.md, docs/api.md, docs/agents.md.

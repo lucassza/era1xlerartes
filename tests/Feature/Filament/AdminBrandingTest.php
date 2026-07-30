@@ -14,22 +14,22 @@ class AdminBrandingTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_admin_panel_provider_defines_tdb_mix_colors(): void
+    public function test_admin_panel_provider_defines_era1x_colors(): void
     {
         $reflection = new ReflectionClass(AdminPanelProvider::class);
         $source = file_get_contents($reflection->getFileName());
 
-        $this->assertStringContainsString("'primary' => Color::hex('#d42020')", (string) $source);
-        $this->assertStringContainsString("'secondary' => Color::hex('#00bcd8')", (string) $source);
-        $this->assertStringContainsString("'accent' => Color::hex('#e6287e')", (string) $source);
+        $this->assertStringContainsString("'primary' => Color::hex('#650010')", (string) $source);
+        $this->assertStringContainsString("'secondary' => Color::hex('#E95D78')", (string) $source);
+        $this->assertStringContainsString("'accent' => Color::hex('#F7B8C6')", (string) $source);
     }
 
-    public function test_admin_panel_uses_tdb_mix_brand(): void
+    public function test_admin_panel_uses_era1x_brand(): void
     {
         $reflection = new ReflectionClass(AdminPanelProvider::class);
         $source = file_get_contents($reflection->getFileName());
 
-        $this->assertStringContainsString("->brandName('TDB Mix Blog')", (string) $source);
+        $this->assertStringContainsString("->brandName('Era1x Ler Artes')", (string) $source);
         $this->assertStringContainsString("->brandLogo(asset('images/brand/logo.jpeg'))", (string) $source);
         $this->assertStringContainsString('->darkMode(false)', (string) $source);
     }
@@ -61,7 +61,7 @@ class AdminBrandingTest extends TestCase
         $response->assertOk();
         $response->assertSee('Painel administrativo');
         $response->assertSee('Entre com suas credenciais');
-        $response->assertSee('TDB Mix Blog · Painel restrito');
+        $response->assertSee('Era1x Ler Artes · Painel restrito');
         $response->assertSee(asset('images/brand/logo.jpeg'));
     }
 

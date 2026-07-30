@@ -26,8 +26,8 @@
         <env name="DB_CONNECTION" value="pgsql_testing" force="true"/>
         <env name="DB_TEST_HOST" value="postgres" force="true"/>
         <env name="DB_TEST_PORT" value="5432" force="true"/>
-        <env name="DB_TEST_DATABASE" value="tdb_mix_blog_test" force="true"/>
-        <env name="DB_TEST_USERNAME" value="tdb" force="true"/>
+        <env name="DB_TEST_DATABASE" value="era1x_ler_artes_test" force="true"/>
+        <env name="DB_TEST_USERNAME" value="era1x" force="true"/>
         <env name="DB_TEST_PASSWORD" value="secret" force="true"/>
         <env name="MAIL_MAILER" value="array" force="true"/>
         <env name="QUEUE_CONNECTION" value="sync" force="true"/>

@@ -7,7 +7,7 @@ services:
       dockerfile: docker/php/Dockerfile
       args:
         PHP_VERSION: ${PHP_VERSION:-8.5}
-    container_name: tdb-mix-blog-app
+    container_name: era1x-ler-artes-app
     restart: unless-stopped
     init: true
     working_dir: /var/www/html
@@ -67,7 +67,7 @@ services:
 
   nginx:
     image: nginx:1.30.4-alpine3.24
-    container_name: tdb-mix-blog-nginx
+    container_name: era1x-ler-artes-nginx
     restart: unless-stopped
     depends_on:
       app:
@@ -89,7 +89,7 @@ services:
 
   postgres:
     image: postgres:18.4-bookworm
-    container_name: tdb-mix-blog-postgres
+    container_name: era1x-ler-artes-postgres
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${DB_DATABASE:-tdb_mix_blog}
@@ -110,7 +110,7 @@ services:
 
   redis:
     image: redis:8.8.0
-    container_name: tdb-mix-blog-redis
+    container_name: era1x-ler-artes-redis
     restart: unless-stopped
     command:
       - redis-server
@@ -131,7 +131,7 @@ services:
 
   minio:
     image: quay.io/minio/minio:latest
-    container_name: tdb-mix-blog-minio
+    container_name: era1x-ler-artes-minio
     restart: unless-stopped
     command: server /data --console-address ":9001"
     environment:
@@ -153,7 +153,7 @@ services:
 
   minio-init:
     image: quay.io/minio/mc:latest
-    container_name: tdb-mix-blog-minio-init
+    container_name: era1x-ler-artes-minio-init
     depends_on:
       minio:
         condition: service_healthy
@@ -175,7 +175,7 @@ services:
 
   mailpit:
     image: axllent/mailpit:v1.27.8
-    container_name: tdb-mix-blog-mailpit
+    container_name: era1x-ler-artes-mailpit
     restart: unless-stopped
     ports:
       - "${MAILPIT_SMTP_PORT:-1025}:1025"

@@ -1,1 +1,1 @@
-CREATE DATABASE tdb_mix_blog_test;
+CREATE DATABASE era1x_ler_artes_test;

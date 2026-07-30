@@ -106,7 +106,7 @@ return [
             'url' => env('DB_TEST_URL'),
             'host' => env('DB_TEST_HOST', env('DB_HOST', '127.0.0.1')),
             'port' => env('DB_TEST_PORT', env('DB_PORT', '5432')),
-            'database' => env('DB_TEST_DATABASE', 'tdb_mix_blog_test'),
+            'database' => env('DB_TEST_DATABASE', 'era1x_ler_artes_test'),
             'username' => env('DB_TEST_USERNAME', env('DB_USERNAME', 'root')),
             'password' => env('DB_TEST_PASSWORD', env('DB_PASSWORD', '')),
             'charset' => env('DB_TEST_CHARSET', env('DB_CHARSET', 'utf8')),

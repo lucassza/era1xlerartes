@@ -1,0 +1,22 @@
+---
+description: Gate OpenSpec — iniciar explore/propose antes de implementar mudanças
+alwaysApply: true
+---
+
+# OpenSpec default gate
+
+Antes de editar código de produto/infra para feature, bug, refactor ou mudança de comportamento:
+
+1. Se já existir change ativa em `openspec/changes/` para o pedido → `/opsx-apply` ou `/opsx-continue`
+2. Pedido ambíguo / precisa mapear código → `/opsx-explore` primeiro
+3. Pedido claro de implementação → `/opsx-propose` (depois `/opsx-apply`, ao final `/opsx-archive`)
+
+Não implemente direto. Use as skills/commands OpenSpec do projeto.
+
+## Exceções (pode responder/editar sem OpenSpec)
+
+- Perguntas, explicações, leitura de docs
+- Typos, formatação, rename cosmético
+- Ajuste trivial em 1 arquivo sem mudança comportamental
+- Usuário pediu explicitamente para pular OpenSpec
+

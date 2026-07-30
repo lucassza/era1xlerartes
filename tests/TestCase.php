@@ -17,7 +17,7 @@ abstract class TestCase extends BaseTestCase
             app()->environment('testing')
             && (
                 config('database.default') !== 'pgsql_testing'
-                || config('database.connections.pgsql_testing.database') !== 'tdb_mix_blog_test'
+                || config('database.connections.pgsql_testing.database') !== 'era1x_ler_artes_test'
             )
         ) {
             throw new LogicException('A suíte de testes está apontando para o banco principal da aplicação.');

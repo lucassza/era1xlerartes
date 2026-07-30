@@ -1,10 +1,10 @@
-# TDB Mix Blog
+# Era1x Ler Artes
 
-Blog moderno construído com **Laravel**, **Filament**, **PostgreSQL**, **Redis**, **MinIO**, **Blade**, **Tailwind CSS** e **Docker Compose**.
+Blog moderno (fork do TDB Mix Blog) estendido com catálogo de produtos, construído com **Laravel**, **Filament**, **PostgreSQL**, **Redis**, **MinIO**, **Blade**, **Tailwind CSS** e **Docker Compose**.
 
 ## Stack
 
-- PHP 8.5
+- PHP ^8.3
 - Laravel 13
 - Filament 5
 - Livewire 4
@@ -95,7 +95,7 @@ Opcionalmente, para rodar sem Docker:
 
 ```bash
 git clone <repo-url>
-cd tdb-mix-blog
+cd era1xlerartes
 ```
 
 ### 2. Subir a stack
@@ -497,7 +497,7 @@ O código da aplicação está estruturado para ser distribuído como projeto La
 
 ## Trabalho com agentes
 
-Todos os agentes devem seguir [AGENTS.md](AGENTS.md). Consulte [docs/agents.md](docs/agents.md) para as integrações de Claude Code, Codex, Cursor, OpenCode e TaskMaster.
+Todos os agentes devem seguir [AGENTS.md](AGENTS.md). Consulte [docs/agents.md](docs/agents.md) para as integrações de Claude Code, Codex, Cursor, OpenCode e OpenSpec.
 
 ## Qualidade e contribuição
 

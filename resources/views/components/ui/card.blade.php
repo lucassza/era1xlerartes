@@ -82,7 +82,7 @@
                             Conteúdo que acompanha o seu ritmo.
                         </h2>
                         <p class="mt-5 max-w-prose text-lg leading-8 text-muted">
-                            Acompanhe histórias, tutoriais e novidades da comunidade TDB Mix.
+                            Acompanhe histórias, tutoriais e novidades da comunidade Era1x Ler Artes.
                         </p>
                     @endif
                 </div>
@@ -102,7 +102,7 @@
                     <div class="absolute inset-0 bg-gradient-to-r from-surface-raised/20 to-transparent lg:from-transparent"></div>
                 @else
                     <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-surface to-primary/[0.04]">
-                        <span aria-hidden="true" class="select-none font-display text-[8rem] font-bold leading-none text-primary/10">TDB</span>
+                        <span aria-hidden="true" class="select-none font-display text-[8rem] font-bold leading-none text-primary/10">Era1x</span>
                     </div>
                 @endif
             </div>

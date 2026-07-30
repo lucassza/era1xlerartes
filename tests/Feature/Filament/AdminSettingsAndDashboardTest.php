@@ -20,7 +20,7 @@ class AdminSettingsAndDashboardTest extends TestCase
         $this->seed(RolesAndPermissionsSeeder::class);
 
         BlogSetting::query()->create([
-            'site_name' => 'TDB Mix Blog',
+            'site_name' => 'Era1x Ler Artes',
             'newsletter_enabled' => true,
         ]);
 

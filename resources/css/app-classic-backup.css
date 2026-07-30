@@ -8,19 +8,19 @@
 :root {
     color-scheme: light;
 
-    --tdb-canvas: #ffffff;
-    --tdb-surface: #f8fafc;
-    --tdb-surface-raised: #ffffff;
-    --tdb-text: #111827;
-    --tdb-text-muted: #6b7280;
-    --tdb-border: #e5e7eb;
-    --tdb-primary: #d62828;
-    --tdb-primary-strong: #b91c1c;
-    --tdb-secondary: #f77f00;
-    --tdb-accent: #0096ff;
-    --tdb-success: #2fb344;
-    --tdb-warning: #b45309;
-    --tdb-danger: #d90429;
+    --era1x-canvas: #ffffff;
+    --era1x-surface: #f8fafc;
+    --era1x-surface-raised: #ffffff;
+    --era1x-text: #111827;
+    --era1x-text-muted: #6b7280;
+    --era1x-border: #e5e7eb;
+    --era1x-primary: #d62828;
+    --era1x-primary-strong: #b91c1c;
+    --era1x-secondary: #f77f00;
+    --era1x-accent: #0096ff;
+    --era1x-success: #2fb344;
+    --era1x-warning: #b45309;
+    --era1x-danger: #d90429;
 }
 
 @theme inline {
@@ -28,19 +28,19 @@
         'Noto Color Emoji';
     --font-display: 'Poppins', ui-sans-serif, system-ui, sans-serif;
 
-    --color-canvas: var(--tdb-canvas);
-    --color-surface: var(--tdb-surface);
-    --color-surface-raised: var(--tdb-surface-raised);
-    --color-foreground: var(--tdb-text);
-    --color-muted: var(--tdb-text-muted);
-    --color-line: var(--tdb-border);
-    --color-primary: var(--tdb-primary);
-    --color-primary-strong: var(--tdb-primary-strong);
-    --color-secondary: var(--tdb-secondary);
-    --color-accent: var(--tdb-accent);
-    --color-success: var(--tdb-success);
-    --color-warning: var(--tdb-warning);
-    --color-danger: var(--tdb-danger);
+    --color-canvas: var(--era1x-canvas);
+    --color-surface: var(--era1x-surface);
+    --color-surface-raised: var(--era1x-surface-raised);
+    --color-foreground: var(--era1x-text);
+    --color-muted: var(--era1x-text-muted);
+    --color-line: var(--era1x-border);
+    --color-primary: var(--era1x-primary);
+    --color-primary-strong: var(--era1x-primary-strong);
+    --color-secondary: var(--era1x-secondary);
+    --color-accent: var(--era1x-accent);
+    --color-success: var(--era1x-success);
+    --color-warning: var(--era1x-warning);
+    --color-danger: var(--era1x-danger);
 
     --radius-control: 0.75rem;
     --radius-card: 1rem;
@@ -63,18 +63,18 @@
     }
 
     body {
-        background-color: var(--tdb-canvas);
-        color: var(--tdb-text);
+        background-color: var(--era1x-canvas);
+        color: var(--era1x-text);
         font-family: var(--font-sans);
     }
 
     ::selection {
-        background-color: color-mix(in srgb, var(--tdb-primary) 20%, transparent);
-        color: var(--tdb-text);
+        background-color: color-mix(in srgb, var(--era1x-primary) 20%, transparent);
+        color: var(--era1x-text);
     }
 
     :focus-visible {
-        outline: 3px solid var(--tdb-accent);
+        outline: 3px solid var(--era1x-accent);
         outline-offset: 3px;
     }
 

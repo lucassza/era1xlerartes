@@ -69,7 +69,7 @@ class NewsletterFlowTest extends TestCase
     public function test_blog_renders_an_accessible_newsletter_form_when_enabled(): void
     {
         BlogSetting::query()->create([
-            'site_name' => 'TDB Mix Blog',
+            'site_name' => 'Era1x Ler Artes',
             'newsletter_enabled' => true,
         ]);
 
@@ -91,7 +91,7 @@ class NewsletterFlowTest extends TestCase
     {
         Mail::fake();
         BlogSetting::query()->create([
-            'site_name' => 'TDB Mix Blog',
+            'site_name' => 'Era1x Ler Artes',
             'newsletter_enabled' => true,
         ]);
 

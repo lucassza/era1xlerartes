@@ -48,11 +48,11 @@ node_modules/
 *.sw?
 # OS specific
 
-# Task files
-# tasks.json
-# tasks/ 
-
 # Configuração versionada do Cursor
 !.cursor/
 !.cursor/rules/
 !.cursor/rules/ai-project.mdc
+
+# Task files
+# tasks.json
+# tasks/ 

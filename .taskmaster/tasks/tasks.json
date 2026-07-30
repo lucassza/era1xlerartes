@@ -1,0 +1,10 @@
+{
+  "master": {
+    "tasks": [],
+    "metadata": {
+      "created": "2026-07-30T00:00:00.000Z",
+      "updated": "2026-07-30T00:00:00.000Z",
+      "description": "Tarefas de execução espelhadas de openspec/changes/<nome>/tasks.md. Nenhuma change ativa no momento — as changes atuais estão arquivadas em openspec/changes/archive/."
+    }
+  }
+}

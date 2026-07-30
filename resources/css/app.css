@@ -9,28 +9,28 @@
     color-scheme: light;
 
     /* Fundo e superfícies da identidade Era1x Ler Artes */
-    --tdb-canvas: #fcfafa;
-    --tdb-surface: #f3f3f4;
-    --tdb-surface-raised: #ffffff;
-    --tdb-text: #2f2f35;
-    --tdb-text-muted: #666666;
-    --tdb-border: #ececec;
+    --era1x-canvas: #fcfafa;
+    --era1x-surface: #f3f3f4;
+    --era1x-surface-raised: #ffffff;
+    --era1x-text: #2f2f35;
+    --era1x-text-muted: #666666;
+    --era1x-border: #ececec;
 
     /* Vinho principal da marca */
-    --tdb-primary: #650010;
-    --tdb-primary-strong: #820018;
+    --era1x-primary: #650010;
+    --era1x-primary-strong: #820018;
 
     /* Rosa secundário */
-    --tdb-secondary: #e95d78;
-    --tdb-secondary-strong: #d94865;
+    --era1x-secondary: #e95d78;
+    --era1x-secondary-strong: #d94865;
 
     /* Rosa claro de apoio */
-    --tdb-accent: #f7b8c6;
+    --era1x-accent: #f7b8c6;
 
-    --tdb-success: #4caf50;
-    --tdb-warning: #f4b400;
-    --tdb-danger: #d32f2f;
-    --tdb-info: #4a90e2;
+    --era1x-success: #4caf50;
+    --era1x-warning: #f4b400;
+    --era1x-danger: #d32f2f;
+    --era1x-info: #4a90e2;
 }
 
 @theme inline {
@@ -38,21 +38,21 @@
         'Noto Color Emoji';
     --font-display: 'Poppins', ui-sans-serif, system-ui, sans-serif;
 
-    --color-canvas: var(--tdb-canvas);
-    --color-surface: var(--tdb-surface);
-    --color-surface-raised: var(--tdb-surface-raised);
-    --color-foreground: var(--tdb-text);
-    --color-muted: var(--tdb-text-muted);
-    --color-line: var(--tdb-border);
-    --color-primary: var(--tdb-primary);
-    --color-primary-strong: var(--tdb-primary-strong);
-    --color-secondary: var(--tdb-secondary);
-    --color-secondary-strong: var(--tdb-secondary-strong);
-    --color-accent: var(--tdb-accent);
-    --color-success: var(--tdb-success);
-    --color-warning: var(--tdb-warning);
-    --color-danger: var(--tdb-danger);
-    --color-info: var(--tdb-info);
+    --color-canvas: var(--era1x-canvas);
+    --color-surface: var(--era1x-surface);
+    --color-surface-raised: var(--era1x-surface-raised);
+    --color-foreground: var(--era1x-text);
+    --color-muted: var(--era1x-text-muted);
+    --color-line: var(--era1x-border);
+    --color-primary: var(--era1x-primary);
+    --color-primary-strong: var(--era1x-primary-strong);
+    --color-secondary: var(--era1x-secondary);
+    --color-secondary-strong: var(--era1x-secondary-strong);
+    --color-accent: var(--era1x-accent);
+    --color-success: var(--era1x-success);
+    --color-warning: var(--era1x-warning);
+    --color-danger: var(--era1x-danger);
+    --color-info: var(--era1x-info);
 
     --radius-control: 0.75rem;
     --radius-card: 1rem;
@@ -75,18 +75,18 @@
     }
 
     body {
-        background-color: var(--tdb-canvas);
-        color: var(--tdb-text);
+        background-color: var(--era1x-canvas);
+        color: var(--era1x-text);
         font-family: var(--font-sans);
     }
 
     ::selection {
-        background-color: color-mix(in srgb, var(--tdb-primary) 20%, transparent);
-        color: var(--tdb-text);
+        background-color: color-mix(in srgb, var(--era1x-primary) 20%, transparent);
+        color: var(--era1x-text);
     }
 
     :focus-visible {
-        outline: 3px solid var(--tdb-secondary);
+        outline: 3px solid var(--era1x-secondary);
         outline-offset: 3px;
     }
 
