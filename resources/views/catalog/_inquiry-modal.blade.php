@@ -36,9 +36,9 @@
 
             @if (session('inquiry_status') === 'ok')
                 <div class="space-y-4 p-6" role="alert">
-                    <div class="rounded-control border border-success/40 bg-success/10 p-4 text-sm text-foreground">
-                        <p class="font-semibold text-success">Mensagem enviada.</p>
-                        <p class="mt-1 text-muted">{{ session('inquiry_message') ?? 'Sua mensagem foi registrada. Em breve entraremos em contato.' }}</p>
+                    <div class="rounded-card bg-success-surface p-4 text-sm">
+                        <p class="font-bold text-success-text">Mensagem enviada.</p>
+                        <p class="mt-1 text-success-muted">{{ session('inquiry_message') ?? 'Sua mensagem foi registrada. Em breve entraremos em contato.' }}</p>
                     </div>
                     <button type="button" @click="close()" class="inline-flex h-10 items-center justify-center rounded-control bg-primary px-4 text-sm font-semibold text-white">Fechar</button>
                 </div>
@@ -124,7 +124,7 @@
                     productId: null,
                     productName: null,
                     action: '',
-                    open(productId, productSlug, productName) {
+                    show(productId, productSlug, productName) {
                         if (productId) this.productId = productId;
                         if (productName) this.productName = productName;
                         this.action = productSlug ? `/produtos/${productSlug}/consulta` : '';
@@ -145,7 +145,7 @@
                 const root = document.querySelector('[x-data^="productInquiryModal"]');
                 if (! root || ! root._x_dataStack) return;
                 const data = root._x_dataStack[0];
-                data.open(productId, productSlug, productName);
+                data.show(productId, productSlug, productName);
             });
         </script>
     @endpush

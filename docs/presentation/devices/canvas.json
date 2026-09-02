@@ -1,0 +1,26 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",     "title": "1 · Capa",              "x": 0,    "y": 0,    "w": 1920, "h": 1080 },
+    { "file": "Home.dc.html",     "title": "2 · Home",              "x": 2020, "y": 0,    "w": 1920, "h": 1080 },
+    { "file": "Catalogo.dc.html", "title": "3 · Catálogo",          "x": 0,    "y": 1250, "w": 1920, "h": 1080 },
+    { "file": "Blog.dc.html",     "title": "4 · Blog",              "x": 2020, "y": 1250, "w": 1920, "h": 1080 },
+    { "file": "Mobile.dc.html",   "title": "5 · As três no celular", "x": 0,   "y": 2500, "w": 1920, "h": 1080 }
+  ],
+  "annotations": [
+    {
+      "id": "sobre",
+      "x": 0,
+      "y": -240,
+      "w": 1100,
+      "text": "Era1x Ler Artes — o projeto em aparelhos reais\nCinco composições em 1920×1080, prontas para enviar ao cliente ou entrar num slide.\nAs telas dentro dos aparelhos são capturas do site publicado em era1x.com.br, no tamanho de viewport que cada aparelho realmente mostra: 1440×900 no notebook, 390×844 no celular. Nada foi recriado ou esticado."
+    },
+    {
+      "id": "exportar",
+      "x": 2020,
+      "y": -240,
+      "w": 900,
+      "text": "Para enviar\nUse Export no topo do canvas: PNG exporta uma prancha por vez, PDF junta as cinco num arquivo só."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

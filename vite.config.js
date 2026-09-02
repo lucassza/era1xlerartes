@@ -17,7 +17,7 @@ export default defineConfig({
                     weights: [400, 600, 700],
                 }),
                 bunny('Poppins', {
-                    weights: [700],
+                    weights: [600, 700],
                 }),
             ],
         }),

@@ -14,7 +14,7 @@
         $isUnavailable = $product->status === \App\Enums\ProductStatus::Unavailable;
     @endphp
 
-    <main id="main" class="mx-auto max-w-7xl px-4 pb-32 pt-8 sm:px-6 lg:px-8 lg:pb-16">
+    <div class="mx-auto max-w-7xl px-4 pb-32 pt-8 sm:px-6 lg:px-8 lg:pb-16">
         <nav aria-label="Breadcrumb" class="mb-6 text-sm text-muted">
             <ol class="flex flex-wrap items-center gap-2">
                 <li><a href="{{ route('home') }}" class="hover:text-primary">Início</a></li>
@@ -46,15 +46,23 @@
             class="grid gap-8 lg:grid-cols-2 lg:gap-10"
         >
             <section aria-label="Galeria do produto" class="flex flex-col gap-3">
-                <div class="relative overflow-hidden rounded-feature border border-line bg-primary/5">
+                <div class="relative overflow-hidden rounded-feature border border-line bg-tint-primary">
                     @if ($primary)
                         <button
                             type="button"
-                            @click="openLightbox({{ $images->keys()->first() }})"
+                            @click="openLightbox(active)"
                             class="block w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                             aria-label="Ampliar imagem principal"
                         >
-                            <img src="{{ $primary->getUrl() }}" alt="{{ $product->name }}" class="aspect-square w-full object-cover" />
+                            @foreach ($images as $idx => $media)
+                                <img
+                                    x-show="active === {{ $idx }}"
+                                    src="{{ $media->getUrl() }}"
+                                    alt="{{ $product->name }}"
+                                    class="aspect-square w-full object-cover"
+                                    @unless ($loop->first) style="display: none;" @endunless
+                                />
+                            @endforeach
                         </button>
                     @else
                         <div class="flex aspect-square w-full items-center justify-center text-primary/30">
@@ -69,7 +77,7 @@
                             <span class="inline-flex items-center rounded-pill bg-primary px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white">Destaque</span>
                         @endif
                         @if ($isUnavailable)
-                            <span class="inline-flex items-center rounded-pill border border-primary/20 bg-surface-raised px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-primary">Indisponível</span>
+                            <span class="inline-flex items-center rounded-pill bg-warning-surface px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-warning-text">Indisponível</span>
                         @endif
                     </div>
                 </div>
@@ -156,7 +164,11 @@
                             @endif
                         </div>
 
-                        <span class="inline-flex items-center gap-2 rounded-pill bg-surface px-3.5 py-2 text-sm font-bold text-foreground">
+                        <span @class([
+                            'inline-flex items-center gap-2 rounded-pill px-3.5 py-2 text-sm font-bold',
+                            'bg-success-surface text-success-text' => ! $isUnavailable,
+                            'bg-warning-surface text-warning-text' => $isUnavailable,
+                        ])>
                             <span @class([
                                 'size-2 rounded-pill',
                                 'bg-success' => ! $isUnavailable,
@@ -304,5 +316,5 @@
                 {{ $inquiryLabel }}
             </button>
         </div>
-    </main>
+    </div>
 </x-layouts.app>

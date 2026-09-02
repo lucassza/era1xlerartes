@@ -17,14 +17,14 @@
 @endphp
 
 <article class="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-surface-raised shadow-card transition duration-200 ease-standard hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-float">
-    <a href="{{ route('products.show', $product->slug) }}" class="relative block aspect-square overflow-hidden bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
+    <a href="{{ route('products.show', $product->slug) }}" class="relative block aspect-[7/5] overflow-hidden bg-tint-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
         @if ($coverUrl)
             <img
                 src="{{ $coverUrl }}"
                 @if ($coverSrcset) srcset="{{ $coverSrcset }}" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" @endif
                 alt="{{ $product->name }}"
-                width="600"
-                height="600"
+                width="700"
+                height="500"
                 loading="lazy"
                 decoding="async"
                 class="h-full w-full object-cover transition duration-500 ease-standard group-hover:scale-[1.03]"
@@ -42,7 +42,7 @@
                 <span class="inline-flex items-center rounded-pill bg-primary px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white">Destaque</span>
             @endif
             @if ($product->status === \App\Enums\ProductStatus::Unavailable)
-                <span class="inline-flex items-center rounded-pill border border-primary/20 bg-surface-raised px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-primary">Indisponível</span>
+                <span class="inline-flex items-center rounded-pill bg-warning-surface px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-warning-text">Indisponível</span>
             @endif
         </div>
     </a>
@@ -69,7 +69,7 @@
                     <span class="font-display text-2xl font-bold leading-none tracking-tight text-foreground">{{ number_format((float) $effectivePrice, 2, ',', '.') }}</span>
                 </p>
             @elseif ($onRequest)
-                <p class="inline-flex w-fit items-center gap-1.5 rounded-pill bg-primary/5 px-3 py-1.5 text-sm font-bold text-primary">
+                <p class="inline-flex w-fit items-center gap-1.5 rounded-pill bg-tint-primary px-3 py-1.5 text-sm font-bold text-primary">
                     <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" class="size-4">
                         <circle cx="10" cy="10" r="7" /><path d="M10 7v3l2 2" stroke-linecap="round" />
                     </svg>
@@ -97,7 +97,7 @@
 
                 <a
                     href="{{ route('products.show', $product->slug) }}"
-                    class="inline-flex size-11 shrink-0 items-center justify-center rounded-control border border-line bg-surface-raised text-primary transition duration-200 ease-standard hover:border-primary/40 hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                    class="inline-flex size-11 shrink-0 items-center justify-center rounded-control border border-line bg-surface-raised text-primary transition duration-200 ease-standard hover:border-primary/40 hover:bg-tint-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                     aria-label="Ver detalhes de {{ $product->name }}"
                 >
                     <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" class="size-4">

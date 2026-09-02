@@ -1,0 +1,26 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",           "title": "Home — desktop",          "x": 0,    "y": 0,    "w": 1440, "h": 3114 },
+    { "file": "HomeMobile.dc.html",     "title": "Home — mobile",           "x": 1560, "y": 0,    "w": 390,  "h": 7494 },
+    { "file": "Catalogo.dc.html",       "title": "Catálogo — desktop",      "x": 0,    "y": 7650, "w": 1440, "h": 2652 },
+    { "file": "CatalogoMobile.dc.html", "title": "Catálogo — mobile",       "x": 1560, "y": 7650, "w": 390,  "h": 3307 },
+    { "file": "Blog.dc.html",           "title": "Blog — desktop e mobile", "x": 0,    "y": 11100, "w": 1974, "h": 2996 }
+  ],
+  "annotations": [
+    {
+      "id": "resumo",
+      "x": 0,
+      "y": -230,
+      "w": 1000,
+      "text": "Era1x Ler Artes — resultado final\nCapturas do site publicado em era1x.com.br, em 02/09/2026: home, catálogo e blog, cada um em desktop (1440px) e mobile (390px).\nSão as páginas reais, com os produtos, preços, categorias e artigos que estão no ar — não são recriações."
+    },
+    {
+      "id": "recorte",
+      "x": 1560,
+      "y": -230,
+      "w": 390,
+      "text": "Home e catálogo aparecem por inteiro, do topo ao rodapé. O blog foi recortado no primeiro terço: a página completa passa de 9.000px no desktop."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

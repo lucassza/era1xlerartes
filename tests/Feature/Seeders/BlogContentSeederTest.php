@@ -25,6 +25,10 @@ class BlogContentSeederTest extends TestCase
         $this->assertDatabaseCount('tags', 12);
         $this->assertGreaterThanOrEqual(4, Author::query()->count());
         $this->assertSame(50, Post::query()->whereNull('source_platform')->count());
+        $this->assertSame(50, Post::query()
+            ->whereNull('source_platform')
+            ->whereHas('media', fn ($query) => $query->where('collection_name', 'cover'))
+            ->count());
         $this->assertGreaterThan(0, Post::query()->where('status', PostStatus::Published)->count());
         $this->assertGreaterThan(0, Post::query()->where('status', PostStatus::Scheduled)->count());
     }

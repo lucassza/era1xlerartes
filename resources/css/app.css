@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -31,6 +32,25 @@
     --era1x-warning: #f4b400;
     --era1x-danger: #d32f2f;
     --era1x-info: #4a90e2;
+
+    /* Tons sólidos de apoio: blocos de imagem, chips e filtros ativos.
+       Substituem as aproximações por transparência (bg-primary/5), que sobre
+       o canvas ficam mais frias e lavadas do que a base visual pede. */
+    --era1x-tint-primary: #f7edee;
+    --era1x-tint-secondary: #fdf1f4;
+    --era1x-tint-neutral: #f5f2f0;
+    --era1x-border-soft: #f0dfe1;
+    --era1x-divider: #d6d1d1;
+
+    /* Pares de status com contraste suficiente para texto sobre o fundo */
+    --era1x-success-surface: #eaf5ea;
+    --era1x-success-text: #1f6b23;
+    --era1x-success-muted: #3d7a41;
+    --era1x-warning-surface: #fdf3d8;
+    --era1x-warning-text: #8a6100;
+    --era1x-danger-surface: #fdecec;
+    --era1x-danger-text: #a32020;
+    --era1x-danger-muted: #b34d4d;
 }
 
 @theme inline {
@@ -53,6 +73,21 @@
     --color-warning: var(--era1x-warning);
     --color-danger: var(--era1x-danger);
     --color-info: var(--era1x-info);
+
+    --color-tint-primary: var(--era1x-tint-primary);
+    --color-tint-secondary: var(--era1x-tint-secondary);
+    --color-tint-neutral: var(--era1x-tint-neutral);
+    --color-line-soft: var(--era1x-border-soft);
+    --color-divider: var(--era1x-divider);
+
+    --color-success-surface: var(--era1x-success-surface);
+    --color-success-text: var(--era1x-success-text);
+    --color-success-muted: var(--era1x-success-muted);
+    --color-warning-surface: var(--era1x-warning-surface);
+    --color-warning-text: var(--era1x-warning-text);
+    --color-danger-surface: var(--era1x-danger-surface);
+    --color-danger-text: var(--era1x-danger-text);
+    --color-danger-muted: var(--era1x-danger-muted);
 
     --radius-control: 0.75rem;
     --radius-card: 1rem;

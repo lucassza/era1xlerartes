@@ -24,6 +24,7 @@ class BlogContentSeeder extends Seeder
         $authors = $this->seedAuthors();
 
         $this->seedPosts($categories, $tags, $authors);
+        $this->attachCoverImages();
     }
 
     /**
@@ -244,5 +245,47 @@ class BlogContentSeeder extends Seeder
                 $index++;
             }
         }
+    }
+
+    private function attachCoverImages(): void
+    {
+        $coversByCategory = [
+            'tecnicas-artesanais' => 'tecnicas-artesanais.png',
+            'materiais-e-ferramentas' => 'materiais-e-ferramentas.png',
+            'inspiracao-e-criatividade' => 'inspiracao-e-criatividade.png',
+            'historias-de-arte' => 'historias-de-arte.png',
+            'eventos-e-workshops' => 'eventos-e-workshops.png',
+        ];
+
+        Post::query()
+            ->whereNull('source_platform')
+            ->with('category')
+            ->get()
+            ->each(function (Post $post) use ($coversByCategory): void {
+                if ($post->hasMedia('cover')) {
+                    return;
+                }
+
+                $filename = $coversByCategory[$post->category?->slug] ?? null;
+
+                if ($filename === null) {
+                    return;
+                }
+
+                $path = database_path('seeders/assets/blog/'.$filename);
+
+                if (! is_file($path)) {
+                    $this->command?->warn("Imagem de demonstração ausente: {$filename}");
+
+                    return;
+                }
+
+                $post
+                    ->addMedia($path)
+                    ->preservingOriginal()
+                    ->usingFileName($filename)
+                    ->usingName($post->title)
+                    ->toMediaCollection('cover');
+            });
     }
 }

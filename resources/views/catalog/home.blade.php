@@ -7,7 +7,7 @@
         $showHero = $heroEnabled && $heroHasContent;
     @endphp
 
-    <main id="main" class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         @if ($showHero)
             <x-site.catalog-hero :settings="$settings" />
         @else
@@ -164,5 +164,5 @@
                 @endif
             </section>
         </div>
-    </main>
+    </div>
 </x-layouts.app>

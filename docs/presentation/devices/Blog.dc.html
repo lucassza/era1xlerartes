@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Nunito:wght@400;600;700&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; }
+    a { color: #650010; text-decoration: none; } a:hover { color: #820018; }
+    .dsp { font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; }
+
+    .slide { position: relative; overflow: hidden; width: 1920px; height: 1080px;
+             display: flex; flex-direction: column; }
+    .stage { flex: 1; display: flex; align-items: flex-end; justify-content: center; gap: 80px;
+             padding: 0 100px 100px; }
+
+    /* --- notebook --- */
+    .mac { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .mac-lid { width: 1148px; padding: 13px 14px 16px; border-radius: 15px;
+               background: linear-gradient(160deg, #3a3a3d 0%, #212124 40%, #171719 100%);
+               box-shadow: 0 2px 0 rgba(255,255,255,0.10) inset,
+                           0 40px 80px rgba(23,10,13,0.28), 0 12px 28px rgba(23,10,13,0.18); }
+    .mac-cam { width: 6px; height: 6px; margin: -8px auto 2px; border-radius: 9999px;
+               background: #4a4a4e; }
+    .mac-screen { width: 1120px; height: 700px; overflow: hidden; border-radius: 5px;
+                  background: #fcfafa; }
+    .mac-screen img { display: block; width: 1120px; height: 700px; object-fit: cover;
+                      object-position: top center; }
+    .mac-base { width: 1204px; height: 13px; border-radius: 0 0 9px 9px;
+                background: linear-gradient(180deg, #d3d4d7 0%, #b4b5b9 42%, #8d8e93 78%, #6e6f74 100%);
+                clip-path: polygon(0 0, 100% 0, 99.1% 100%, 0.9% 100%); position: relative; }
+    .mac-groove { position: absolute; left: 50%; top: 0; width: 118px; height: 6px;
+                  transform: translateX(-50%); border-radius: 0 0 7px 7px;
+                  background: linear-gradient(180deg, rgba(90,91,96,0.55), rgba(150,151,156,0.15)); }
+
+    /* --- telefone --- */
+    .iph { position: relative; flex-shrink: 0; padding: 11px; border-radius: 44px;
+           background: linear-gradient(155deg, #46464a 0%, #232326 38%, #141416 100%);
+           box-shadow: 0 2px 0 rgba(255,255,255,0.12) inset,
+                       0 30px 60px rgba(23,10,13,0.26), 0 10px 22px rgba(23,10,13,0.16); }
+    .iph-screen { overflow: hidden; border-radius: 34px; background: #fcfafa; }
+    .iph-screen img { display: block; object-fit: cover; object-position: top center; }
+    .iph-cam { position: absolute; left: 50%; top: 4px; width: 5px; height: 5px;
+               transform: translateX(-50%); border-radius: 9999px; background: #4a4a4e; }
+    .iph-btn { position: absolute; right: -3px; width: 3px; border-radius: 0 3px 3px 0;
+               background: linear-gradient(180deg, #3a3a3d, #232326); }
+    .iph-vol { position: absolute; left: -3px; width: 3px; border-radius: 3px 0 0 3px;
+               background: linear-gradient(180deg, #3a3a3d, #232326); }
+
+    .label { padding: 92px 100px 0; }
+    .kicker { margin: 0; font-size: 15px; font-weight: 700; text-transform: uppercase;
+              letter-spacing: 0.14em; }
+    .htitle { margin: 10px 0 0; font-size: 46px; font-weight: 700; letter-spacing: -0.02em;
+              line-height: 1.1; }
+    .hsub { margin: 12px 0 0; max-width: 900px; font-size: 20px; line-height: 1.55; }
+</style>
+</helmet>
+
+<div class="slide" style="background: #f3f3f4;">
+  <div class="label">
+    <p class="kicker" style="color: #650010;">Blog</p>
+    <h2 class="dsp htitle" style="color: #2f2f35;">Conteúdo editorial para atrair e reter</h2>
+    <p class="hsub" style="color: #666666;">Destaque de capa, grade por categoria e ranking dos mais lidos ao lado.</p>
+  </div>
+  <div class="stage">
+    
+      <div class="mac">
+        <div class="mac-lid">
+          <div class="mac-cam"></div>
+          <div class="mac-screen"><img src="scr-blog-mac.jpg" alt="Blog no notebook" /></div>
+        </div>
+        <div class="mac-base"><div class="mac-groove"></div></div>
+      </div>
+    
+      <div class="iph" style="border-radius: 44px;">
+        <div class="iph-cam"></div>
+        <div class="iph-btn" style="top: 141px; height: 60px;"></div>
+        <div class="iph-vol" style="top: 92px; height: 27px;"></div>
+        <div class="iph-vol" style="top: 130px; height: 38px;"></div>
+        <div class="iph-screen" style="width: 250px; height: 541px; border-radius: 34px;">
+          <img src="scr-blog-iphone.jpg" alt="Blog no celular" style="width: 250px; height: 541px;" />
+        </div>
+      </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

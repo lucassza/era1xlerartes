@@ -38,7 +38,7 @@
         }
     @endphp
 
-    <main id="main" x-data="{ filtersOpen: false }" class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div x-data="{ filtersOpen: false }" class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <nav aria-label="Breadcrumb" class="mb-4 flex flex-wrap items-center gap-2 text-sm text-muted">
             <a href="{{ route('home') }}" class="hover:text-primary">Início</a>
             <svg aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" class="size-3 text-line"><path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>
@@ -220,5 +220,5 @@
                 @endif
             </section>
         </div>
-    </main>
+    </div>
 </x-layouts.app>
