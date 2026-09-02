@@ -30,7 +30,7 @@ class AdminBrandingTest extends TestCase
         $source = file_get_contents($reflection->getFileName());
 
         $this->assertStringContainsString("->brandName('Era1x Ler Artes')", (string) $source);
-        $this->assertStringContainsString("->brandLogo(asset('images/brand/logo.jpeg'))", (string) $source);
+        $this->assertStringContainsString("->brandLogo(asset('images/brand/logo.svg'))", (string) $source);
         $this->assertStringContainsString('->darkMode(false)', (string) $source);
     }
 
@@ -62,7 +62,7 @@ class AdminBrandingTest extends TestCase
         $response->assertSee('Painel administrativo');
         $response->assertSee('Entre com suas credenciais');
         $response->assertSee('Era1x Ler Artes · Painel restrito');
-        $response->assertSee(asset('images/brand/logo.jpeg'));
+        $response->assertSee(asset('images/brand/logo.svg'));
     }
 
     public function test_password_reset_page_renders_brand_header(): void

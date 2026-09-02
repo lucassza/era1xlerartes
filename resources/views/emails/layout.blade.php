@@ -33,7 +33,7 @@
     <div class="wrapper">
         <div class="container">
             <div class="header">
-                <img src="{{ asset('images/brand/logo.jpeg') }}" alt="{{ config('app.name') }}">
+                <img src="{{ asset('images/brand/logo-fundo-branco.png') }}" alt="{{ config('app.name') }}">
                 @if ($title)
                     <h1>{{ $title }}</h1>
                 @endif

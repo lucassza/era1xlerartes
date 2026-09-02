@@ -22,8 +22,8 @@
 
         {{-- Logo --}}
         <a href="{{ route('home') }}" class="shrink-0 rounded-control" aria-label="{{ config('app.name', 'Era1x Ler Artes') }} — página inicial">
-            <img src="{{ asset('images/brand/logo-era1x.png') }}" alt="{{ config('app.name', 'Era1x Ler Artes') }}" width="500" height="500"
-                class="h-12 w-12 object-contain sm:h-14 sm:w-14">
+            <img src="{{ asset('images/brand/logo.svg') }}" alt="{{ config('app.name', 'Era1x Ler Artes') }}" width="390" height="288"
+                class="h-11 w-auto object-contain sm:h-12">
         </a>
 
         {{-- Primary nav (desktop): Início, Produtos, Categorias, Blog, Contato --}}

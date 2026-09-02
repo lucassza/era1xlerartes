@@ -13,7 +13,7 @@
     <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div class="flex flex-col gap-4">
             <a href="{{ route('home') }}" class="inline-block w-fit rounded-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" aria-label="{{ config('app.name', 'Era1x Ler Artes') }} — página inicial">
-                <img src="{{ asset('images/brand/logo-era1x.png') }}" alt="{{ config('app.name', 'Era1x Ler Artes') }}" width="500" height="500" class="size-16 rounded-card bg-surface-raised object-contain p-1.5">
+                <img src="{{ asset('images/brand/logo.svg') }}" alt="{{ config('app.name', 'Era1x Ler Artes') }}" width="390" height="288" class="h-16 w-auto rounded-card bg-surface-raised object-contain p-2">
             </a>
             <p class="max-w-md text-sm leading-6 text-accent">
                 {{ $catalogSettings->getAttribute('intro_text') ?: 'Catálogo de produtos com histórias, novidades e conteúdo editorial.' }}

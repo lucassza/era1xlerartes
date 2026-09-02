@@ -36,7 +36,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->favicon(asset('favicon.svg'))
             ->brandName('Era1x Ler Artes')
-            ->brandLogo(asset('images/brand/logo.jpeg'))
+            ->brandLogo(asset('images/brand/logo.svg'))
             ->brandLogoHeight('3rem')
             ->darkMode(false)
             ->colors([
