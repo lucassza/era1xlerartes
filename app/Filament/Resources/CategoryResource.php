@@ -76,7 +76,7 @@ class CategoryResource extends Resource
                     ->dateTime('d/m/Y H:i')
                     ->sortable(),
             ])
-            ->actions([EditAction::make()->label('Editar')])
+            ->recordActions([EditAction::make()->label('Editar')])
             ->recordUrl(null);
     }
 

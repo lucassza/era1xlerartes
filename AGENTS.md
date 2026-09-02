@@ -59,6 +59,7 @@ Corrigido: `container_name` dos 7 serviços em `docker-compose.yml` (agora `era1
 - Prefira mudanças pequenas, reversíveis e fáceis de revisar.
 - Evite refatorações não relacionadas ao objetivo da tarefa.
 - `CategoryPolicy` e `TagPolicy` não estão registradas em `AuthServiceProvider::$policies` (dependem de auto-discovery).
+- Nunca aponte a suíte de testes para o banco principal. O isolamento depende de `tests/bootstrap.php`, da neutralização do cache de configuração e da guarda em `tests/TestCase::setUp()` — os três são necessários e estão documentados em `docs/development.md` (seção "Isolamento do banco de testes").
 
 ## Processo de trabalho
 

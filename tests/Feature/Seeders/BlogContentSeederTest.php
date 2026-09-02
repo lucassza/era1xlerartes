@@ -22,7 +22,7 @@ class BlogContentSeederTest extends TestCase
         $this->seed(BlogContentSeeder::class);
 
         $this->assertDatabaseCount('categories', 5);
-        $this->assertDatabaseCount('tags', 12);
+        $this->assertDatabaseCount('tags', 15);
         $this->assertGreaterThanOrEqual(4, Author::query()->count());
         $this->assertSame(50, Post::query()->whereNull('source_platform')->count());
         $this->assertSame(50, Post::query()

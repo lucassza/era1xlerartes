@@ -17,6 +17,7 @@ use App\Models\Product;
 use App\Models\ProductInquiry;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class CatalogDemoSeeder extends Seeder
@@ -56,9 +57,9 @@ class CatalogDemoSeeder extends Seeder
     }
 
     /**
-     * @return \Illuminate\Support\Collection<string, CatalogCategory>
+     * @return Collection<string, CatalogCategory>
      */
-    private function seedCategories(): \Illuminate\Support\Collection
+    private function seedCategories(): Collection
     {
         $tree = [
             'Pintura e Desenho' => [
@@ -131,9 +132,9 @@ class CatalogDemoSeeder extends Seeder
     }
 
     /**
-     * @return \Illuminate\Support\Collection<string, Brand>
+     * @return Collection<string, Brand>
      */
-    private function seedBrands(): \Illuminate\Support\Collection
+    private function seedBrands(): Collection
     {
         $brands = [
             'ArteBranca' => 'Marca especializada em tintas, pincéis e suportes para pintura artística.',
@@ -175,13 +176,12 @@ class CatalogDemoSeeder extends Seeder
     }
 
     /**
-     * @param  \Illuminate\Support\Collection<string, CatalogCategory>  $categories
-     * @param  \Illuminate\Support\Collection<string, Brand>  $brands
+     * @param  Collection<string, CatalogCategory>  $categories
+     * @param  Collection<string, Brand>  $brands
      */
-    private function seedProducts(\Illuminate\Support\Collection $categories, \Illuminate\Support\Collection $brands, AttributeGroup $attributeGroup): void
+    private function seedProducts(Collection $categories, Collection $brands, AttributeGroup $attributeGroup): void
     {
         $products = [
-            // ── Pintura e Desenho / Tintas e Pigmentos ────────────────────────
             [
                 'name' => 'Tinta Acrílica Premium 250ml',
                 'image' => 'tinta-acrilica-premium-250ml.png',
@@ -247,7 +247,6 @@ class CatalogDemoSeeder extends Seeder
                 'featured' => false,
             ],
 
-            // ── Bordado e Costura / Linhas e Fios ────────────────────────────
             [
                 'name' => 'Kit Linhas de Bordado 100% Algodão — 50 cores',
                 'image' => 'kit-linhas-de-bordado-100-algodao-50-cores.png',
@@ -297,7 +296,6 @@ class CatalogDemoSeeder extends Seeder
                 'featured' => true,
             ],
 
-            // ── Papel e Scrapbook ─────────────────────────────────────────────
             [
                 'name' => 'Papel Scrapbook Floral Premium 30×30cm — 30 folhas',
                 'image' => 'papel-scrapbook-floral-premium-30x30cm-30-folhas.png',
@@ -331,7 +329,6 @@ class CatalogDemoSeeder extends Seeder
                 'featured' => false,
             ],
 
-            // ── Artesanato Geral ──────────────────────────────────────────────
             [
                 'name' => 'Massa para Biscuit Branca 500g',
                 'image' => 'massa-para-biscuit-branca-500g.png',
@@ -419,14 +416,6 @@ class CatalogDemoSeeder extends Seeder
         }
     }
 
-    /**
-     * Anexa a ilustração de demonstração à coleção `cover` do produto.
-     *
-     * São ilustrações vetoriais da identidade Era1x Ler Artes (não fotos),
-     * geradas por `database/seeders/assets/catalog/generate_product_images.py`.
-     * Idempotente: produto que já tem capa (inclusive foto real enviada pelo
-     * painel) é preservado.
-     */
     private function attachCoverImage(Product $product, string $filename): void
     {
         if ($product->hasMedia('cover')) {

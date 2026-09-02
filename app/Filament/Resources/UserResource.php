@@ -158,7 +158,7 @@ class UserResource extends Resource
                     ->label('E-mail verificado')
                     ->nullable(),
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make()->label('Editar'),
             ])
             ->recordUrl(null)

@@ -61,7 +61,7 @@ class NewsletterSubscriberResource extends Resource
             TextColumn::make('unsubscribed_at')->label('Cancelado em')->dateTime('d/m/Y H:i')->sortable(),
             TextColumn::make('updated_at')->label('Atualizado em')->dateTime('d/m/Y H:i')->sortable(),
         ])
-            ->actions([EditAction::make()->label('Editar')])
+            ->recordActions([EditAction::make()->label('Editar')])
             ->recordUrl(null);
     }
 

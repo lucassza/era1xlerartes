@@ -7,7 +7,9 @@ namespace App\Services;
 use App\Models\Brand;
 use App\Models\CatalogCategory;
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
 
@@ -20,9 +22,9 @@ final class PublicNavigationService
     {
         return Category::query()
             ->where('is_active', true)
-            ->whereHas('posts', static fn ($query) => $query->published())
+            ->whereHas('posts', self::publishedPosts(...))
             ->withCount([
-                'posts as published_posts_count' => static fn ($query) => $query->published(),
+                'posts as published_posts_count' => self::publishedPosts(...),
             ])
             ->orderByDesc('published_posts_count')
             ->orderBy('name')
@@ -36,14 +38,23 @@ final class PublicNavigationService
     {
         return Tag::query()
             ->where('is_active', true)
-            ->whereHas('posts', static fn ($query) => $query->published())
+            ->whereHas('posts', self::publishedPosts(...))
             ->withCount([
-                'posts as published_posts_count' => static fn ($query) => $query->published(),
+                'posts as published_posts_count' => self::publishedPosts(...),
             ])
             ->orderByDesc('published_posts_count')
             ->orderBy('name')
             ->limit($limit)
             ->get();
+    }
+
+    /**
+     * @param  Builder<Post>  $query
+     * @return Builder<Post>
+     */
+    private static function publishedPosts(Builder $query): Builder
+    {
+        return $query->published();
     }
 
     /**

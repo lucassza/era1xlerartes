@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
+         bootstrap="tests/bootstrap.php"
          colors="true"
          cacheDirectory="storage/framework/cache/phpunit"
 >
@@ -28,8 +28,6 @@
         <env name="DB_TEST_HOST" value="postgres" force="true"/>
         <env name="DB_TEST_PORT" value="5432" force="true"/>
         <env name="DB_TEST_DATABASE" value="era1x_ler_artes_test" force="true"/>
-        <env name="DB_TEST_USERNAME" value="era1x" force="true"/>
-        <env name="DB_TEST_PASSWORD" value="secret" force="true"/>
         <env name="MAIL_MAILER" value="array" force="true"/>
         <env name="QUEUE_CONNECTION" value="sync" force="true"/>
         <env name="SESSION_DRIVER" value="array" force="true"/>

@@ -96,7 +96,7 @@ class AuthorResource extends Resource
                 ->label('Ativo')
                 ->boolean(),
         ])
-            ->actions([EditAction::make()->label('Editar')])
+            ->recordActions([EditAction::make()->label('Editar')])
             ->recordUrl(null);
     }
 

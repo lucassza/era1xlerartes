@@ -56,7 +56,7 @@ class RoleResource extends Resource
             TextColumn::make('guard_name')->label('Guard')->badge(),
             TextColumn::make('permissions_count')->counts('permissions')->label('Permissões'),
         ])
-            ->actions([EditAction::make()->label('Editar')])
+            ->recordActions([EditAction::make()->label('Editar')])
             ->recordUrl(null);
     }
 

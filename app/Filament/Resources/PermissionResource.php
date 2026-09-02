@@ -46,7 +46,7 @@ class PermissionResource extends Resource
             TextColumn::make('name')->label('Nome')->searchable()->sortable(),
             TextColumn::make('guard_name')->label('Guard')->badge(),
         ])
-            ->actions([EditAction::make()->label('Editar')])
+            ->recordActions([EditAction::make()->label('Editar')])
             ->recordUrl(null);
     }
 
