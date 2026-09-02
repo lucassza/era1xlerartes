@@ -1,0 +1,36 @@
+{
+  "artboards": [
+    { "file": "Home.dc.html", "title": "Home — desktop", "x": 0, "y": 0, "w": 1440, "h": 2900 },
+    { "file": "HomeMobile.dc.html", "title": "Home — mobile", "x": 1560, "y": 0, "w": 390, "h": 2000 },
+    { "file": "Main.dc.html", "title": "Listagem — desktop", "x": 0, "y": 3100, "w": 1440, "h": 2200 },
+    { "file": "ListagemMobile.dc.html", "title": "Listagem — mobile", "x": 1560, "y": 3100, "w": 390, "h": 1900 },
+    { "file": "FiltrosMobile.dc.html", "title": "Filtros — mobile", "x": 2070, "y": 3100, "w": 390, "h": 844 },
+    { "file": "Produto.dc.html", "title": "Produto — desktop", "x": 0, "y": 5500, "w": 1440, "h": 2100 },
+    { "file": "ProdutoMobile.dc.html", "title": "Produto — mobile", "x": 1560, "y": 5500, "w": 390, "h": 1760 },
+    { "file": "Componentes.dc.html", "title": "Base visual", "x": 0, "y": 7800, "w": 1180, "h": 2120 }
+  ],
+  "annotations": [
+    {
+      "id": "direcao",
+      "x": 0,
+      "y": -250,
+      "w": 900,
+      "text": "Redesign do catálogo Era1x Ler Artes — home, listagem, produto e base visual, em desktop e mobile.\nMesma paleta (#650010 vinho, #e95d78 rosa, #f7b8c6 apoio), mesmo logotipo e as mesmas fontes do projeto (Poppins + Nunito).\nO que muda: home ganha hero com busca e as três etapas da consulta; filtros viram faceta com contagem em vez de selects; a grade ganha respiro e um bloco de imagem maior; preço e o botão Consulte passam a ser a hierarquia dominante do card."
+    },
+    {
+      "id": "imagens",
+      "x": 1560,
+      "y": -250,
+      "w": 900,
+      "text": "Imagens\nOs blocos coloridos com ícone são marcadores de foto. As ilustrações de demonstração dos 12 produtos já estão no seeder (database/seeders/assets/catalog) — as fotos reais entram pelo painel, na coleção cover."
+    },
+    {
+      "id": "base-visual",
+      "x": 1280,
+      "y": 7800,
+      "w": 420,
+      "text": "Base visual\nCores, tipos, botões, selos e campos como já estão em resources/css/app.css — nada de token novo.\nInclui o modal de consulta, que é a ação central do catálogo (sem carrinho)."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

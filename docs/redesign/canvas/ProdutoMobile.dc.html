@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; background: #fcfafa; color: #2f2f35; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #650010; text-decoration: none; }
+    a:hover { color: #820018; }
+    h1, h2, h3 { font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; margin: 0; }
+    p { margin: 0; }
+  </style>
+</helmet>
+
+<div style="width: 390px; background: #fcfafa; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif;">
+
+  <!-- Galeria full-bleed com ações sobrepostas -->
+  <div style="position: relative; display: flex; align-items: center; justify-content: center; height: 390px; background: #f7edee;">
+    <svg viewBox="0 0 64 64" fill="none" stroke="#650010" stroke-width="1.2" style="width: 150px; height: 150px; opacity: 0.32;"><path d="M24 8h16v12l6 8v28H18V28l6-8V8Z" stroke-linejoin="round"></path><path d="M24 14h16M18 40h28" stroke-linecap="round"></path></svg>
+
+    <div style="position: absolute; left: 16px; top: 16px; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 9999px; background: #ffffff; box-shadow: 0 1px 2px rgb(101 0 16 / 0.04), 0 4px 14px rgb(101 0 16 / 0.05);">
+      <svg viewBox="0 0 20 20" fill="none" stroke="#2f2f35" stroke-width="1.7" style="width: 18px; height: 18px;"><path d="M12 5l-5 5 5 5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </div>
+    <div style="position: absolute; right: 16px; top: 16px; display: flex; gap: 10px;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 9999px; background: #ffffff; box-shadow: 0 1px 2px rgb(101 0 16 / 0.04), 0 4px 14px rgb(101 0 16 / 0.05);">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#650010" stroke-width="1.7" style="width: 18px; height: 18px;"><path d="M10 16s-6-3.7-6-7.6A3.4 3.4 0 0 1 10 6a3.4 3.4 0 0 1 6 2.4C16 12.3 10 16 10 16Z" stroke-linejoin="round"></path></svg>
+      </span>
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 9999px; background: #ffffff; box-shadow: 0 1px 2px rgb(101 0 16 / 0.04), 0 4px 14px rgb(101 0 16 / 0.05);">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#650010" stroke-width="1.7" style="width: 18px; height: 18px;"><circle cx="15" cy="5.5" r="2.2"></circle><circle cx="5" cy="10" r="2.2"></circle><circle cx="15" cy="14.5" r="2.2"></circle><path d="m7 8.9 6-2.4M7 11.1l6 2.4" stroke-linecap="round"></path></svg>
+      </span>
+    </div>
+    <span style="position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; height: 26px; padding: 0 12px; border-radius: 9999px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #ffffff; background: #650010;">Destaque</span>
+    <div style="position: absolute; right: 16px; bottom: 18px; display: flex; align-items: center; gap: 6px;">
+      <span style="width: 22px; height: 6px; border-radius: 9999px; background: #650010;"></span>
+      <span style="width: 6px; height: 6px; border-radius: 9999px; background: rgba(101, 0, 16, 0.3);"></span>
+      <span style="width: 6px; height: 6px; border-radius: 9999px; background: rgba(101, 0, 16, 0.3);"></span>
+      <span style="width: 6px; height: 6px; border-radius: 9999px; background: rgba(101, 0, 16, 0.3);"></span>
+    </div>
+  </div>
+
+  <!-- Conteúdo -->
+  <div style="display: flex; flex-direction: column; gap: 18px; padding: 20px 16px 24px 16px;">
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #e95d78;">ArteBranca</span>
+        <span style="width: 3px; height: 3px; border-radius: 9999px; background: #d6d1d1;"></span>
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #666666;">Tintas e Pigmentos</span>
+      </div>
+      <h1 style="font-size: 25px; line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; color: #2f2f35;">Tinta Acrílica Premium 250ml</h1>
+      <p style="font-size: 13px; color: #666666;">SKU <strong style="color: #2f2f35;">AB-ACRIL-250</strong></p>
+    </div>
+
+    <!-- Preço + disponibilidade -->
+    <div style="display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 20px; border: 1px solid #ececec; background: #ffffff; box-shadow: 0 1px 2px rgb(101 0 16 / 0.04), 0 4px 14px rgb(101 0 16 / 0.05);">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 12px; font-weight: 600; color: #666666;">Preço de referência</span>
+          <div style="display: flex; align-items: baseline; gap: 6px;">
+            <span style="font-size: 15px; color: #666666;">R$</span>
+            <span style="font-size: 32px; line-height: 1; font-weight: 700; font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; letter-spacing: -0.02em; color: #2f2f35;">28,90</span>
+          </div>
+        </div>
+        <span style="display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 12px; border-radius: 9999px; font-size: 12px; font-weight: 700; color: #1f6b23; background: #eaf5ea;">
+          <span style="width: 7px; height: 7px; border-radius: 9999px; background: #4caf50;"></span>
+          Pronta entrega
+        </span>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 9px;">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#650010" stroke-width="1.6" style="width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;"><circle cx="10" cy="10" r="7"></circle><path d="M10 7v3l2 2" stroke-linecap="round"></path></svg>
+        <span style="font-size: 13px; line-height: 1.5; color: #666666;">Resposta em até [PRAZO DE RESPOSTA] dias úteis, com preço, prazo e formas de entrega.</span>
+      </div>
+    </div>
+
+    <p style="font-size: 16px; line-height: 1.6; color: #2f2f35;">Tinta acrílica de alta cobertura, acabamento fosco e ampla gama de cores para telas e artesanato.</p>
+
+    <!-- Especificações rápidas -->
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: 12px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="font-size: 12px; color: #666666;">Volume</span>
+        <span style="font-size: 15px; font-weight: 700; color: #2f2f35;">250 ml</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: 12px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="font-size: 12px; color: #666666;">Acabamento</span>
+        <span style="font-size: 15px; font-weight: 700; color: #2f2f35;">Fosco</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: 12px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="font-size: 12px; color: #666666;">Base</span>
+        <span style="font-size: 15px; font-weight: 700; color: #2f2f35;">Aquosa</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: 12px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="font-size: 12px; color: #666666;">Secagem</span>
+        <span style="font-size: 15px; font-weight: 700; color: #2f2f35;">20 min</span>
+      </div>
+    </div>
+
+    <!-- Acordeões -->
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: 16px; border: 1px solid #ececec; background: #ffffff;">
+        <div style="display: flex; align-items: center; justify-content: space-between; min-height: 44px;">
+          <span style="font-size: 15px; font-weight: 700; font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; color: #2f2f35;">Descrição completa</span>
+          <svg viewBox="0 0 16 16" fill="#650010" style="width: 14px; height: 14px; transform: rotate(180deg);"><path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path></svg>
+        </div>
+        <p style="font-size: 14px; line-height: 1.7; color: #666666;">Pigmentação intensa e secagem rápida. Ideal para telas, madeira, papel e cerâmica. Alta cobertura em uma demão, base aquosa, atóxica e de fácil limpeza com água.</p>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 18px; border-radius: 16px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="font-size: 15px; font-weight: 700; font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; color: #2f2f35;">Características</span>
+        <svg viewBox="0 0 16 16" fill="#666666" style="width: 14px; height: 14px;"><path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path></svg>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 18px; border-radius: 16px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="font-size: 15px; font-weight: 700; font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; color: #2f2f35;">Atributos técnicos</span>
+        <svg viewBox="0 0 16 16" fill="#666666" style="width: 14px; height: 14px;"><path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path></svg>
+      </div>
+    </div>
+
+    <!-- Relacionados -->
+    <div style="display: flex; flex-direction: column; gap: 14px; padding-top: 6px;">
+      <h2 style="font-size: 19px; font-weight: 700; letter-spacing: -0.01em; color: #2f2f35;">Combina com este produto</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+        <div style="display: flex; flex-direction: column; overflow: hidden; border-radius: 16px; border: 1px solid #ececec; background: #ffffff;">
+          <div style="display: flex; align-items: center; justify-content: center; height: 140px; background: #fdf1f4;">
+            <svg viewBox="0 0 64 64" fill="none" stroke="#e95d78" stroke-width="1.6" style="width: 52px; height: 52px; opacity: 0.4;"><rect x="10" y="18" width="44" height="28" rx="4"></rect><circle cx="21" cy="32" r="5"></circle><circle cx="32" cy="32" r="5"></circle><circle cx="43" cy="32" r="5"></circle></svg>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px; padding: 12px;">
+            <h3 style="font-size: 14px; line-height: 1.35; font-weight: 600; color: #2f2f35;">Aquarela Profissional 12 Cores</h3>
+            <div style="display: flex; align-items: baseline; gap: 5px;">
+              <span style="font-size: 12px; color: #666666;">R$</span>
+              <span style="font-size: 18px; font-weight: 700; font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; color: #2f2f35;">89,90</span>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; overflow: hidden; border-radius: 16px; border: 1px solid #ececec; background: #ffffff;">
+          <div style="display: flex; align-items: center; justify-content: center; height: 140px; background: #f5f2f0;">
+            <svg viewBox="0 0 64 64" fill="none" stroke="#650010" stroke-width="1.6" style="width: 52px; height: 52px; opacity: 0.3;"><path d="M40 10 24 34l6 4 14-24z" stroke-linejoin="round"></path><path d="M24 34c-4 4-6 12-8 18 6-2 14-4 18-8" stroke-linejoin="round"></path></svg>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px; padding: 12px;">
+            <h3 style="font-size: 14px; line-height: 1.35; font-weight: 600; color: #2f2f35;">Kit 12 Pincéis Cerdas Sintéticas</h3>
+            <div style="display: flex; align-items: baseline; gap: 5px;">
+              <span style="font-size: 12px; color: #666666;">R$</span>
+              <span style="font-size: 18px; font-weight: 700; font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; color: #2f2f35;">54,90</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra de ação fixa no rodapé da tela -->
+  <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px 26px 16px; background: #ffffff; border-top: 1px solid #ececec; box-shadow: 0 8px 24px rgb(101 0 16 / 0.08), 0 20px 48px rgb(101 0 16 / 0.10);">
+    <div style="display: flex; flex-direction: column; gap: 1px; flex-shrink: 0;">
+      <span style="font-size: 11px; color: #666666;">a partir de</span>
+      <span style="font-size: 19px; font-weight: 700; font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; color: #2f2f35;">R$ 28,90</span>
+    </div>
+    <span style="display: inline-flex; align-items: center; justify-content: center; gap: 9px; flex-grow: 1; height: 52px; border-radius: 14px; font-size: 16px; font-weight: 700; color: #ffffff; background: #650010;">
+      <svg viewBox="0 0 20 20" fill="none" stroke="#ffffff" stroke-width="1.6" style="width: 18px; height: 18px;"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h11A1.5 1.5 0 0 1 17 5.5v7a1.5 1.5 0 0 1-1.5 1.5H8l-4 3v-3H4.5A1.5 1.5 0 0 1 3 12.5v-7Z" stroke-linejoin="round"></path></svg>
+      Consulte
+    </span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; background: #fcfafa; color: #2f2f35; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #650010; text-decoration: none; }
+    a:hover { color: #820018; }
+    h1, h2, h3 { font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; margin: 0; }
+    p { margin: 0; }
+  </style>
+</helmet>
+
+<div style="display: flex; flex-direction: column; gap: 40px; width: 1180px; padding: 48px; background: #fcfafa; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif;">
+
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; padding-bottom: 24px; border-bottom: 1px solid #ececec;">
+    <div style="display: flex; align-items: center; gap: 18px;">
+      <img src="logo-era1x.png" alt="Era1x Ler Artes" style="width: 64px; height: 64px; object-fit: contain;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <h2 style="font-size: 28px; font-weight: 700; letter-spacing: -0.02em; color: #2f2f35;">Base visual do catálogo</h2>
+        <p style="font-size: 15px; color: #666666;">Mesmas cores, raios de borda e sombras já definidos em <strong style="color: #2f2f35;">resources/css/app.css</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cores -->
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #666666;">Paleta</span>
+    <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 12px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 76px; border-radius: 16px; background: #650010;"></div>
+        <span style="font-size: 13px; font-weight: 700; color: #2f2f35;">Vinho</span>
+        <span style="font-size: 12px; color: #666666;">#650010</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 76px; border-radius: 16px; background: #820018;"></div>
+        <span style="font-size: 13px; font-weight: 700; color: #2f2f35;">Vinho forte</span>
+        <span style="font-size: 12px; color: #666666;">#820018</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 76px; border-radius: 16px; background: #e95d78;"></div>
+        <span style="font-size: 13px; font-weight: 700; color: #2f2f35;">Rosa</span>
+        <span style="font-size: 12px; color: #666666;">#e95d78</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 76px; border-radius: 16px; background: #d94865;"></div>
+        <span style="font-size: 13px; font-weight: 700; color: #2f2f35;">Rosa forte</span>
+        <span style="font-size: 12px; color: #666666;">#d94865</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 76px; border-radius: 16px; background: #f7b8c6;"></div>
+        <span style="font-size: 13px; font-weight: 700; color: #2f2f35;">Rosa claro</span>
+        <span style="font-size: 12px; color: #666666;">#f7b8c6</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 76px; border-radius: 16px; background: #f3f3f4; border: 1px solid #ececec;"></div>
+        <span style="font-size: 13px; font-weight: 700; color: #2f2f35;">Superfície</span>
+        <span style="font-size: 12px; color: #666666;">#f3f3f4</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 76px; border-radius: 16px; background: #2f2f35;"></div>
+        <span style="font-size: 13px; font-weight: 700; color: #2f2f35;">Texto</span>
+        <span style="font-size: 12px; color: #666666;">#2f2f35</span>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="width: 22px; height: 22px; border-radius: 7px; background: #4caf50;"></span>
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-size: 13px; font-weight: 700; color: #2f2f35;">Sucesso</span>
+          <span style="font-size: 12px; color: #666666;">#4caf50</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="width: 22px; height: 22px; border-radius: 7px; background: #f4b400;"></span>
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-size: 13px; font-weight: 700; color: #2f2f35;">Atenção</span>
+          <span style="font-size: 12px; color: #666666;">#f4b400</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="width: 22px; height: 22px; border-radius: 7px; background: #d32f2f;"></span>
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-size: 13px; font-weight: 700; color: #2f2f35;">Erro</span>
+          <span style="font-size: 12px; color: #666666;">#d32f2f</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="width: 22px; height: 22px; border-radius: 7px; background: #4a90e2;"></span>
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-size: 13px; font-weight: 700; color: #2f2f35;">Informação</span>
+          <span style="font-size: 12px; color: #666666;">#4a90e2</span>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; gap: 14px;">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; background: #f7edee;">
+        <span style="width: 22px; height: 22px; border-radius: 7px; background: #f7edee; border: 1px solid #f0dfe1;"></span>
+        <span style="font-size: 13px; color: #2f2f35;">Tom de apoio vinho <strong>#f7edee</strong> — usado em chips, filtros ativos e blocos de imagem</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; background: #fdf1f4;">
+        <span style="width: 22px; height: 22px; border-radius: 7px; background: #fdf1f4; border: 1px solid #f7dde4;"></span>
+        <span style="font-size: 13px; color: #2f2f35;">Tom de apoio rosa <strong>#fdf1f4</strong> — alterna nos blocos de imagem para dar ritmo à grade</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tipografia -->
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #666666;">Tipografia</span>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 16px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #e95d78;">Poppins — títulos</span>
+        <span style="font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; font-size: 42px; line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; color: #2f2f35;">Catálogo 42/700</span>
+        <span style="font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.015em; color: #2f2f35;">Seção 26/700</span>
+        <span style="font-family: 'Poppins', 'Century Gothic', system-ui, sans-serif; font-size: 17px; font-weight: 600; color: #2f2f35;">Nome do produto 17/600</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 16px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #e95d78;">Nunito — texto</span>
+        <span style="font-size: 17px; line-height: 1.65; color: #2f2f35;">Corpo 17/1.65 — descrição curta do produto, usada acima do bloco de preço na página de detalhe.</span>
+        <span style="font-size: 13px; line-height: 1.5; color: #666666;">Auxiliar 13/1.5 — resumo no card, textos de apoio e legendas.</span>
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #e95d78;">Sobretítulo 11/700 caixa alta</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botões e controles -->
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #666666;">Botões e controles</span>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding: 24px; border-radius: 16px; border: 1px solid #ececec; background: #ffffff;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 48px; padding: 0 22px; border-radius: 12px; font-size: 15px; font-weight: 700; color: #ffffff; background: #650010;">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#ffffff" stroke-width="1.6" style="width: 17px; height: 17px;"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h11A1.5 1.5 0 0 1 17 5.5v7a1.5 1.5 0 0 1-1.5 1.5H8l-4 3v-3H4.5A1.5 1.5 0 0 1 3 12.5v-7Z" stroke-linejoin="round"></path></svg>
+        Consulte
+      </span>
+      <span style="display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 22px; border-radius: 12px; font-size: 15px; font-weight: 700; color: #ffffff; background: #820018;">Pressionado</span>
+      <span style="display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 22px; border-radius: 12px; font-size: 15px; font-weight: 700; color: #650010; border: 1px solid #f0dfe1; background: #f7edee;">Secundário</span>
+      <span style="display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 22px; border-radius: 12px; font-size: 15px; font-weight: 600; color: #2f2f35; border: 1px solid #ececec; background: #ffffff;">Neutro</span>
+      <span style="display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 22px; border-radius: 12px; font-size: 15px; font-weight: 600; color: #999999; border: 1px solid #ececec; background: #f3f3f4;">Desabilitado</span>
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 12px; border: 1px solid #ececec; background: #ffffff;">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#650010" stroke-width="1.6" style="width: 19px; height: 19px;"><path d="M10 16s-6-3.7-6-7.6A3.4 3.4 0 0 1 10 6a3.4 3.4 0 0 1 6 2.4C16 12.3 10 16 10 16Z" stroke-linejoin="round"></path></svg>
+      </span>
+      <span style="display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 22px; border-radius: 12px; font-size: 15px; font-weight: 700; color: #650010; background: #ffffff; outline: 3px solid #e95d78; outline-offset: 3px;">Com foco</span>
+    </div>
+  </div>
+
+  <!-- Selos, chips e campos -->
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #666666;">Selos e filtros — texto e fundo derivados das cores de status acima, para contraste em fundo claro</span>
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 16px; border: 1px solid #ececec; background: #ffffff;">
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <span style="display: inline-flex; align-items: center; height: 26px; padding: 0 11px; border-radius: 9999px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #ffffff; background: #650010;">Destaque</span>
+          <span style="display: inline-flex; align-items: center; height: 26px; padding: 0 11px; border-radius: 9999px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #650010; background: #ffffff; border: 1px solid #f0dfe1;">Sob encomenda</span>
+          <span style="display: inline-flex; align-items: center; height: 26px; padding: 0 11px; border-radius: 9999px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #8a6100; background: #fdf3d8;">Indisponível</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 11px; border-radius: 9999px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #1f6b23; background: #eaf5ea;">
+            <span style="width: 6px; height: 6px; border-radius: 9999px; background: #4caf50;"></span>
+            Pronta entrega
+          </span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <span style="display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 9999px; font-size: 13px; font-weight: 700; color: #650010; border: 1px solid #f0dfe1; background: #f7edee;">
+            Filtro aplicado
+            <svg viewBox="0 0 16 16" fill="#650010" style="width: 12px; height: 12px;"><path fill-rule="evenodd" d="M4.22 4.22a.75.75 0 0 1 1.06 0L8 6.94l2.72-2.72a.75.75 0 1 1 1.06 1.06L9.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L8 9.06l-2.72 2.72a.75.75 0 0 1-1.06-1.06L6.94 8 4.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path></svg>
+          </span>
+          <span style="display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: 9999px; font-size: 13px; font-weight: 700; color: #ffffff; background: #650010;">Selecionado</span>
+          <span style="display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: 9999px; font-size: 13px; font-weight: 600; color: #2f2f35; border: 1px solid #ececec; background: #f3f3f4;">Disponível</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #666666;">Campos</span>
+      <div style="display: flex; flex-direction: column; gap: 12px; padding: 24px; border-radius: 16px; border: 1px solid #ececec; background: #ffffff;">
+        <div style="display: flex; align-items: center; height: 48px; padding: 0 16px; border-radius: 12px; border: 1px solid #ececec; background: #f3f3f4; font-size: 15px; color: #666666;">Campo em repouso</div>
+        <div style="display: flex; align-items: center; height: 48px; padding: 0 16px; border-radius: 12px; border: 1px solid #650010; background: #ffffff; font-size: 15px; color: #2f2f35; outline: 3px solid #e95d78; outline-offset: 3px;">Campo com foco</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div style="display: flex; align-items: center; height: 48px; padding: 0 16px; border-radius: 12px; border: 1px solid #d32f2f; background: #ffffff; font-size: 15px; color: #2f2f35;">Campo com erro</div>
+          <span style="font-size: 13px; color: #d32f2f;">Informe um e-mail ou telefone para retorno.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de consulta -->
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #666666;">Modal de consulta</span>
+    <div style="display: flex; gap: 24px; padding: 32px; border-radius: 16px; background: #f3f3f4;">
+      <div style="display: flex; flex-direction: column; gap: 20px; width: 520px; padding: 28px; border-radius: 28px; background: #ffffff; box-shadow: 0 8px 24px rgb(101 0 16 / 0.08), 0 20px 48px rgb(101 0 16 / 0.10);">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: #2f2f35;">Consultar produto</h3>
+            <p style="font-size: 14px; line-height: 1.55; color: #666666;">Conte-nos o que você precisa — respondemos com preço, prazo e disponibilidade.</p>
+          </div>
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 9999px; background: #f3f3f4; flex-shrink: 0;">
+            <svg viewBox="0 0 20 20" fill="none" stroke="#2f2f35" stroke-width="1.8" style="width: 15px; height: 15px;"><path d="M5 5l10 10M15 5L5 15" stroke-linecap="round"></path></svg>
+          </span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 16px; background: #f7edee;">
+          <div style="display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 12px; background: #ffffff; flex-shrink: 0;">
+            <svg viewBox="0 0 64 64" fill="none" stroke="#650010" stroke-width="2" style="width: 28px; height: 28px; opacity: 0.5;"><path d="M24 8h16v12l6 8v28H18V28l6-8V8Z" stroke-linejoin="round"></path></svg>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0;">
+            <span style="font-size: 15px; font-weight: 700; color: #2f2f35;">Tinta Acrílica Premium 250ml</span>
+            <span style="font-size: 13px; color: #666666;">ArteBranca · SKU AB-ACRIL-250</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+          <div style="display: flex; align-items: center; height: 48px; padding: 0 16px; border-radius: 12px; border: 1px solid #ececec; background: #f3f3f4; font-size: 15px; color: #666666;">Seu nome</div>
+          <div style="display: flex; align-items: center; height: 48px; padding: 0 16px; border-radius: 12px; border: 1px solid #ececec; background: #f3f3f4; font-size: 15px; color: #666666;">WhatsApp</div>
+        </div>
+        <div style="display: flex; align-items: center; height: 48px; padding: 0 16px; border-radius: 12px; border: 1px solid #ececec; background: #f3f3f4; font-size: 15px; color: #666666;">E-mail</div>
+        <div style="display: flex; align-items: flex-start; height: 104px; padding: 14px 16px; border-radius: 12px; border: 1px solid #ececec; background: #f3f3f4; font-size: 15px; color: #666666;">Quantidade desejada, cores, prazo…</div>
+
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; flex-grow: 1; height: 52px; border-radius: 14px; font-size: 16px; font-weight: 700; color: #ffffff; background: #650010;">Enviar consulta</span>
+          <span style="display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 22px; border-radius: 14px; font-size: 15px; font-weight: 600; color: #2f2f35; border: 1px solid #ececec; background: #ffffff;">Cancelar</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; flex-grow: 1; padding: 28px; border-radius: 28px; border: 1px solid #ececec; background: #ffffff;">
+        <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: #666666;">Depois do envio</span>
+        <div style="display: flex; align-items: center; gap: 14px; padding: 18px; border-radius: 16px; background: #eaf5ea;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; background: #ffffff; flex-shrink: 0;">
+            <svg viewBox="0 0 20 20" fill="none" stroke="#4caf50" stroke-width="2" style="width: 19px; height: 19px;"><path d="m4 10 4 4 8-8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <span style="font-size: 15px; font-weight: 700; color: #1f6b23;">Consulta enviada</span>
+            <span style="font-size: 13px; color: #3d7a41;">Você recebe a resposta por WhatsApp ou e-mail.</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 14px; padding: 18px; border-radius: 16px; background: #fdecec;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; background: #ffffff; flex-shrink: 0;">
+            <svg viewBox="0 0 20 20" fill="none" stroke="#d32f2f" stroke-width="1.8" style="width: 19px; height: 19px;"><path d="M10 5v6M10 14.5v.5" stroke-linecap="round"></path><circle cx="10" cy="10" r="7.5"></circle></svg>
+          </span>
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <span style="font-size: 15px; font-weight: 700; color: #a32020;">Não foi possível enviar</span>
+            <span style="font-size: 13px; color: #b34d4d;">Revise os campos destacados e tente de novo.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
