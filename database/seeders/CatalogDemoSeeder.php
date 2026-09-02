@@ -184,6 +184,7 @@ class CatalogDemoSeeder extends Seeder
             // ── Pintura e Desenho / Tintas e Pigmentos ────────────────────────
             [
                 'name' => 'Tinta Acrílica Premium 250ml',
+                'image' => 'tinta-acrilica-premium-250ml.png',
                 'category' => 'Tintas e Pigmentos',
                 'brand' => 'ArteBranca',
                 'sku' => 'AB-ACRIL-250',
@@ -199,6 +200,7 @@ class CatalogDemoSeeder extends Seeder
             ],
             [
                 'name' => 'Aquarela Profissional 12 Cores',
+                'image' => 'aquarela-profissional-12-cores.png',
                 'category' => 'Tintas e Pigmentos',
                 'brand' => 'ArteBranca',
                 'sku' => 'AB-AQUA-12',
@@ -214,6 +216,7 @@ class CatalogDemoSeeder extends Seeder
             ],
             [
                 'name' => 'Kit 12 Pincéis Cerdas Sintéticas',
+                'image' => 'kit-12-pinceis-cerdas-sinteticas.png',
                 'category' => 'Pincéis e Espátulas',
                 'brand' => 'ArteBranca',
                 'sku' => 'AB-KIT-PNC-12',
@@ -229,6 +232,7 @@ class CatalogDemoSeeder extends Seeder
             ],
             [
                 'name' => 'Tela Canvas 40×50cm',
+                'image' => 'tela-canvas-40x50cm.png',
                 'category' => 'Suportes de Pintura',
                 'brand' => 'ArteBranca',
                 'sku' => 'AB-CANVAS-4050',
@@ -246,6 +250,7 @@ class CatalogDemoSeeder extends Seeder
             // ── Bordado e Costura / Linhas e Fios ────────────────────────────
             [
                 'name' => 'Kit Linhas de Bordado 100% Algodão — 50 cores',
+                'image' => 'kit-linhas-de-bordado-100-algodao-50-cores.png',
                 'category' => 'Linhas e Fios',
                 'brand' => 'Fio & Arte',
                 'sku' => 'FA-LINHA-50C',
@@ -261,6 +266,7 @@ class CatalogDemoSeeder extends Seeder
             ],
             [
                 'name' => 'Bastidor de Bambu 25cm',
+                'image' => 'bastidor-de-bambu-25cm.png',
                 'category' => 'Bastidores e Acessórios',
                 'brand' => 'Fio & Arte',
                 'sku' => 'FA-BAST-25',
@@ -276,6 +282,7 @@ class CatalogDemoSeeder extends Seeder
             ],
             [
                 'name' => 'Kit Macramê Iniciante Completo',
+                'image' => 'kit-macrame-iniciante-completo.png',
                 'category' => 'Fibras e Cordas',
                 'brand' => 'Fio & Arte',
                 'sku' => 'FA-MACRO-KIT',
@@ -293,6 +300,7 @@ class CatalogDemoSeeder extends Seeder
             // ── Papel e Scrapbook ─────────────────────────────────────────────
             [
                 'name' => 'Papel Scrapbook Floral Premium 30×30cm — 30 folhas',
+                'image' => 'papel-scrapbook-floral-premium-30x30cm-30-folhas.png',
                 'category' => 'Papéis Especiais',
                 'brand' => 'Paperviva',
                 'sku' => 'PV-SCRAP-FL30',
@@ -308,6 +316,7 @@ class CatalogDemoSeeder extends Seeder
             ],
             [
                 'name' => 'Kit Carimbos de Silicone — Coleção Flora',
+                'image' => 'kit-carimbos-de-silicone-colecao-flora.png',
                 'category' => 'Carimbos e Tintas',
                 'brand' => 'Paperviva',
                 'sku' => 'PV-CARIMBO-FL',
@@ -325,6 +334,7 @@ class CatalogDemoSeeder extends Seeder
             // ── Artesanato Geral ──────────────────────────────────────────────
             [
                 'name' => 'Massa para Biscuit Branca 500g',
+                'image' => 'massa-para-biscuit-branca-500g.png',
                 'category' => 'Bases e Suportes',
                 'brand' => 'TerraCriativa',
                 'sku' => 'TC-BISCUIT-500',
@@ -340,6 +350,7 @@ class CatalogDemoSeeder extends Seeder
             ],
             [
                 'name' => 'Cola para Decoupage 250ml — Fosca',
+                'image' => 'cola-para-decoupage-250ml-fosca.png',
                 'category' => 'Colas e Vernizes',
                 'brand' => 'TerraCriativa',
                 'sku' => 'TC-DECP-250F',
@@ -355,6 +366,7 @@ class CatalogDemoSeeder extends Seeder
             ],
             [
                 'name' => 'Aquarela Pérola 24 Cores (fora de linha)',
+                'image' => 'aquarela-perola-24-cores-fora-de-linha.png',
                 'category' => 'Tintas e Pigmentos',
                 'brand' => 'ArteBranca',
                 'sku' => 'AB-AQUA-PEARL-24',
@@ -375,7 +387,7 @@ class CatalogDemoSeeder extends Seeder
             $brand = $brands->get($data['brand']);
             $slug = Str::slug($data['name']);
 
-            Product::query()->firstOrCreate(
+            $product = Product::query()->firstOrCreate(
                 ['slug' => $slug],
                 [
                     'catalog_category_id' => $category?->id,
@@ -402,7 +414,39 @@ class CatalogDemoSeeder extends Seeder
                         : null,
                 ],
             );
+
+            $this->attachCoverImage($product, $data['image']);
         }
+    }
+
+    /**
+     * Anexa a ilustração de demonstração à coleção `cover` do produto.
+     *
+     * São ilustrações vetoriais da identidade Era1x Ler Artes (não fotos),
+     * geradas por `database/seeders/assets/catalog/generate_product_images.py`.
+     * Idempotente: produto que já tem capa (inclusive foto real enviada pelo
+     * painel) é preservado.
+     */
+    private function attachCoverImage(Product $product, string $filename): void
+    {
+        if ($product->hasMedia('cover')) {
+            return;
+        }
+
+        $path = database_path('seeders/assets/catalog/'.$filename);
+
+        if (! is_file($path)) {
+            $this->command?->warn("Imagem de demonstração ausente: {$filename}");
+
+            return;
+        }
+
+        $product
+            ->addMedia($path)
+            ->preservingOriginal()
+            ->usingFileName($filename)
+            ->usingName($product->name)
+            ->toMediaCollection('cover');
     }
 
     private function seedInquiries(): void
