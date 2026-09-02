@@ -18,7 +18,7 @@
     class="sticky top-0 z-40 border-b border-line bg-surface-raised"
 >
     {{-- Main bar --}}
-    <div class="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:h-19 sm:gap-4 sm:px-6 lg:px-8">
 
         {{-- Logo --}}
         <a href="{{ route('home') }}" class="shrink-0 rounded-control" aria-label="{{ config('app.name', 'Era1x Ler Artes') }} — página inicial">
@@ -32,7 +32,7 @@
                 <a
                     href="{{ route('home') }}"
                     @class([
-                        'shrink-0 rounded-control px-3 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
+                        'shrink-0 rounded-pill px-3.5 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
                         'text-primary bg-primary/5' => $catalogActive && $routeName === 'home',
                         'text-muted hover:text-foreground' => ! ($catalogActive && $routeName === 'home'),
                     ])
@@ -44,7 +44,7 @@
                 <a
                     href="{{ route('products.index') }}"
                     @class([
-                        'shrink-0 rounded-control px-3 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
+                        'shrink-0 rounded-pill px-3.5 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
                         'text-primary bg-primary/5' => $catalogActive && str_starts_with($routeName, 'products.'),
                         'text-muted hover:text-foreground' => ! ($catalogActive && str_starts_with($routeName, 'products.')),
                     ])
@@ -67,7 +67,7 @@
                             type="button"
                             @click.stop="open = true"
                             @class([
-                                'inline-flex items-center gap-1 rounded-control px-3 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
+                                'inline-flex items-center gap-1 rounded-pill px-3.5 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
                                 'text-primary bg-primary/5' => str_starts_with($routeName, 'catalog-categories.'),
                                 'text-muted hover:text-foreground' => ! str_starts_with($routeName, 'catalog-categories.'),
                             ])
@@ -108,7 +108,7 @@
                 <a
                     href="{{ route('blog.index') }}"
                     @class([
-                        'shrink-0 rounded-control px-3 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
+                        'shrink-0 rounded-pill px-3.5 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
                         'text-primary bg-primary/5' => $blogActive,
                         'text-muted hover:text-foreground' => ! $blogActive,
                     ])
@@ -120,7 +120,7 @@
                 <a
                     href="{{ route('site.contact') }}"
                     @class([
-                        'shrink-0 rounded-control px-3 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
+                        'shrink-0 rounded-pill px-3.5 py-2 text-sm font-semibold transition duration-200 ease-standard hover:bg-surface',
                         'text-primary bg-primary/5' => $contactActive,
                         'text-muted hover:text-foreground' => ! $contactActive,
                     ])
@@ -136,12 +136,12 @@
             <label for="site-search-query" class="sr-only">Buscar no blog</label>
             <div class="relative">
                 <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"
-                    class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted">
+                    class="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted">
                     <circle cx="9" cy="9" r="5.5" /><path d="m14 14 3 3" stroke-linecap="round" />
                 </svg>
                 <input
                     id="site-search-query" name="q" type="search" placeholder="Buscar..."
-                    class="h-10 w-48 rounded-control border border-line bg-surface pl-9 pr-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-secondary xl:w-56"
+                    class="h-11 w-56 rounded-pill border border-line bg-surface pl-10 pr-4 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-secondary xl:w-72"
                 >
             </div>
         </form>
@@ -187,12 +187,12 @@
                 <label for="mobile-search-query" class="sr-only">Buscar no blog</label>
                 <div class="relative">
                     <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"
-                        class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted">
+                        class="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted">
                         <circle cx="9" cy="9" r="5.5" /><path d="m14 14 3 3" stroke-linecap="round" />
                     </svg>
                     <input
                         id="mobile-search-query" name="q" type="search" placeholder="Buscar no blog..."
-                        class="h-11 w-full rounded-control border border-line bg-surface pl-9 pr-3 text-sm text-foreground placeholder:text-muted"
+                        class="h-11 w-full rounded-pill border border-line bg-surface pl-10 pr-4 text-sm text-foreground placeholder:text-muted"
                     >
                 </div>
             </form>
