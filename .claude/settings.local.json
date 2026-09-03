@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /var/www/era1xlerartes fetch origin)",
+      "Bash(git -C /var/www/era1xlerartes status)",
+      "Bash(git -C /var/www/era1xlerartes merge --ff-only origin/main)",
+      "Bash(git -C /var/www/era1xlerartes log --oneline -5)",
+      "Bash(git check-ignore *)"
+    ]
+  }
+}
