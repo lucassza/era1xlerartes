@@ -64,6 +64,15 @@ class ManageSettings extends Page implements HasForms
                         TextInput::make('contact_email')->label('E-mail de contato')->email(),
                         Toggle::make('newsletter_enabled')->label('Newsletter habilitada')->inline(false),
                     ]),
+                Section::make('Rodapé')
+                    ->description('Texto exibido abaixo da logo no rodapé do site. Deixe em branco para ocultar.')
+                    ->schema([
+                        Textarea::make('footer_text')
+                            ->label('Texto abaixo da logo')
+                            ->placeholder(BlogSetting::DEFAULT_FOOTER_TEXT)
+                            ->rows(3)
+                            ->maxLength(500),
+                    ]),
                 Section::make('Engajamento')
                     ->description('Controles de moderação da comunidade. Quando desabilitados, os recursos ficam indisponíveis para o público.')
                     ->schema([
@@ -96,12 +105,6 @@ class ManageSettings extends Page implements HasForms
 
     private function setting(): BlogSetting
     {
-        return BlogSetting::query()->firstOrCreate([], [
-            'site_name' => config('app.name', 'Era1x Ler Artes'),
-            'site_description' => 'Blog moderno em Laravel.',
-            'default_meta_title' => config('app.name', 'Era1x Ler Artes'),
-            'default_meta_description' => 'Blog moderno em Laravel.',
-            'newsletter_enabled' => true,
-        ]);
+        return BlogSetting::query()->firstOrCreate([], BlogSetting::defaults());
     }
 }

@@ -19,6 +19,7 @@ A camada de comunidade foi desenhada para que **toda submissão pública passe p
 - `users.type` (`admin` | `site`) — diferencia usuários do painel Filament de usuários autenticados do site público.
 - `users.city`, `users.banned_at` — dados complementares e bloqueio administrativo.
 - `blog_settings.comments_enabled`, `blog_settings.testimonials_enabled` — toggles globais que controlam disponibilidade dos recursos.
+- `blog_settings.footer_text` — texto exibido abaixo da logo no rodapé público, editável em `/admin/settings`. Em branco, o parágrafo não é renderizado. Antes desta coluna o rodapé reaproveitava `catalog_settings.intro_text`; a migration preservou o valor que estava no ar.
 - `posts.comments_locked` — override por post para bloquear comentários mesmo com a flag global ativa.
 - `testimonials` — depoimentos enviados via `/depoimentos` com snapshot de `name`, `email` e `city` (caso o usuário seja removido).
 - `post_comments` — comentários enviados em `posts/{slug}` com snapshot, score e status.

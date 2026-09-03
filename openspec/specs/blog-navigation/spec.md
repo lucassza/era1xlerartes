@@ -16,6 +16,24 @@ no header, footer e navegação mobile.
 - **THEN** vê as entradas Início, Produtos, Categorias, Blog e Contato, com
   destaque na seção ativa, em desktop e mobile
 
+### Requirement: Texto do rodapé editável no Admin
+
+O texto exibido abaixo da logo no rodapé SHALL vir de `blog_settings.footer_text`,
+editável em `/admin/settings` por quem tem a permissão `settings.manage`.
+Quando o campo estiver em branco, o parágrafo NÃO SHALL ser renderizado.
+
+#### Scenario: Admin altera o texto do rodapé
+
+- **GIVEN** um admin na seção "Rodapé" de `/admin/settings`
+- **WHEN** altera `footer_text` e salva
+- **THEN** o texto abaixo da logo no rodapé público reflete o novo valor
+
+#### Scenario: Texto em branco oculta o parágrafo
+
+- **GIVEN** um admin na seção "Rodapé" de `/admin/settings`
+- **WHEN** deixa `footer_text` em branco e salva
+- **THEN** o parágrafo abaixo da logo deixa de ser renderizado
+
 ### Requirement: Listagem do blog em `/blog`
 
 A rota `/blog` SHALL exibir a listagem paginada de artigos publicados,

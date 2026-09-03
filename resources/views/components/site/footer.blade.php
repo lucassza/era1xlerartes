@@ -7,6 +7,10 @@
     $whatsapp = $catalogSettings->getAttribute('commercial_whatsapp');
     $emails = $catalogSettings->getAttribute('inquiry_recipients');
     $hasContact = filled($phone) || filled($whatsapp) || filled($emails);
+
+    /** @var \App\Models\BlogSetting|null $settings */
+    $settings = $footerSettings ?? null;
+    $footerText = $settings ? $settings->footer_text : \App\Models\BlogSetting::DEFAULT_FOOTER_TEXT;
 @endphp
 
 <footer class="bg-primary text-white">
@@ -15,9 +19,9 @@
             <a href="{{ route('home') }}" class="inline-block w-fit rounded-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" aria-label="{{ config('app.name', 'Era1x Ler Artes') }} — página inicial">
                 <img src="{{ asset('images/brand/logo.svg') }}" alt="{{ config('app.name', 'Era1x Ler Artes') }}" width="390" height="288" class="h-16 w-auto rounded-card bg-surface-raised object-contain p-2">
             </a>
-            <p class="max-w-md text-sm leading-6 text-accent">
-                {{ $catalogSettings->getAttribute('intro_text') ?: 'Catálogo de produtos com histórias, novidades e conteúdo editorial.' }}
-            </p>
+            @if (filled($footerText))
+                <p class="max-w-md text-sm leading-6 text-accent">{{ $footerText }}</p>
+            @endif
         </div>
 
         <nav aria-label="Links do rodapé" class="flex flex-col gap-3">

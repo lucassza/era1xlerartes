@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Models\BlogSetting;
 use App\Models\Brand;
 use App\Models\CatalogCategory;
 use App\Models\CatalogSetting;
@@ -52,6 +53,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 'footerCatalogCategories' => $navigation->catalogTopCategories(6),
                 'footerCatalogSettings' => $catalog->settings(),
+                'footerSettings' => BlogSetting::query()->first(),
             ]);
         });
 

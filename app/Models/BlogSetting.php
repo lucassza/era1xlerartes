@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable([
     'site_name',
     'site_description',
+    'footer_text',
     'default_meta_title',
     'default_meta_description',
     'contact_email',
@@ -24,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
 class BlogSetting extends Model
 {
     use HasFactory;
+
+    public const DEFAULT_FOOTER_TEXT = 'Catálogo de produtos com histórias, novidades e conteúdo editorial.';
 
     /**
      * @return array<string, string>
@@ -42,6 +45,7 @@ class BlogSetting extends Model
         return [
             'site_name' => config('app.name', 'Era1x Ler Artes'),
             'site_description' => 'Blog moderno em Laravel.',
+            'footer_text' => self::DEFAULT_FOOTER_TEXT,
             'default_meta_title' => config('app.name', 'Era1x Ler Artes'),
             'default_meta_description' => 'Blog moderno em Laravel.',
             'newsletter_enabled' => true,
