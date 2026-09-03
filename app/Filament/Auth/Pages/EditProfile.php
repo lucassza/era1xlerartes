@@ -70,7 +70,7 @@ class EditProfile extends BaseEditProfile
                             ->dehydrated(fn ($state): bool => filled($state))
                             ->dehydrateStateUsing(fn ($state): string => Hash::make((string) $state))
                             ->live(debounce: 500)
-                            ->confirmed(),
+                            ->same('passwordConfirmation'),
                         TextInput::make('passwordConfirmation')
                             ->label('Confirmar nova senha')
                             ->password()
