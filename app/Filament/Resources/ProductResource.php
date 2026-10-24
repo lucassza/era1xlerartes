@@ -7,6 +7,7 @@ namespace App\Filament\Resources;
 use App\Enums\PriceDisplayMode;
 use App\Enums\ProductAvailability;
 use App\Enums\ProductStatus;
+use App\Filament\Forms\Components\HtmlEditor;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Models\Attribute;
 use App\Models\Product;
@@ -96,15 +97,15 @@ class ProductResource extends Resource
                         ->rows(2)
                         ->maxLength(500)
                         ->helperText('Aparece nos cards do catálogo.'),
-                    Textarea::make('description')
+                    HtmlEditor::make('description')
                         ->label('Descrição completa')
-                        ->rows(8),
-                    Textarea::make('specifications')
+                        ->editorHeight(360),
+                    HtmlEditor::make('specifications')
                         ->label('Especificações')
-                        ->rows(4),
-                    Textarea::make('features')
+                        ->editorHeight(260),
+                    HtmlEditor::make('features')
                         ->label('Características')
-                        ->rows(4),
+                        ->editorHeight(260),
                     Toggle::make('is_featured')
                         ->label('Produto em destaque')
                         ->inline(false),

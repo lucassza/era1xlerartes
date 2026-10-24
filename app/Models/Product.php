@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Enums\PriceDisplayMode;
 use App\Enums\ProductAvailability;
 use App\Enums\ProductStatus;
+use App\Services\ContentSanitizer;
 use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
@@ -69,6 +70,14 @@ class Product extends Model implements HasMedia
         static::saving(static function (self $product): void {
             if (blank($product->slug) && filled($product->name)) {
                 $product->slug = Str::slug($product->name);
+            }
+
+            $sanitizer = app(ContentSanitizer::class);
+
+            foreach (['description', 'specifications', 'features'] as $attribute) {
+                if (filled($product->{$attribute})) {
+                    $product->{$attribute} = $sanitizer->sanitize($product->{$attribute});
+                }
             }
 
             match ($product->status) {

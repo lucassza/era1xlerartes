@@ -9,9 +9,12 @@ use Filament\Auth\Pages\EditProfile as BaseEditProfile;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
@@ -31,6 +34,10 @@ class EditProfile extends BaseEditProfile
                             ->imageAspectRatio('1:1')
                             ->visibility('private')
                             ->storeFiles(false),
+                        Toggle::make('removeAvatar')
+                            ->label('Remover avatar atual')
+                            ->visible(fn (): bool => $this->getUser()->hasMedia('avatar'))
+                            ->dehydrated(false),
                     ]),
                 Section::make('Dados')
                     ->schema([
@@ -80,6 +87,7 @@ class EditProfile extends BaseEditProfile
                             ->visible(fn (Get $get): bool => filled($get('password')))
                             ->dehydrated(false),
                     ]),
+                ...Arr::wrap($this->getMultiFactorAuthenticationContentComponent()),
             ]);
     }
 
@@ -87,13 +95,16 @@ class EditProfile extends BaseEditProfile
     {
         $user = $this->getUser();
 
-        $user->clearMediaCollection('avatar');
+        $avatar = $data['avatar'] ?? null;
+        $avatar = is_array($avatar) ? Arr::first($avatar) : $avatar;
 
-        if (filled($data['avatar'] ?? null)) {
-            $user->addMediaFromRequest('avatar')->toMediaCollection('avatar');
+        if ($avatar instanceof UploadedFile) {
+            $user->addMedia($avatar)->toMediaCollection('avatar');
+        } elseif ($this->data['removeAvatar'] ?? false) {
+            $user->clearMediaCollection('avatar');
         }
 
-        unset($data['avatar']);
+        unset($data['avatar'], $data['removeAvatar']);
 
         return $data;
     }
