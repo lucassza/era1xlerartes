@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources;
 
 use App\Enums\PostStatus;
+use App\Filament\Forms\Components\HtmlEditor;
 use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
 use Filament\Actions\EditAction;
@@ -85,9 +86,9 @@ class PostResource extends Resource
             Textarea::make('excerpt')
                 ->label('Resumo')
                 ->rows(3),
-            Textarea::make('content')
+            HtmlEditor::make('content')
                 ->label('Conteúdo')
-                ->rows(12)
+                ->editorHeight(480)
                 ->required(),
             Select::make('status')
                 ->label('Status')

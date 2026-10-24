@@ -6,6 +6,8 @@ namespace App\Models;
 
 use App\Enums\UserType;
 use Database\Factories\UserFactory;
+use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthentication;
+use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthenticationRecovery;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -26,8 +28,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
 
 #[Fillable(['name', 'city', 'email', 'password', 'type', 'banned_at'])]
-#[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable implements FilamentUser, HasMedia, MustVerifyEmail
+#[Hidden(['password', 'remember_token', 'app_authentication_secret', 'app_authentication_recovery_codes'])]
+class User extends Authenticatable implements FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery, HasMedia, MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory;
@@ -51,6 +53,8 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'banned_at' => 'datetime',
+            'app_authentication_secret' => 'encrypted',
+            'app_authentication_recovery_codes' => 'encrypted:array',
             'type' => UserType::class,
         ];
     }
@@ -86,6 +90,39 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
     public function comments(): HasMany
     {
         return $this->hasMany(PostComment::class);
+    }
+
+    public function getAppAuthenticationSecret(): ?string
+    {
+        return $this->app_authentication_secret;
+    }
+
+    public function saveAppAuthenticationSecret(?string $secret): void
+    {
+        $this->app_authentication_secret = $secret;
+        $this->save();
+    }
+
+    public function getAppAuthenticationHolderName(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return array<int, string>|null
+     */
+    public function getAppAuthenticationRecoveryCodes(): ?array
+    {
+        return $this->app_authentication_recovery_codes;
+    }
+
+    /**
+     * @param  array<int, string>|null  $codes
+     */
+    public function saveAppAuthenticationRecoveryCodes(?array $codes): void
+    {
+        $this->app_authentication_recovery_codes = $codes;
+        $this->save();
     }
 
     public function registerMediaCollections(): void

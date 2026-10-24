@@ -7,6 +7,7 @@ namespace App\Providers\Filament;
 use App\Filament\Auth\Pages\EditProfile;
 use App\Filament\Pages\Dashboard;
 use Filament\Actions\Action;
+use Filament\Auth\MultiFactor\App\AppAuthentication;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -52,6 +53,10 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/theme.css')
             ->login()
             ->passwordReset()
+            ->multiFactorAuthentication([
+                AppAuthentication::make()->recoverable(),
+            ])
+            ->unsavedChangesAlerts()
             ->profile(page: EditProfile::class, isSimple: false)
             ->navigationGroups([
                 NavigationGroup::make('Conteúdo')
